@@ -110,7 +110,7 @@ export default function HeroBanner() {
             // Banner completo pronto (Banner 1)
             <div className="relative h-full w-full bg-[#0a0a0a] flex items-center justify-center">
               <Image
-                src={banner.bannerImage}
+                src={banner.backgroundImage}
                 alt={banner.title}
                 fill
                 className="object-contain"
