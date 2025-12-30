@@ -8,7 +8,62 @@ import AdizeroBanner from './AdizeroBanner';
 import PeQuenteBanner from './PeQuenteBanner';
 import PeQuenteBanner2 from './PeQuenteBanner2';
 
-const banners = [
+// Types para os diferentes layouts de banner usando discriminated unions
+type BannerBase = {
+  id: number;
+  title: string;
+  subtitle: string;
+  cta: string;
+  link: string;
+  backgroundImage: string;
+};
+
+type AdizeroLayoutBanner = BannerBase & {
+  type: 'adizero-layout';
+  adizeroTitle: string;
+  adizeroSubtitle: string;
+  adizeroCta: string;
+};
+
+type PeQuenteLayoutBanner = BannerBase & {
+  type: 'pequente-layout';
+  slogan: string;
+  pequenteCta: string;
+};
+
+type PeQuenteLayout2Banner = BannerBase & {
+  type: 'pequente-layout-2';
+  mainTitle: string;
+  secondaryTitle: string;
+  pequenteSubtitle: string;
+  pequenteCta: string;
+};
+
+type FullBanner = BannerBase & {
+  type: 'full-banner';
+};
+
+type ImageBanner = BannerBase & {
+  type: 'image';
+  overlay?: string;
+  productImage?: string;
+  productImageFallback?: string;
+};
+
+type GradientBanner = BannerBase & {
+  type: 'gradient';
+  gradient: string;
+};
+
+type Banner = 
+  | AdizeroLayoutBanner 
+  | PeQuenteLayoutBanner 
+  | PeQuenteLayout2Banner 
+  | FullBanner 
+  | ImageBanner 
+  | GradientBanner;
+
+const banners: Banner[] = [
   {
     id: 1,
     title: 'Adizero',
@@ -136,7 +191,9 @@ export default function HeroBanner() {
               </div>
 
               {/* Overlay escuro para legibilidade */}
-              <div className={`absolute inset-0 ${banner.overlay}`} />
+              {banner.type === 'image' && banner.overlay && (
+                <div className={`absolute inset-0 ${banner.overlay}`} />
+              )}
 
               {/* Conteúdo do banner */}
               <div className="relative h-full flex items-center">
@@ -176,21 +233,23 @@ export default function HeroBanner() {
                           {/* Tênis com tamanho e posicionamento harmonioso */}
                           <div className="relative w-full h-full flex items-center justify-center z-10">
                             <div className="relative w-[75%] md:w-[70%] lg:w-[65%] h-full flex items-end justify-center">
-                              <img
-                                src={banner.productImage}
-                                alt="Tênis Adidas Adizero Drive RC Masculino"
-                                className="object-contain w-full h-full max-h-full"
-                                onError={(e) => {
-                                  // Se a imagem PNG não existir, usa o fallback JPG
-                                  if (banner.productImageFallback) {
-                                    (e.target as HTMLImageElement).src = banner.productImageFallback;
-                                  }
-                                }}
-                                style={{
-                                  filter: 'drop-shadow(0 30px 60px rgba(0, 0, 0, 0.7)) drop-shadow(0 10px 20px rgba(255, 215, 0, 0.1))',
-                                  objectPosition: 'center bottom',
-                                }}
-                              />
+                              {banner.type === 'image' && banner.productImage && (
+                                <img
+                                  src={banner.productImage}
+                                  alt="Tênis Adidas Adizero Drive RC Masculino"
+                                  className="object-contain w-full h-full max-h-full"
+                                  onError={(e) => {
+                                    // Se a imagem PNG não existir, usa o fallback JPG
+                                    if (banner.type === 'image' && banner.productImageFallback) {
+                                      (e.target as HTMLImageElement).src = banner.productImageFallback;
+                                    }
+                                  }}
+                                  style={{
+                                    filter: 'drop-shadow(0 30px 60px rgba(0, 0, 0, 0.7)) drop-shadow(0 10px 20px rgba(255, 215, 0, 0.1))',
+                                    objectPosition: 'center bottom',
+                                  }}
+                                />
+                              )}
                             </div>
                           </div>
                           
@@ -213,9 +272,27 @@ export default function HeroBanner() {
                 </div>
               </div>
             </div>
-          ) : (
-            // Banner com gradiente (Banners 2 e 3)
+          ) : banner.type === 'gradient' ? (
+            // Banner com gradiente
             <div className={`h-full bg-gradient-to-r ${banner.gradient} flex items-center justify-center`}>
+              <div className="container mx-auto px-4 text-center">
+                <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+                  {banner.title}
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-200 mb-8">
+                  {banner.subtitle}
+                </p>
+                <Link
+                  href={banner.link}
+                  className="inline-block bg-[#FFD700] text-[#0a0a0a] font-bold px-8 py-4 rounded-lg hover:bg-[#FFD700]/90 transition text-lg"
+                >
+                  {banner.cta}
+                </Link>
+              </div>
+            </div>
+          ) : (
+            // Fallback para tipos não reconhecidos
+            <div className="relative h-full w-full bg-[#0a0a0a] flex items-center justify-center">
               <div className="container mx-auto px-4 text-center">
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
                   {banner.title}
