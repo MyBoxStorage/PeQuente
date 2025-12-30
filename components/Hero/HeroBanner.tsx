@@ -291,20 +291,20 @@ export default function HeroBanner() {
               </div>
             </div>
           ) : (
-            // Fallback para tipos não reconhecidos
+            // Fallback seguro para tipos não reconhecidos
             <div className="relative h-full w-full bg-[#0a0a0a] flex items-center justify-center">
               <div className="container mx-auto px-4 text-center">
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-                  {banner.title}
+                  Pé Quente Calçados
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-200 mb-8">
-                  {banner.subtitle}
+                  Sempre um passo à frente
                 </p>
                 <Link
-                  href={banner.link}
+                  href="/produtos"
                   className="inline-block bg-[#FFD700] text-[#0a0a0a] font-bold px-8 py-4 rounded-lg hover:bg-[#FFD700]/90 transition text-lg"
                 >
-                  {banner.cta}
+                  Ver Produtos
                 </Link>
               </div>
             </div>
