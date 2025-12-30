@@ -3,31 +3,47 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
+import AdizeroBanner from './AdizeroBanner';
+import PeQuenteBanner from './PeQuenteBanner';
+import PeQuenteBanner2 from './PeQuenteBanner2';
 
 const banners = [
   {
     id: 1,
-    title: 'Nova Coleção 2025',
-    subtitle: 'Os melhores tênis das principais marcas',
-    cta: 'Ver Coleção',
+    title: 'Adizero',
+    subtitle: 'Performance e velocidade',
+    cta: 'Ver Produtos',
     link: '/produtos',
-    gradient: 'from-[#1E3A8A] to-[#252525]',
+    type: 'adizero-layout', // Layout completo com tipografia profissional
+    backgroundImage: '/images/banners/adizero-banner.jpg', // Imagem de fundo gerada pela IA
+    adizeroTitle: 'ADIZERO\nPRO EVO',
+    adizeroSubtitle: 'Leveza revolucionária para quebrar recordes',
+    adizeroCta: 'VER AGORA',
   },
   {
     id: 2,
-    title: 'Frete Grátis',
-    subtitle: 'Para toda Paraíba do Sul',
-    cta: 'Comprar Agora',
+    title: 'Ano Novo',
+    subtitle: 'Mesma Atitude',
+    cta: 'Veja Mais',
     link: '/produtos',
-    gradient: 'from-[#DC143C] to-[#252525]',
+    type: 'pequente-layout-2', // Layout completo Ano Novo
+    backgroundImage: '/images/banners/pe-quente-banner-2.png.png', // Imagem de fundo gerada pela IA
+    mainTitle: 'ANO NOVO',
+    secondaryTitle: 'MESMA ATITUDE',
+    pequenteSubtitle: 'Novidades para começar o ano no estilo',
+    pequenteCta: 'VEJA MAIS',
   },
   {
     id: 3,
-    title: '5% OFF no PIX',
-    subtitle: 'Ganhe desconto pagando com PIX',
-    cta: 'Ver Produtos',
+    title: 'Pé Quente',
+    subtitle: 'Sempre um passo à frente',
+    cta: 'Veja Mais',
     link: '/produtos',
-    gradient: 'from-[#FFD700] to-[#1E3A8A]',
+    type: 'pequente-layout', // Layout completo com logo Pé Quente (Mizuno)
+    backgroundImage: '/images/banners/pe-quente-banner.png.png', // Imagem de fundo gerada pela IA (Mizuno)
+    slogan: 'Sempre um passo à frente',
+    pequenteCta: 'VEJA MAIS!',
   },
 ];
 
@@ -63,43 +79,180 @@ export default function HeroBanner() {
             index === currentIndex ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <div className={`h-full bg-gradient-to-r ${banner.gradient} flex items-center justify-center`}>
-            <div className="container mx-auto px-4 text-center">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-                {banner.title}
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-200 mb-8">
-                {banner.subtitle}
-              </p>
-              <Link
-                href={banner.link}
-                className="inline-block bg-[#FFD700] text-[#0a0a0a] font-bold px-8 py-4 rounded-lg hover:bg-[#FFD700]/90 transition text-lg"
-              >
-                {banner.cta}
-              </Link>
+          {banner.type === 'adizero-layout' ? (
+            // Layout completo Adizero com tipografia profissional (Banner 2)
+            <AdizeroBanner
+              backgroundImage={banner.backgroundImage}
+              title={banner.adizeroTitle}
+              subtitle={banner.adizeroSubtitle}
+              ctaText={banner.adizeroCta}
+              ctaLink={banner.link}
+            />
+          ) : banner.type === 'pequente-layout' ? (
+            // Layout completo Pé Quente com logo estilizado
+            <PeQuenteBanner
+              backgroundImage={banner.backgroundImage}
+              slogan={banner.slogan}
+              ctaText={banner.pequenteCta}
+              ctaLink={banner.link}
+            />
+          ) : banner.type === 'pequente-layout-2' ? (
+            // Layout completo Pé Quente Ano Novo (Banner 3)
+            <PeQuenteBanner2
+              backgroundImage={banner.backgroundImage}
+              mainTitle={banner.mainTitle}
+              secondaryTitle={banner.secondaryTitle}
+              subtitle={banner.pequenteSubtitle}
+              ctaText={banner.pequenteCta}
+              ctaLink={banner.link}
+            />
+          ) : banner.type === 'full-banner' ? (
+            // Banner completo pronto (Banner 1)
+            <div className="relative h-full w-full bg-[#0a0a0a] flex items-center justify-center">
+              <Image
+                src={banner.bannerImage}
+                alt={banner.title}
+                fill
+                className="object-contain"
+                priority={index === 0}
+                quality={95}
+                sizes="100vw"
+              />
             </div>
-          </div>
+          ) : banner.type === 'image' ? (
+            // Banner com imagens em camadas (se necessário no futuro)
+            <div className="relative h-full w-full">
+              {/* Imagem de fundo - pista de corrida */}
+              <div className="absolute inset-0">
+                <Image
+                  src={banner.backgroundImage}
+                  alt="Pista de corrida"
+                  fill
+                  className="object-cover"
+                  priority={index === 0}
+                  quality={90}
+                  sizes="100vw"
+                />
+              </div>
+
+              {/* Overlay escuro para legibilidade */}
+              <div className={`absolute inset-0 ${banner.overlay}`} />
+
+              {/* Conteúdo do banner */}
+              <div className="relative h-full flex items-center">
+                <div className="container mx-auto px-4 w-full max-w-7xl">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
+                    {/* Texto à esquerda */}
+                    <div className="text-center lg:text-left z-10 lg:pr-8">
+                      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+                        {banner.title}
+                      </h1>
+                      <p className="text-xl md:text-2xl lg:text-3xl text-white mb-8 font-medium drop-shadow-lg">
+                        {banner.subtitle}
+                      </p>
+                      <Link
+                        href={banner.link}
+                        className="inline-block bg-[#FFD700] text-[#0a0a0a] font-bold px-8 py-4 rounded-lg hover:bg-[#FFD700]/90 transition text-lg shadow-xl"
+                      >
+                        {banner.cta}
+                      </Link>
+                    </div>
+
+                    {/* Imagem do tênis à direita - Integrada harmoniosamente */}
+                    <div className="relative h-[280px] md:h-[380px] lg:h-[480px] flex items-center justify-center lg:justify-end">
+                      <div className="relative w-full max-w-[90%] lg:max-w-[550px] h-full flex items-center justify-center">
+                        {/* Container principal com perspectiva */}
+                        <div className="relative w-full h-full flex items-center justify-center">
+                          {/* Efeito de luz ambiente para integração com o fundo */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div 
+                              className="absolute w-[70%] h-[70%] rounded-full blur-3xl opacity-50"
+                              style={{
+                                background: 'radial-gradient(circle, rgba(255, 215, 0, 0.1), transparent 70%)',
+                              }}
+                            />
+                          </div>
+                          
+                          {/* Tênis com tamanho e posicionamento harmonioso */}
+                          <div className="relative w-full h-full flex items-center justify-center z-10">
+                            <div className="relative w-[75%] md:w-[70%] lg:w-[65%] h-full flex items-end justify-center">
+                              <img
+                                src={banner.productImage}
+                                alt="Tênis Adidas Adizero Drive RC Masculino"
+                                className="object-contain w-full h-full max-h-full"
+                                onError={(e) => {
+                                  // Se a imagem PNG não existir, usa o fallback JPG
+                                  if (banner.productImageFallback) {
+                                    (e.target as HTMLImageElement).src = banner.productImageFallback;
+                                  }
+                                }}
+                                style={{
+                                  filter: 'drop-shadow(0 30px 60px rgba(0, 0, 0, 0.7)) drop-shadow(0 10px 20px rgba(255, 215, 0, 0.1))',
+                                  objectPosition: 'center bottom',
+                                }}
+                              />
+                            </div>
+                          </div>
+                          
+                          {/* Sombra realista no "chão" da pista para profundidade */}
+                          <div 
+                            className="absolute bottom-[15%] left-1/2 -translate-x-1/2 w-[55%] h-12 bg-black/40 rounded-full blur-2xl -translate-y-2"
+                            style={{
+                              transform: 'translateX(-50%) translateY(-8px) scaleX(1.2)',
+                            }}
+                          />
+                          
+                          {/* Sombra secundária mais suave */}
+                          <div 
+                            className="absolute bottom-[12%] left-1/2 -translate-x-1/2 w-[45%] h-6 bg-black/20 rounded-full blur-xl"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            // Banner com gradiente (Banners 2 e 3)
+            <div className={`h-full bg-gradient-to-r ${banner.gradient} flex items-center justify-center`}>
+              <div className="container mx-auto px-4 text-center">
+                <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+                  {banner.title}
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-200 mb-8">
+                  {banner.subtitle}
+                </p>
+                <Link
+                  href={banner.link}
+                  className="inline-block bg-[#FFD700] text-[#0a0a0a] font-bold px-8 py-4 rounded-lg hover:bg-[#FFD700]/90 transition text-lg"
+                >
+                  {banner.cta}
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       ))}
 
       {/* Botões de navegação */}
       <button
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition z-10"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition z-20"
         aria-label="Slide anterior"
       >
         <ChevronLeft size={24} />
       </button>
       <button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition z-10"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition z-20"
         aria-label="Próximo slide"
       >
         <ChevronRight size={24} />
       </button>
 
       {/* Indicadores */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
         {banners.map((_, index) => (
           <button
             key={index}
