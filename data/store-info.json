@@ -1,0 +1,13 @@
+{
+  "name": "Pé Quente Calçados",
+  "address": "Praça Garcia 136/140 - Centro, Paraíba do Sul, RJ 25850-000",
+  "phone": "(24) 2263-2334",
+  "email": "contato@pequentecalcados.com.br",
+  "instagram": "https://www.instagram.com/pequentecalcadosps/",
+  "facebook": "https://www.facebook.com/pequentecalcadosps",
+  "hours": {
+    "weekdays": "Segunda à Sexta: 9h - 19h",
+    "saturday": "Sábado: 9h - 14h",
+    "sunday": "Domingo: Fechado"
+  }
+}

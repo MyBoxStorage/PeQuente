@@ -1,0 +1,365 @@
+[
+  {
+    "id": "1",
+    "name": "Tênis Adidas Response Masculino",
+    "slug": "tenis-adidas-response-masculino",
+    "description": "Tênis ideal para corrida e caminhada. Possui tecnologia OrthoLite no solado interno, proporcionando conforto e respirabilidade. O cabedal em têxtil e sintético oferece leveza e durabilidade. Sola com boa aderência para diferentes tipos de piso.",
+    "price": 349.99,
+    "compareAtPrice": 599.99,
+    "categoryId": "1",
+    "brand": "Adidas",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-adidas-response-masculino/06/FB9-8794-006/FB9-8794-006_zoom1.jpg",
+      "https://static.netshoes.com.br/produtos/tenis-adidas-response-masculino/06/FB9-8794-006/FB9-8794-006_zoom2.jpg",
+      "https://static.netshoes.com.br/produtos/tenis-adidas-response-masculino/06/FB9-8794-006/FB9-8794-006_zoom3.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 15,
+    "sizes": ["38", "39", "40", "41", "42", "43", "44", "45"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "2",
+    "name": "Tênis Adidas Adizero Drive RC Masculino",
+    "slug": "tenis-adidas-adizero-drive-rc-masculino",
+    "description": "Tênis de corrida leve e responsivo, ideal para treinos rápidos. Tecnologia Adizero para velocidade e eficiência. Design moderno com excelente ventilação.",
+    "price": 499.99,
+    "compareAtPrice": 799.99,
+    "categoryId": "1",
+    "brand": "Adidas",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-adidas-adizero-drive-rc-masculino/14/FBA-2251-014/FBA-2251-014_zoom1.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 12,
+    "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "3",
+    "name": "Tênis Adidas Duramo RC 2 Masculino",
+    "slug": "tenis-adidas-duramo-rc-2-masculino",
+    "description": "Tênis versátil para corrida e caminhada. Amortecimento confortável e boa durabilidade. Ideal para uso diário e atividades físicas moderadas.",
+    "price": 299.99,
+    "compareAtPrice": 499.99,
+    "categoryId": "1",
+    "brand": "Adidas",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-adidas-duramo-rc-2-masculino/06/FBA-7043-006/FBA-7043-006_zoom1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 18,
+    "sizes": ["38", "39", "40", "41", "42", "43", "44", "45"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "4",
+    "name": "Tênis Adidas Duramo RC 2 Feminino",
+    "slug": "tenis-adidas-duramo-rc-2-feminino",
+    "description": "Versão feminina do Duramo RC 2. Conforto e estilo para corrida e caminhada. Design moderno com ótimo custo-benefício.",
+    "price": 299.99,
+    "compareAtPrice": 499.99,
+    "categoryId": "2",
+    "brand": "Adidas",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-adidas-duramo-rc-2-feminino/24/FBA-7042-424/FBA-7042-424_zoom1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 16,
+    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "5",
+    "name": "Tênis Adidas Boost Run Feminino",
+    "slug": "tenis-adidas-boost-run-feminino",
+    "description": "Tênis com tecnologia Boost da Adidas, oferecendo máximo retorno de energia e amortecimento. Ideal para corridas longas e treinos intensos.",
+    "price": 699.99,
+    "compareAtPrice": 999.99,
+    "categoryId": "2",
+    "brand": "Adidas",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-adidas-boost-run-feminino/73/FBA-81S0-473/FBA-81S0-473_zoom1.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 8,
+    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "6",
+    "name": "Tênis Mizuno Victory",
+    "slug": "tenis-mizuno-victory",
+    "description": "Tênis de corrida com tecnologia Mizuno Wave. Amortecimento eficiente e boa estabilidade. Ideal para corredores que buscam desempenho.",
+    "price": 449.99,
+    "compareAtPrice": 699.99,
+    "categoryId": "1",
+    "brand": "Mizuno",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-mizuno-victory/14/2FU-8263-014/2FU-8263-014_zoom1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 14,
+    "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "7",
+    "name": "Tênis Mizuno Wave Prophecy 13 Feminino",
+    "slug": "tenis-mizuno-wave-prophecy-13-feminino",
+    "description": "Tênis premium com tecnologia Wave Prophecy. Máximo amortecimento e suporte para corredoras de médio a longo alcance. Tecnologia de ponta da Mizuno.",
+    "price": 1299.99,
+    "compareAtPrice": 1699.99,
+    "categoryId": "2",
+    "brand": "Mizuno",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-mizuno-wave-prophecy-13-feminino/60/2FU-9228-260/2FU-9228-260_zoom1.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 6,
+    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "8",
+    "name": "Tênis Mizuno Wave Prophecy 13s Feminino",
+    "slug": "tenis-mizuno-wave-prophecy-13s-feminino",
+    "description": "Versão especial do Wave Prophecy 13. Tecnologia Wave avançada com design diferenciado. Ideal para corredoras que exigem o melhor em amortecimento.",
+    "price": 1349.99,
+    "compareAtPrice": 1799.99,
+    "categoryId": "2",
+    "brand": "Mizuno",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-mizuno-wave-prophecy-13s-feminino/02/2FV-1253-102/2FV-1253-102_zoom1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 5,
+    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "9",
+    "name": "Tênis Mizuno Neo Zen Feminino",
+    "slug": "tenis-mizuno-neo-zen-feminino",
+    "description": "Tênis leve e flexível para corrida. Design minimalista com excelente respirabilidade. Ideal para treinos leves e uso no dia a dia.",
+    "price": 399.99,
+    "compareAtPrice": 599.99,
+    "categoryId": "2",
+    "brand": "Mizuno",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-mizuno-neo-zen-feminino/26/2FV-1807-026/2FV-1807-026_zoom1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 12,
+    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "10",
+    "name": "Tênis de Corrida Puma Darter Pro Running",
+    "slug": "tenis-de-corrida-puma-darter-pro-running",
+    "description": "Tênis de corrida com tecnologia Pro Foam para máximo conforto e amortecimento. Ideal para corredores que buscam desempenho e durabilidade.",
+    "price": 549.99,
+    "compareAtPrice": 799.99,
+    "categoryId": "1",
+    "brand": "Puma",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-de-corrida-puma-darter-pro-running/30/PI3-736C-030/PI3-736C-030_zoom1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 11,
+    "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "11",
+    "name": "Tênis Puma Velocity Nitro 3 Masculino",
+    "slug": "tenis-puma-velocity-nitro-3-masculino",
+    "description": "Tênis com tecnologia Nitro Foam para resposta rápida e amortecimento superior. Design moderno e leveza excepcional para corridas.",
+    "price": 899.99,
+    "compareAtPrice": 1299.99,
+    "categoryId": "1",
+    "brand": "Puma",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-puma-velocity-nitro-3-masculino/08/PI3-3855-008/PI3-3855-008_zoom1.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 9,
+    "sizes": ["38", "39", "40", "41", "42", "43", "44", "45"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "12",
+    "name": "Tênis Puma Magnify Nitro 2 Psychedelic Rush Feminino",
+    "slug": "tenis-puma-magnify-nitro-2-psychedelic-rush-feminino",
+    "description": "Tênis com design colorido e vibrante. Tecnologia Nitro Foam para máximo conforto. Ideal para quem busca estilo e desempenho.",
+    "price": 999.99,
+    "compareAtPrice": 1399.99,
+    "categoryId": "2",
+    "brand": "Puma",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-puma-magnify-nitro-2-psychedelic-rush-feminino/06/PI3-1777-006/PI3-1777-006_zoom1.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 7,
+    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "13",
+    "name": "Tênis Foreverrun Nitro FF Masculino",
+    "slug": "tenis-foreverrun-nitro-ff-masculino",
+    "description": "Tênis para longas distâncias com tecnologia ForeverRUN. Amortecimento superior e controle de movimento. Ideal para maratonistas e corredores experientes.",
+    "price": 1099.99,
+    "compareAtPrice": 1599.99,
+    "categoryId": "1",
+    "brand": "Puma",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-foreverrun-nitro-ff-masculino/50/PI3-6586-050/PI3-6586-050_zoom1.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 6,
+    "sizes": ["39", "40", "41", "42", "43", "44", "45"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "14",
+    "name": "Tênis de Corrida Puma Scend Pro 2 Running",
+    "slug": "tenis-de-corrida-puma-scend-pro-2-running",
+    "description": "Tênis versátil para corrida com excelente amortecimento. Design ergonômico e boa ventilação. Ideal para treinos diários.",
+    "price": 649.99,
+    "compareAtPrice": 899.99,
+    "categoryId": "1",
+    "brand": "Puma",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-de-corrida-puma-scend-pro-2-running/30/PI3-7367-030/PI3-7367-030_zoom1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 13,
+    "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "15",
+    "name": "Tênis Nike Rival Fly 4 Masculino",
+    "slug": "tenis-nike-rival-fly-4-masculino",
+    "description": "Tênis de corrida com tecnologia Nike Fly. Leveza e respirabilidade superiores. Ideal para corredores que buscam velocidade e conforto.",
+    "price": 549.99,
+    "compareAtPrice": 799.99,
+    "categoryId": "1",
+    "brand": "Nike",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-nike-rival-fly-4-masculino/08/SGL-0176-008/SGL-0176-008_zoom1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 16,
+    "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "16",
+    "name": "Tênis Nike Rival Fly 4 Masculino",
+    "slug": "tenis-nike-rival-fly-4-masculino-variacao",
+    "description": "Tênis de corrida com tecnologia Nike Fly. Leveza e respirabilidade superiores. Ideal para corredores que buscam velocidade e conforto. Cor alternativa.",
+    "price": 549.99,
+    "compareAtPrice": 799.99,
+    "categoryId": "1",
+    "brand": "Nike",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-nike-rival-fly-4-masculino/58/SGL-0176-058/SGL-0176-058_zoom1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 14,
+    "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "17",
+    "name": "Tênis Nike Motiva Feminino",
+    "slug": "tenis-nike-motiva-feminino",
+    "description": "Tênis feminino versátil para caminhada e corrida leve. Conforto excepcional e design moderno. Ideal para uso diário e atividades físicas.",
+    "price": 449.99,
+    "compareAtPrice": 699.99,
+    "categoryId": "2",
+    "brand": "Nike",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-nike-motiva-feminino/20/SGL-04B7-020/SGL-04B7-020_zoom1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 15,
+    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "18",
+    "name": "Tênis Nike Downshifter 12 Feminino",
+    "slug": "tenis-nike-downshifter-12-feminino",
+    "description": "Tênis de corrida com amortecimento confortável. Design leve e respirável. Excelente opção para iniciantes e corredoras ocasionais.",
+    "price": 399.99,
+    "compareAtPrice": 599.99,
+    "categoryId": "2",
+    "brand": "Nike",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-nike-downshifter-12-feminino/18/2IC-8614-018/2IC-8614-018_zoom1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 18,
+    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "19",
+    "name": "Tênis Nike Revolution 7 Feminino",
+    "slug": "tenis-nike-revolution-7-feminino",
+    "description": "Tênis versátil e acessível para corrida e caminhada. Conforto e durabilidade em um design moderno. Ideal para uso diário.",
+    "price": 349.99,
+    "compareAtPrice": 549.99,
+    "categoryId": "2",
+    "brand": "Nike",
+    "images": [
+      "https://static.netshoes.com.br/produtos/tenis-nike-revolution-7-feminino/14/JD8-7601-014/JD8-7601-014_zoom1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 20,
+    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "createdAt": "2024-12-30T10:00:00Z",
+    "updatedAt": "2024-12-30T10:00:00Z"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "name": "Tênis Masculino",
+    "slug": "tenis-masculino",
+    "description": "Tênis masculinos das melhores marcas"
+  },
+  {
+    "id": "2",
+    "name": "Tênis Feminino",
+    "slug": "tenis-feminino",
+    "description": "Tênis femininos das melhores marcas"
+  },
+  {
+    "id": "3",
+    "name": "Chinelos",
+    "slug": "chinelos-e-sandalias",
+    "description": "Chinelos e sandálias confortáveis"
+  },
+  {
+    "id": "4",
+    "name": "Acessórios",
+    "slug": "acessorios",
+    "description": "Acessórios esportivos e casuais"
+  },
+  {
+    "id": "5",
+    "name": "Outlet",
+    "slug": "outlet",
+    "description": "Ofertas especiais com grandes descontos"
+  }
+]

@@ -1,0 +1,63 @@
+import productsData from '@/data/products.json';
+import categoriesData from '@/data/categories.json';
+import brandsData from '@/data/brands.json';
+import storeInfoData from '@/data/store-info.json';
+import { Product, Category, Brand, StoreInfo } from '@/types';
+
+export function getAllProducts(): Product[] {
+  return productsData as Product[];
+}
+
+export function getProductBySlug(slug: string): Product | undefined {
+  return (productsData as Product[]).find(product => product.slug === slug);
+}
+
+export function getFeaturedProducts(): Product[] {
+  return (productsData as Product[]).filter(product => product.featured && product.active);
+}
+
+export function getProductsByCategory(categorySlug: string): Product[] {
+  const category = (categoriesData as Category[]).find(cat => cat.slug === categorySlug);
+  if (!category) return [];
+  
+  return (productsData as Product[]).filter(
+    product => product.categoryId === category.id && product.active
+  );
+}
+
+export function getProductsByBrand(brandSlug: string): Product[] {
+  return (productsData as Product[]).filter(
+    product => product.brand.toLowerCase() === brandSlug && product.active
+  );
+}
+
+export function searchProducts(query: string): Product[] {
+  const searchTerm = query.toLowerCase();
+  return (productsData as Product[]).filter(
+    product =>
+      product.active &&
+      (product.name.toLowerCase().includes(searchTerm) ||
+       product.description.toLowerCase().includes(searchTerm) ||
+       product.brand.toLowerCase().includes(searchTerm))
+  );
+}
+
+export function getAllCategories(): Category[] {
+  return categoriesData as Category[];
+}
+
+export function getCategoryBySlug(slug: string): Category | undefined {
+  return (categoriesData as Category[]).find(category => category.slug === slug);
+}
+
+export function getAllBrands(): Brand[] {
+  return brandsData as Brand[];
+}
+
+export function getBrandBySlug(slug: string): Brand | undefined {
+  return (brandsData as Brand[]).find(brand => brand.slug === slug);
+}
+
+export function getStoreInfo(): StoreInfo {
+  return storeInfoData as StoreInfo;
+}

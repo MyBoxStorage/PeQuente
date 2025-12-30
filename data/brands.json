@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "name": "Nike",
+    "slug": "nike"
+  },
+  {
+    "id": "2",
+    "name": "Adidas",
+    "slug": "adidas"
+  },
+  {
+    "id": "3",
+    "name": "Mizuno",
+    "slug": "mizuno"
+  },
+  {
+    "id": "4",
+    "name": "Puma",
+    "slug": "puma"
+  },
+  {
+    "id": "5",
+    "name": "New Balance",
+    "slug": "new-balance"
+  },
+  {
+    "id": "6",
+    "name": "Vans",
+    "slug": "vans"
+  }
+]
