@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
@@ -8,9 +9,10 @@ import { getStoreInfo } from "@/lib/api";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
-const storeInfo = getStoreInfo(); // Called once here for metadata
+const storeInfo = getStoreInfo();
 
 export const metadata: Metadata = {
   title: {
@@ -39,39 +41,37 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Store',
+  name: storeInfo.name,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Praça Garcia 136/140',
+    addressLocality: 'Paraíba do Sul',
+    addressRegion: 'RJ',
+    postalCode: '25850-000',
+    addressCountry: 'BR',
+  },
+  telephone: storeInfo.phone,
+  url: 'https://www.pequentecalcados.com.br',
+  priceRange: '$$',
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // storeInfo is already available from the top-level call for metadata
-  // No need to call getStoreInfo() again here unless specific runtime data is needed
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Store',
-    name: storeInfo.name,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Praça Garcia 136/140',
-      addressLocality: 'Paraíba do Sul',
-      addressRegion: 'RJ',
-      postalCode: '25850-000',
-      addressCountry: 'BR',
-    },
-    telephone: storeInfo.phone,
-    url: 'https://www.pequentecalcados.com.br',
-    priceRange: '$$',
-  };
-
   return (
     <html lang="pt-BR" className={inter.variable}>
-      <head>
-        <script
+      <body className="antialiased min-h-screen flex flex-col bg-[#0a0a0a] text-white">
+        <Script
+          id="structured-data"
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      </head>
-      <body className="antialiased min-h-screen flex flex-col bg-[#0a0a0a] text-white">
         <Header />
         <main className="flex-grow">
           {children}

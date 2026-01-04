@@ -2,19 +2,24 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X, Search, User, Heart, ShoppingBag } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 import SearchBar from './SearchBar';
+import CartModal from '@/components/cart/CartModal';
+import { useCartStore } from '@/store/cartStore';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const itemCount = useCartStore((state) => state.getItemCount());
 
   return (
     <header className="sticky top-0 z-50 bg-[#0a0a0a] border-b border-[#252525]">
-      {/* Banner promocional no topo */}
-      <div className="bg-[#1E3A8A] text-white text-center py-2 text-sm">
-        <p>🎉 Frete Grátis para Paraíba do Sul • Ganhe 5% OFF no PIX</p>
+      {/* Banner promocional no topo - removido mensagem de frete */}
+      <div className="bg-[#00008B] text-white text-center py-2 text-sm">
+        <p>Sempre um passo à frente</p>
       </div>
 
       {/* Header principal */}
@@ -29,13 +34,21 @@ export default function Header() {
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="flex items-center">
-              <div className="bg-[#FFD700] w-12 h-12 rounded flex items-center justify-center text-[#DC143C] font-bold text-xl">
-                PQ
+          {/* Logo - usando logo original PNG */}
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="flex items-center gap-3">
+              {/* Logo original PNG - fluido com texto */}
+              <div className="relative w-12 h-12 flex-shrink-0">
+                <Image
+                  src="/images/logo.png"
+                  alt="Pé Quente Calçados"
+                  width={48}
+                  height={48}
+                  className="object-contain"
+                  priority
+                />
               </div>
-              <span className="ml-2 text-white font-bold text-xl hidden sm:block">
+              <span className="text-white font-bold text-xl hidden sm:block group-hover:text-[#FF0000] transition-colors">
                 Pé Quente
               </span>
             </div>
@@ -43,20 +56,20 @@ export default function Header() {
 
           {/* Navegação desktop */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <Link href="/produtos" className="text-white hover:text-[#FFD700] transition">
+            <Link href="/produtos" className="text-white hover:text-[#FF0000] transition">
               Produtos
             </Link>
-            <Link href="/categorias/tenis-masculino" className="text-white hover:text-[#FFD700] transition">
-              Tênis
+            <Link href="/produtos?categoria=tenis" className="text-white hover:text-[#FF0000] transition">
+              Lançamentos
             </Link>
-            <Link href="/categorias/chinelos-e-sandalias" className="text-white hover:text-[#FFD700] transition">
-              Chinelos
-            </Link>
-            <Link href="/sobre" className="text-white hover:text-[#FFD700] transition">
+            <Link href="/sobre" className="text-white hover:text-[#FF0000] transition">
               Sobre
             </Link>
-            <Link href="/contato" className="text-white hover:text-[#FFD700] transition">
-              Contato
+            <Link href="/faq" className="text-white hover:text-[#FF0000] transition">
+              FAQ
+            </Link>
+            <Link href="/blog" className="text-white hover:text-[#FF0000] transition">
+              Blog
             </Link>
           </nav>
 
@@ -64,36 +77,31 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="text-white hover:text-[#FFD700] transition p-2"
+              className="text-white hover:text-[#FF0000] transition p-2"
               aria-label="Buscar"
             >
               <Search size={22} />
             </button>
             <Link
-              href="/account"
-              className="text-white hover:text-[#FFD700] transition p-2 hidden sm:block"
+              href="/minha-conta"
+              className="text-white hover:text-[#FF0000] transition p-2 hidden sm:block"
               aria-label="Conta"
             >
               <User size={22} />
             </Link>
-            <Link
-              href="/wishlist"
-              className="text-white hover:text-[#FFD700] transition p-2"
-              aria-label="Favoritos"
-            >
-              <Heart size={22} />
-            </Link>
-            <Link
-              href="/cart"
-              className="text-white hover:text-[#FFD700] transition p-2 relative"
+            <button
+              onClick={() => setCartOpen(true)}
+              className="text-white hover:text-[#FF0000] transition p-2 relative"
               aria-label="Carrinho"
             >
               <ShoppingBag size={22} />
-              {/* Badge do carrinho */}
-              <span className="absolute -top-1 -right-1 bg-[#DC143C] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                0
-              </span>
-            </Link>
+              {/* Badge do carrinho com contagem real */}
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[#FF0000] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                  {itemCount > 99 ? '99+' : itemCount}
+                </span>
+              )}
+            </button>
           </div>
         </div>
       </div>
@@ -103,6 +111,9 @@ export default function Header() {
 
       {/* Menu mobile */}
       {mobileMenuOpen && <MobileMenu onClose={() => setMobileMenuOpen(false)} />}
+
+      {/* Cart Modal */}
+      <CartModal isOpen={cartOpen} onClose={() => setCartOpen(false)} />
     </header>
   );
 }
