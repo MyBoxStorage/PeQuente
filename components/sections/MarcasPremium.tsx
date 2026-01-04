@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllBrands } from '@/lib/api';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function MarcasPremium() {
   const brands = getAllBrands();
@@ -30,19 +29,13 @@ export default function MarcasPremium() {
                 className="flex-shrink-0 group"
               >
                 <div className="bg-[#1a1a1a] rounded-lg p-8 border border-[#252525] hover:border-[#FF0000] transition-all duration-300 w-48 h-48 flex items-center justify-center hover:bg-[#252525]">
-                  {/* Placeholder para logo da marca - você pode substituir por imagens reais */}
-                  <span className="text-white font-bold text-xl group-hover:text-[#FF0000] transition">
-                    {brand.name}
-                  </span>
-                  {/* Se tiver imagens das marcas, use:
                   <Image
                     src={`/images/brands/${brand.slug}.png`}
                     alt={brand.name}
-                    width={120}
-                    height={60}
-                    className="object-contain opacity-70 group-hover:opacity-100 transition"
+                    width={128}
+                    height={128}
+                    className="object-contain opacity-70 group-hover:opacity-100 transition max-w-[128px] max-h-[128px]"
                   />
-                  */}
                 </div>
               </Link>
             ))}
