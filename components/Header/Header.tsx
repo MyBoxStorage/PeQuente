@@ -36,27 +36,31 @@ export default function Header() {
 
           {/* Logo - usando logo original PNG e logo escrita */}
           <Link href="/" className="flex items-center group">
-            <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="flex items-center gap-3 sm:gap-4">
               {/* Logo quadrada (P e Q) */}
-              <div className="relative w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex-shrink-0 flex items-center justify-center">
+              <div className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 flex-shrink-0 flex items-center justify-center">
                 <Image
                   src="/images/logo.png"
                   alt="Pé Quente Calçados"
-                  width={48}
-                  height={48}
+                  width={72}
+                  height={72}
                   className="object-contain w-full h-full"
+                  style={{ imageRendering: 'crisp-edges' }}
                   priority
+                  quality={100}
                 />
               </div>
               {/* Logo escrita "Pé Quente" */}
-              <div className="relative h-5 sm:h-6 md:h-7 flex items-center">
+              <div className="relative h-7 sm:h-8 md:h-9 flex items-center">
                 <Image
                   src="/images/logo-escrita.png"
                   alt="Pé Quente"
-                  width={140}
-                  height={28}
-                  className="object-contain h-full w-auto opacity-95 group-hover:opacity-100 transition-opacity"
+                  width={180}
+                  height={36}
+                  className="object-contain h-full w-auto opacity-100"
+                  style={{ imageRendering: 'crisp-edges' }}
                   priority
+                  quality={100}
                 />
               </div>
             </div>
