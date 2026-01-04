@@ -38,7 +38,7 @@ export default function Header() {
           <Link href="/" className="flex items-center group">
             <div className="flex items-center gap-3 sm:gap-4">
               {/* Logo quadrada (P e Q) */}
-              <div className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 flex-shrink-0 flex items-center justify-center">
+              <div className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex-shrink-0 flex items-center justify-center">
                 <Image
                   src="/images/logo.png"
                   alt="Pé Quente Calçados"
