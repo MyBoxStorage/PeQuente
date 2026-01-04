@@ -9,9 +9,7 @@
     "categoryId": "1",
     "brand": "Adidas",
     "images": [
-      "https://static.netshoes.com.br/produtos/tenis-adidas-response-masculino/06/FB9-8794-006/FB9-8794-006_zoom1.jpg",
-      "https://static.netshoes.com.br/produtos/tenis-adidas-response-masculino/06/FB9-8794-006/FB9-8794-006_zoom2.jpg",
-      "https://static.netshoes.com.br/produtos/tenis-adidas-response-masculino/06/FB9-8794-006/FB9-8794-006_zoom3.jpg"
+      "/images/produtos/tenis-adidas-response-masculino-1.jpg.jpeg"
     ],
     "featured": true,
     "active": true,
