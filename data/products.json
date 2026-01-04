@@ -14,7 +14,16 @@
     "featured": true,
     "active": true,
     "stock": 15,
-    "sizes": ["38", "39", "40", "41", "42", "43", "44", "45"],
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -33,7 +42,15 @@
     "featured": true,
     "active": true,
     "stock": 12,
-    "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -52,7 +69,16 @@
     "featured": false,
     "active": true,
     "stock": 18,
-    "sizes": ["38", "39", "40", "41", "42", "43", "44", "45"],
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -71,7 +97,14 @@
     "featured": false,
     "active": true,
     "stock": 16,
-    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -90,7 +123,14 @@
     "featured": true,
     "active": true,
     "stock": 8,
-    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -109,7 +149,15 @@
     "featured": false,
     "active": true,
     "stock": 14,
-    "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -128,7 +176,14 @@
     "featured": true,
     "active": true,
     "stock": 6,
-    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -147,7 +202,14 @@
     "featured": false,
     "active": true,
     "stock": 5,
-    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -166,7 +228,14 @@
     "featured": false,
     "active": true,
     "stock": 12,
-    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -185,7 +254,15 @@
     "featured": false,
     "active": true,
     "stock": 11,
-    "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -204,7 +281,16 @@
     "featured": true,
     "active": true,
     "stock": 9,
-    "sizes": ["38", "39", "40", "41", "42", "43", "44", "45"],
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -223,7 +309,14 @@
     "featured": true,
     "active": true,
     "stock": 7,
-    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -242,7 +335,15 @@
     "featured": true,
     "active": true,
     "stock": 6,
-    "sizes": ["39", "40", "41", "42", "43", "44", "45"],
+    "sizes": [
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -261,7 +362,15 @@
     "featured": false,
     "active": true,
     "stock": 13,
-    "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -280,7 +389,15 @@
     "featured": false,
     "active": true,
     "stock": 16,
-    "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -299,7 +416,15 @@
     "featured": false,
     "active": true,
     "stock": 14,
-    "sizes": ["38", "39", "40", "41", "42", "43", "44"],
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -318,7 +443,14 @@
     "featured": false,
     "active": true,
     "stock": 15,
-    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -337,7 +469,14 @@
     "featured": false,
     "active": true,
     "stock": 18,
-    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
   },
@@ -356,8 +495,761 @@
     "featured": false,
     "active": true,
     "stock": 20,
-    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
     "createdAt": "2024-12-30T10:00:00Z",
     "updatedAt": "2024-12-30T10:00:00Z"
+  },
+  {
+    "id": "31",
+    "name": "Tênis Adidas Ultraboost Masculino",
+    "slug": "adidas-ultraboost-masculino",
+    "description": "Tênis de corrida com tecnologia Ultraboost, oferecendo máximo amortecimento e retorno de energia. Cabedal em Primeknit que se adapta ao pé. Ideal para corridas longas e treinos de alta performance.",
+    "price": 599.99,
+    "compareAtPrice": 899.99,
+    "categoryId": "1",
+    "brand": "Adidas",
+    "images": [
+      "/images/produtos/adidas-ultraboost-masculino.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "32",
+    "name": "Tênis Nike Air Force 1 Masculino",
+    "slug": "nike-air-force-1-masculino",
+    "description": "Clássico atemporal da Nike. Tênis casual com design icônico e confortável. Sola de borracha duradoura e cabedal em couro sintético. Perfeito para o dia a dia.",
+    "price": 549.99,
+    "compareAtPrice": 799.99,
+    "categoryId": "1",
+    "brand": "Nike",
+    "images": [
+      "/images/produtos/nike-air-force-1-masculino.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 15,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "33",
+    "name": "Tênis Puma Velocity NITRO Feminino",
+    "slug": "puma-velocity-nitro-feminino",
+    "description": "Tênis de corrida com tecnologia NITRO, oferecendo amortecimento responsivo e leveza. Design moderno e colorido, ideal para corridas e treinos.",
+    "price": 629.99,
+    "compareAtPrice": 899.99,
+    "categoryId": "2",
+    "brand": "Puma",
+    "images": [
+      "/images/produtos/puma-velocity-nitro-feminino.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 12,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "34",
+    "name": "Tênis New Balance 9060 Masculino",
+    "slug": "new-balance-9060-masculino",
+    "description": "Tênis casual com design retrô e moderno. Tecnologia de amortecimento ABZORB no solado. Conforto superior para caminhadas e uso diário.",
+    "price": 799.99,
+    "compareAtPrice": 1099.99,
+    "categoryId": "1",
+    "brand": "New Balance",
+    "images": [
+      "/images/produtos/new-balance-9060-masculino.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 8,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "35",
+    "name": "Tênis Vans Old Skool Unissex",
+    "slug": "vans-old-skool-unissex",
+    "description": "Clássico da Vans que nunca sai de moda. Design icônico com faixa lateral característica. Sola waffle para excelente aderência. Versátil para skate, música e estilo de vida.",
+    "price": 349.99,
+    "compareAtPrice": 499.99,
+    "categoryId": "1",
+    "brand": "Vans",
+    "images": [
+      "/images/produtos/vans-old-skool-unissex.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 20,
+    "sizes": [
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "36",
+    "name": "Chinelo Adidas Adilette Slide",
+    "slug": "adidas-adilette-slide",
+    "description": "Chinelo slide confortável da Adidas. Sola de EVA macia e cabedal com logo Adidas. Perfeito para uso em casa, piscina ou pós-treino.",
+    "price": 179.99,
+    "compareAtPrice": 249.99,
+    "categoryId": "3",
+    "brand": "Adidas",
+    "images": [
+      "/images/produtos/adidas-adilette-slide.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 25,
+    "sizes": [
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "37",
+    "name": "Tênis Nike Dunk Low Feminino",
+    "slug": "nike-dunk-low-feminino",
+    "description": "Tênis casual feminino com design versátil. Sola de borracha com excelente tração. Cabedal em couro sintético durável. Estilo atemporal.",
+    "price": 489.99,
+    "compareAtPrice": 699.99,
+    "categoryId": "2",
+    "brand": "Nike",
+    "images": [
+      "/images/produtos/nike-dunk-low-feminino.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 14,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "38",
+    "name": "Tênis Puma Speedcat Masculino",
+    "slug": "puma-speedcat-masculino",
+    "description": "Tênis de corrida com tecnologia de amortecimento. Design aerodinâmico e leve. Ideal para treinos de velocidade e corridas rápidas.",
+    "price": 419.99,
+    "compareAtPrice": 599.99,
+    "categoryId": "1",
+    "brand": "Puma",
+    "images": [
+      "/images/produtos/puma-speedcat-masculino.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 16,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "39",
+    "name": "Chinelo Puma Slide Unissex",
+    "slug": "puma-slide-unissex",
+    "description": "Chinelo slide confortável da Puma. Sola de EVA macia e design moderno. Ideal para relaxamento e momentos casuais.",
+    "price": 139.99,
+    "compareAtPrice": 199.99,
+    "categoryId": "3",
+    "brand": "Puma",
+    "images": [
+      "/images/produtos/puma-slide-unissex.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 30,
+    "sizes": [
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "40",
+    "name": "Tênis New Balance 990 Feminino",
+    "slug": "new-balance-990-feminino",
+    "description": "Tênis premium com tecnologia ENCAP no solado. Conforto superior e durabilidade. Design elegante para uso diário e caminhadas.",
+    "price": 899.99,
+    "compareAtPrice": 1199.99,
+    "categoryId": "2",
+    "brand": "New Balance",
+    "images": [
+      "/images/produtos/new-balance-990-feminino.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 6,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "41",
+    "name": "Tênis Vans Slip-On Feminino",
+    "slug": "vans-slip-on-feminino",
+    "description": "Tênis slip-on prático e estiloso. Design sem cadarços com elástico lateral. Sola waffle característica da Vans. Perfeito para o dia a dia.",
+    "price": 319.99,
+    "compareAtPrice": 449.99,
+    "categoryId": "2",
+    "brand": "Vans",
+    "images": [
+      "/images/produtos/vans-slip-on-feminino.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 18,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "42",
+    "name": "Tênis Mizuno Wave Rider Masculino",
+    "slug": "mizuno-wave-rider-masculino",
+    "description": "Tênis de corrida com tecnologia Wave Mizuno no solado. Amortecimento superior e estabilidade. Ideal para corredores que buscam performance e conforto.",
+    "price": 599.99,
+    "compareAtPrice": 799.99,
+    "categoryId": "1",
+    "brand": "Mizuno",
+    "images": [
+      "/images/produtos/mizuno-wave-rider-masculino.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 11,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "43",
+    "name": "Tênis Mizuno Wave Sky Feminino",
+    "slug": "mizuno-wave-sky-feminino",
+    "description": "Tênis de corrida feminino com tecnologia Wave. Amortecimento premium e design moderno. Perfeito para corridas longas e treinos intensos.",
+    "price": 679.99,
+    "compareAtPrice": 899.99,
+    "categoryId": "2",
+    "brand": "Mizuno",
+    "images": [
+      "/images/produtos/mizuno-wave-sky-feminino.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 9,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "44",
+    "name": "Meias Esportivas Nike Performance",
+    "slug": "meias-nike-performance",
+    "description": "Kit com 3 pares de meias esportivas Nike. Tecnologia Dri-FIT para manter os pés secos. Cano médio com reforço no calcanhar e dedos.",
+    "price": 59.99,
+    "compareAtPrice": 89.99,
+    "categoryId": "4",
+    "brand": "Nike",
+    "images": [
+      "/images/produtos/meias-nike-performance.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 50,
+    "sizes": [
+      "Único"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "45",
+    "name": "Kit 3 Pares Meias Adidas Originals",
+    "slug": "meias-adidas-originals",
+    "description": "Kit com 3 pares de meias Adidas Originals. Design clássico com logo Adidas. Conforto e qualidade para uso diário e esportivo.",
+    "price": 79.99,
+    "compareAtPrice": 119.99,
+    "categoryId": "4",
+    "brand": "Adidas",
+    "images": [
+      "/images/produtos/meias-adidas-originals.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 45,
+    "sizes": [
+      "Único"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "46",
+    "name": "Kit Cadarços Coloridos Nike",
+    "slug": "cadarco-nike-laces",
+    "description": "Kit com 3 pares de cadarços coloridos Nike. Diferentes cores para personalizar seus tênis. Comprimento padrão para todos os modelos.",
+    "price": 34.99,
+    "compareAtPrice": 49.99,
+    "categoryId": "4",
+    "brand": "Nike",
+    "images": [
+      "/images/produtos/cadarco-nike-laces.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 60,
+    "sizes": [
+      "Único"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "47",
+    "name": "Palmilha Nike Air Max",
+    "slug": "palmilha-nike-air-max",
+    "description": "Palmilha esportiva com tecnologia Air da Nike. Amortecimento superior e suporte para arco do pé. Ajustável e removível.",
+    "price": 99.99,
+    "compareAtPrice": 149.99,
+    "categoryId": "4",
+    "brand": "Nike",
+    "images": [
+      "/images/produtos/palmilha-nike-air-max.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 35,
+    "sizes": [
+      "Único"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "48",
+    "name": "Tênis Adidas Outlet - Modelo Especial",
+    "slug": "adidas-outlet-1",
+    "description": "Tênis Adidas em promoção especial. Design esportivo e confortável. Oferta por tempo limitado com desconto imperdível.",
+    "price": 349.99,
+    "compareAtPrice": 699.99,
+    "categoryId": "5",
+    "brand": "Adidas",
+    "images": [
+      "/images/produtos/adidas-outlet-1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 5,
+    "sizes": [
+      "38",
+      "40",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "49",
+    "name": "Tênis Nike Outlet - Últimas Unidades",
+    "slug": "nike-outlet-1",
+    "description": "Tênis Nike em liquidação. Últimas unidades disponíveis. Design esportivo com ótimo custo-benefício.",
+    "price": 299.99,
+    "compareAtPrice": 599.99,
+    "categoryId": "5",
+    "brand": "Nike",
+    "images": [
+      "/images/produtos/nike-outlet-1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 3,
+    "sizes": [
+      "36",
+      "37",
+      "38"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "50",
+    "name": "Tênis Puma Outlet - Promoção",
+    "slug": "puma-outlet-1",
+    "description": "Tênis Puma em promoção especial. Design moderno e confortável. Oferta por tempo limitado.",
+    "price": 249.99,
+    "compareAtPrice": 499.99,
+    "categoryId": "5",
+    "brand": "Puma",
+    "images": [
+      "/images/produtos/puma-outlet-1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 4,
+    "sizes": [
+      "39",
+      "40",
+      "41",
+      "42"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "51",
+    "name": "Tênis Vans Outlet - Ofertas",
+    "slug": "vans-outlet-1",
+    "description": "Tênis Vans em liquidação. Design clássico com desconto imperdível. Últimas unidades.",
+    "price": 199.99,
+    "compareAtPrice": 399.99,
+    "categoryId": "5",
+    "brand": "Vans",
+    "images": [
+      "/images/produtos/vans-outlet-1.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 6,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "52",
+    "name": "Tênis Adidas Superstar Masculino",
+    "slug": "adidas-superstar-masculino",
+    "description": "Clássico icônico da Adidas. Tênis casual com design atemporal. Cabedal em couro com biqueira de borracha característica. Perfeito para o dia a dia.",
+    "price": 454.99,
+    "compareAtPrice": 649.99,
+    "categoryId": "1",
+    "brand": "Adidas",
+    "images": [
+      "/images/produtos/adidas-superstar-masculino.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 17,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "53",
+    "name": "Tênis Nike Air Max 90 Masculino",
+    "slug": "nike-air-max-90-masculino",
+    "description": "Tênis clássico da Nike com tecnologia Air Max visível. Design retrô e moderno. Amortecimento superior e estilo atemporal.",
+    "price": 699.99,
+    "compareAtPrice": 949.99,
+    "categoryId": "1",
+    "brand": "Nike",
+    "images": [
+      "/images/produtos/nike-air-max-90-masculino.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 7,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "54",
+    "name": "Tênis Puma RS-X Masculino",
+    "slug": "puma-rs-x-masculino",
+    "description": "Tênis casual com design futurista. Tecnologia de amortecimento no solado. Estilo retrô-moderno da Puma.",
+    "price": 489.99,
+    "compareAtPrice": 699.99,
+    "categoryId": "1",
+    "brand": "Puma",
+    "images": [
+      "/images/produtos/puma-rs-x-masculino.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 13,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "55",
+    "name": "Tênis New Balance 574 Feminino",
+    "slug": "new-balance-574-feminino",
+    "description": "Tênis casual feminino com design clássico. Conforto superior e estilo versátil. Perfeito para caminhadas e uso diário.",
+    "price": 454.99,
+    "compareAtPrice": 649.99,
+    "categoryId": "2",
+    "brand": "New Balance",
+    "images": [
+      "/images/produtos/new-balance-574-feminino.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 15,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "56",
+    "name": "Tênis Vans Sk8-Hi Masculino",
+    "slug": "vans-sk8-hi-masculino",
+    "description": "Tênis cano alto clássico da Vans. Design icônico perfeito para skate e estilo de vida. Sola waffle para excelente aderência.",
+    "price": 384.99,
+    "compareAtPrice": 549.99,
+    "categoryId": "1",
+    "brand": "Vans",
+    "images": [
+      "/images/produtos/vans-sk8-hi-masculino.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 19,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "57",
+    "name": "Tênis Nike Revolution 6 Masculino",
+    "slug": "nike-revolution-6-masculino",
+    "description": "Tênis de corrida com ótimo custo-benefício. Amortecimento confortável e design moderno. Ideal para iniciantes e uso diário.",
+    "price": 279.99,
+    "compareAtPrice": 399.99,
+    "categoryId": "1",
+    "brand": "Nike",
+    "images": [
+      "/images/produtos/nike-revolution-6-masculino.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 22,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "58",
+    "name": "Tênis Vans Sherpa Feminino",
+    "slug": "vans-sherpa-feminino",
+    "description": "Tênis feminino com detalhe em pelúcia sherpa. Design aconchegante e moderno. Perfeito para o inverno e dias frios.",
+    "price": 389.99,
+    "compareAtPrice": 549.99,
+    "categoryId": "2",
+    "brand": "Vans",
+    "images": [
+      "/images/produtos/vans-sherpa-feminino.jpg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 10,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "59",
+    "name": "Tênis New Balance 327 Masculino",
+    "slug": "new-balance-327-masculino",
+    "description": "Tênis casual com design retrô. Conforto New Balance com estilo moderno. Perfeito para uso diário e caminhadas.",
+    "price": 449.99,
+    "compareAtPrice": 599.99,
+    "categoryId": "1",
+    "brand": "New Balance",
+    "images": [
+      "/images/produtos/new-balance-327-masculino.jpg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 14,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
   }
 ]
