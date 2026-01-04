@@ -16,6 +16,27 @@ export function getFeaturedProducts(): Product[] {
   return (productsData as Product[]).filter(product => product.featured && product.active);
 }
 
+export function getNewLaunchProducts(): Product[] {
+  // Retorna os 8 primeiros produtos novos (IDs 31-59), priorizando os featured
+  const newProducts = (productsData as Product[]).filter(
+    product => {
+      const productId = parseInt(product.id);
+      return productId >= 31 && productId <= 59 && product.active;
+    }
+  );
+  
+  // Ordena: featured primeiro, depois por data de criação (mais recentes primeiro)
+  const sorted = newProducts.sort((a, b) => {
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+    const dateA = new Date(a.createdAt || '').getTime();
+    const dateB = new Date(b.createdAt || '').getTime();
+    return dateB - dateA;
+  });
+  
+  return sorted.slice(0, 8);
+}
+
 export function getProductsByCategory(categorySlug: string): Product[] {
   const category = (categoriesData as Category[]).find(cat => cat.slug === categorySlug);
   if (!category) return [];

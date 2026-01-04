@@ -6,10 +6,11 @@ import MarcasPremium from "@/components/sections/MarcasPremium";
 import Promocoes from "@/components/sections/Promocoes";
 import Depoimentos from "@/components/sections/Depoimentos";
 import PorQueComprar from "@/components/sections/PorQueComprar";
-import { getFeaturedProducts } from "@/lib/api";
+import { getFeaturedProducts, getNewLaunchProducts } from "@/lib/api";
 
 export default function HomePage() {
   const featuredProducts = getFeaturedProducts();
+  const newLaunchProducts = getNewLaunchProducts();
 
   return (
     <div>
@@ -29,7 +30,7 @@ export default function HomePage() {
               <span>→</span>
             </Link>
           </div>
-          <ProductSlider products={featuredProducts.slice(0, 8)} />
+          <ProductSlider products={newLaunchProducts} />
         </div>
       </section>
 
