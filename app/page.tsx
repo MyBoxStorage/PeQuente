@@ -1,4 +1,5 @@
 ﻿import Link from 'next/link';
+import Image from 'next/image';
 import HeroBanner from "@/components/Hero/HeroBanner";
 import ProductSlider from "@/components/Products/ProductSlider";
 import MarcasPremium from "@/components/sections/MarcasPremium";
@@ -47,12 +48,21 @@ export default function HomePage() {
               <Link
                 key={category.slug}
                 href={`/produtos?categoria=${category.slug}`}
-                className="group bg-[#252525] rounded-lg overflow-hidden hover:bg-[#2a2a2a] transition"
+                className="group bg-[#252525] rounded-lg overflow-hidden hover:bg-[#2a2a2a] transition relative"
               >
-                <div className="aspect-square bg-gradient-to-br from-[#252525] to-[#1a1a1a] flex items-center justify-center">
-                  <span className="text-white font-bold text-center px-4 group-hover:text-[#FF0000] transition">
-                    {category.name}
-                  </span>
+                <div className="aspect-square relative">
+                  <Image
+                    src={category.image}
+                    alt={category.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
+                    <span className="text-white font-bold text-center w-full px-4 pb-4 group-hover:text-[#FF0000] transition">
+                      {category.name}
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}
