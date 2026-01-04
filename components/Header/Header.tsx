@@ -34,23 +34,31 @@ export default function Header() {
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          {/* Logo - usando logo original PNG */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="flex items-center gap-3">
-              {/* Logo original PNG - fluido com texto */}
-              <div className="relative w-12 h-12 flex-shrink-0">
+          {/* Logo - usando logo original PNG e logo escrita */}
+          <Link href="/" className="flex items-center group">
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              {/* Logo quadrada (P e Q) */}
+              <div className="relative w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex-shrink-0 flex items-center justify-center">
                 <Image
                   src="/images/logo.png"
                   alt="Pé Quente Calçados"
                   width={48}
                   height={48}
-                  className="object-contain"
+                  className="object-contain w-full h-full"
                   priority
                 />
               </div>
-              <span className="text-white font-bold text-xl hidden sm:block group-hover:text-[#FF0000] transition-colors">
-                Pé Quente
-              </span>
+              {/* Logo escrita "Pé Quente" */}
+              <div className="relative h-5 sm:h-6 md:h-7 flex items-center">
+                <Image
+                  src="/images/logo-escrita.png"
+                  alt="Pé Quente"
+                  width={140}
+                  height={28}
+                  className="object-contain h-full w-auto opacity-95 group-hover:opacity-100 transition-opacity"
+                  priority
+                />
+              </div>
             </div>
           </Link>
 
