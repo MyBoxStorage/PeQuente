@@ -5,6 +5,7 @@ import { X, ShoppingBag } from 'lucide-react';
 import Link from 'next/link';
 import { useCartStore } from '@/store/cartStore';
 import { formatPrice } from '@/lib/utils';
+import { useToast } from '@/components/ui/use-toast';
 import Image from 'next/image';
 
 interface CartModalProps {
@@ -18,6 +19,16 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const getTotal = useCartStore((state) => state.getTotal);
   const clearCart = useCartStore((state) => state.clearCart);
+  const { toast } = useToast();
+
+  const handleRemoveItem = (item: typeof items[0]) => {
+    removeItem(item.productId, item.size);
+    toast({
+      title: 'Removido do carrinho',
+      description: `${item.name} foi removido do carrinho`,
+      variant: 'default',
+    });
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -36,15 +47,15 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
 
   return (
     <>
-      {/* Overlay */}
+      {/* Overlay com backdrop blur */}
       <div
-        className="fixed inset-0 bg-black/50 z-40"
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-250"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Cart Drawer */}
-      <div className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-[#0a0a0a] z-50 shadow-2xl flex flex-col">
+      <div className="fixed right-0 top-0 bottom-0 w-full max-w-md sm:max-w-md bg-[#0a0a0a] z-50 shadow-2xl flex flex-col animate-in slide-in-from-right">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-[#252525]">
           <h2 className="text-white font-bold text-xl flex items-center gap-2">
@@ -53,7 +64,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-white transition"
+            className="text-gray-300 hover:text-white transition p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Fechar carrinho"
           >
             <X size={24} />
@@ -63,15 +74,18 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
         {/* Cart Items */}
         <div className="flex-1 overflow-y-auto p-6">
           {items.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-center">
-              <ShoppingBag size={64} className="text-gray-600 mb-4" />
-              <p className="text-gray-400 mb-2">Seu carrinho está vazio</p>
+            <div className="flex flex-col items-center justify-center h-full text-center px-4">
+              <div className="bg-[#2d2d2d] rounded-full p-8 mb-6 border border-[#353535]">
+                <ShoppingBag size={64} className="text-gray-400" />
+              </div>
+              <h3 className="text-white font-bold text-xl mb-2">Seu carrinho está vazio</h3>
+              <p className="text-gray-400 mb-6">Adicione produtos para começar sua compra</p>
               <Link
                 href="/produtos"
                 onClick={onClose}
-                className="text-[#FF0000] hover:underline"
+                className="inline-block bg-[#FF0000] hover:bg-[#ff3333] text-white font-bold px-6 py-3 rounded-lg transition-colors duration-250"
               >
-                Ver produtos
+                Ver Produtos
               </Link>
             </div>
           ) : (
@@ -79,7 +93,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="flex gap-4 p-4 bg-[#1a1a1a] rounded-lg"
+                  className="flex gap-4 p-4 bg-[#2d2d2d] rounded-lg border border-[#353535] hover:border-[#252525] transition-all duration-250"
                 >
                   <div className="relative w-20 h-20 flex-shrink-0 bg-[#252525] rounded">
                     <Image
@@ -94,9 +108,9 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                     <h3 className="text-white font-medium text-sm line-clamp-2">
                       {item.name}
                     </h3>
-                    <p className="text-gray-400 text-xs">{item.brand}</p>
+                    <p className="text-gray-300 text-xs">{item.brand}</p>
                     {item.size && (
-                      <p className="text-gray-500 text-xs">Tamanho: {item.size}</p>
+                      <p className="text-gray-400 text-xs">Tamanho: {item.size}</p>
                     )}
                     <div className="flex items-center justify-between mt-2">
                       <span className="text-[#FF0000] font-bold">
@@ -105,16 +119,18 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => updateQuantity(item.productId, item.quantity - 1, item.size)}
-                          className="w-6 h-6 flex items-center justify-center bg-[#252525] text-white rounded hover:bg-[#FF0000] transition"
+                          className="w-10 h-10 min-w-[44px] min-h-[44px] flex items-center justify-center bg-[#252525] text-white rounded hover:bg-[#FF0000] transition"
+                          aria-label="Diminuir quantidade"
                         >
                           -
                         </button>
-                        <span className="text-white text-sm w-6 text-center">
+                        <span className="text-white text-sm w-8 text-center">
                           {item.quantity}
                         </span>
                         <button
                           onClick={() => updateQuantity(item.productId, item.quantity + 1, item.size)}
-                          className="w-6 h-6 flex items-center justify-center bg-[#252525] text-white rounded hover:bg-[#FF0000] transition"
+                          className="w-10 h-10 min-w-[44px] min-h-[44px] flex items-center justify-center bg-[#252525] text-white rounded hover:bg-[#FF0000] transition"
+                          aria-label="Aumentar quantidade"
                         >
                           +
                         </button>
@@ -122,11 +138,11 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                     </div>
                   </div>
                   <button
-                    onClick={() => removeItem(item.productId, item.size)}
-                    className="text-gray-400 hover:text-[#FF0000] transition self-start"
+                    onClick={() => handleRemoveItem(item)}
+                    className="text-gray-300 hover:text-[#FF0000] transition-colors duration-250 self-start p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
                     aria-label="Remover item"
                   >
-                    <X size={18} />
+                    <X size={20} />
                   </button>
                 </div>
               ))}
@@ -138,7 +154,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
         {items.length > 0 && (
           <div className="border-t border-[#252525] p-6 space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-gray-400">Total:</span>
+              <span className="text-gray-300">Total:</span>
               <span className="text-white font-bold text-xl">
                 {formatPrice(total)}
               </span>

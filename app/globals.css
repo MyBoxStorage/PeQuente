@@ -1,32 +1,119 @@
 @import "tailwindcss";
 
 :root {
+  /* Backgrounds (Neutros Quentes) */
   --background: #0a0a0a;
+  --background-card: #2d2d2d;
+  --background-elevated: #252525;
+  --background-border: #353535;
+  
+  /* Texto - Melhorado contraste para WCAG AA */
   --foreground: #ffffff;
+  --foreground-secondary: #b0b0b0; /* Mudado de #a0a0a0 para melhor contraste */
+  --foreground-muted: #888888; /* Mudado de #6b6b6b para melhor contraste */
+  
+  /* Cores Principais */
+  --red-primary: #FF0000;
+  --red-hover: #ff3333;
+  --red-active: #CC0000;
+  
+  --blue-primary: #00008B;
+  --blue-hover: #1a1aff;
+  --blue-active: #000066;
+  
+  --yellow-primary: #FFD700;
+  
+  /* Sistema Legado (manter compatibilidade) */
   --muted: #252525;
   --muted-foreground: #a0a0a0;
   --border: #252525;
   --ring: #FF0000;
   --secondary: #252525;
   --secondary-foreground: #ffffff;
+  
+  /* Transições */
+  --transition-fast: 150ms ease-out;
+  --transition-default: 250ms ease-out;
+  --transition-slow: 350ms ease-out;
+  
+  /* Espaçamento Base */
+  --spacing-base: 4px;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-card: var(--background-card);
+  --color-background-elevated: var(--background-elevated);
+  --color-background-border: var(--background-border);
+  
   --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+  
+  --color-red-primary: var(--red-primary);
+  --color-red-hover: var(--red-hover);
+  --color-red-active: var(--red-active);
+  
+  --color-blue-primary: var(--blue-primary);
+  --color-blue-hover: var(--blue-hover);
+  --color-blue-active: var(--blue-active);
+  
+  --color-yellow-primary: var(--yellow-primary);
+  
+  /* Sistema Legado (compatibilidade) */
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --color-ring: var(--ring);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+  
   --font-sans: var(--font-inter);
+  --font-heading: var(--font-bebas);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+/* Focus indicators visíveis para acessibilidade (WCAG AA) */
+*:focus-visible {
+  outline: 2px solid #FF0000;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Remover outline padrão do navegador */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Melhorar contraste de texto para acessibilidade */
+.text-gray-400 {
+  color: #a0a0a0; /* Contraste suficiente para WCAG AA */
+}
+
+.text-gray-500 {
+  color: #808080; /* Contraste melhorado */
+}
+
+/* Skip to content link (acessibilidade) */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #FF0000;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-to-content:focus {
+  top: 0;
 }
 
 /* Animations for Sheet component */
@@ -129,5 +216,190 @@ body {
   to { 
     opacity: 1; 
     transform: translateX(0); 
+  }
+}
+
+/* Animação pulse sutil para WhatsApp button */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+/* Animações fade-in on scroll (GPU-accelerated) */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Classes utilitárias para animações */
+.animate-fade-in {
+  animation: fade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* GPU acceleration para elementos animados */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Reduzir motion para usuários com preferência */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Otimizações Mobile */
+@media (max-width: 768px) {
+  /* Melhorar touch targets (mínimo 44x44px) */
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Espaçamento adequado para touch */
+  .touch-target {
+    padding: 12px;
+    margin: 8px;
+  }
+
+  /* Melhorar legibilidade em telas pequenas */
+  body {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Prevenir zoom em inputs (iOS Safari) */
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="search"],
+  textarea,
+  select {
+    font-size: 16px; /* Previne zoom automático no iOS */
+  }
+
+  /* Melhorar scroll suave em mobile */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Otimizar cards para mobile */
+  .product-card-mobile {
+    margin-bottom: 16px;
+  }
+
+  /* Ajustar espaçamento de seções */
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* Otimizações para telas muito pequenas */
+@media (max-width: 480px) {
+  /* Reduzir padding em containers */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Ajustar tamanhos de fonte */
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Melhorar interações touch */
+@media (hover: none) and (pointer: coarse) {
+  /* Remover hover effects em dispositivos touch */
+  .hover-only {
+    display: none;
+  }
+
+  /* Aumentar área de toque */
+  .touch-friendly {
+    padding: 16px;
+    margin: 8px 0;
+  }
+
+  /* Feedback visual imediato em touch */
+  button:active,
+  a:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+}
+
+/* Prevenir seleção acidental de texto em mobile */
+@media (max-width: 768px) {
+  button,
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
 }

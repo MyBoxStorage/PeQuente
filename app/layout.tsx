@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Bebas_Neue } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import ScrollToTop from "@/components/ui/ScrollToTop";
+import ClientOnlyComponents from "@/components/ClientOnlyComponents";
 import { getStoreInfo } from "@/lib/api";
 
 const inter = Inter({
@@ -13,9 +13,17 @@ const inter = Inter({
   display: "swap",
 });
 
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-bebas",
+  display: "swap",
+});
+
 const storeInfo = getStoreInfo();
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.pequentecalcados.com.br'),
   title: {
     default: `${storeInfo.name} - Sua Loja de Tênis, Roupas e Acessórios`,
     template: `%s | ${storeInfo.name}`,
@@ -65,8 +73,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={inter.variable}>
+    <html lang="pt-BR" className={`${inter.variable} ${bebasNeue.variable}`}>
       <body className="antialiased min-h-screen flex flex-col bg-[#0a0a0a] text-white">
+        <a href="#main-content" className="skip-to-content">
+          Pular para o conteúdo principal
+        </a>
         <Script
           id="structured-data"
           type="application/ld+json"
@@ -74,11 +85,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Header />
-        <main className="flex-grow">
+        <main id="main-content" className="flex-grow" tabIndex={-1}>
           {children}
         </main>
         <Footer />
-        <ScrollToTop />
+        <ClientOnlyComponents />
       </body>
     </html>
   );

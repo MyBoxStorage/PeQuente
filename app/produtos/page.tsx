@@ -8,12 +8,15 @@ import ProductCard from '@/components/Products/ProductCard';
 import ProductPagination from '@/components/Products/ProductPagination';
 import ProductCardSkeleton from '@/components/Products/ProductCardSkeleton';
 import ProductFiltersSheet from '@/components/Products/ProductFiltersSheet';
+import FilterChips from '@/components/Products/FilterChips';
+import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { X, Filter } from 'lucide-react';
 import { getAllProducts, getAllCategories, getAllBrands } from '@/lib/api';
 
 type SortOption = 'relevance' | 'price-asc' | 'price-desc' | 'name-asc' | 'name-desc' | 'newest';
 
 const ITEMS_PER_PAGE = 12;
+const USE_INFINITE_SCROLL = true; // Toggle para infinite scroll vs paginação
 
 function ProdutosContent() {
   const searchParams = useSearchParams();
@@ -100,11 +103,32 @@ function ProdutosContent() {
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
+  
+  // Resetar displayed count quando filtros mudarem (para infinite scroll)
+  useEffect(() => {
+    if (USE_INFINITE_SCROLL) {
+      // Reset será gerenciado pelo componente InfiniteScroll
+    }
+  }, [filters, sortBy]);
 
   const clearFilters = () => {
     setFilters({});
     if (typeof window !== 'undefined') {
       window.history.pushState({}, '', '/produtos');
+    }
+  };
+
+  const removeFilter = (key: keyof FilterOptions) => {
+    const newFilters = { ...filters };
+    delete newFilters[key];
+    setFilters(newFilters);
+    
+    // Atualizar URL
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      params.delete(key === 'categoria' ? 'categoria' : key === 'marca' ? 'marca' : key === 'genero' ? 'genero' : key === 'precoMin' ? 'precoMin' : key === 'precoMax' ? 'precoMax' : 'busca');
+      const newUrl = params.toString() ? `/produtos?${params.toString()}` : '/produtos';
+      window.history.pushState({}, '', newUrl);
     }
   };
 
@@ -261,6 +285,13 @@ function ProdutosContent() {
                 </select>
               </div>
             </div>
+
+            {/* Filter Chips - acima do grid */}
+            <FilterChips
+              filters={filters}
+              onRemoveFilter={removeFilter}
+              onClearAll={clearFilters}
+            />
 
             {/* Grid de produtos */}
             {filteredProducts.length === 0 ? (

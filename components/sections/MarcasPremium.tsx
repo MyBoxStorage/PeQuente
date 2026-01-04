@@ -12,7 +12,7 @@ export default function MarcasPremium() {
           <h2 className="text-4xl font-bold text-white mb-4">
             Marcas Premium
           </h2>
-          <p className="text-gray-400 text-lg">
+          <p className="text-gray-300 text-lg">
             As melhores marcas do mercado em um só lugar
           </p>
         </div>
@@ -34,6 +34,7 @@ export default function MarcasPremium() {
                   key={brand.id}
                   href={`/produtos?marca=${brand.name.toLowerCase()}`}
                   className="flex-shrink-0 group"
+                  prefetch
                 >
                   <div className={`${bgColor} ${hoverBgColor} rounded-lg p-8 ${borderColor} ${hoverBorderColor} transition-all duration-300 w-48 h-48 flex items-center justify-center`}>
                     <Image
@@ -42,6 +43,8 @@ export default function MarcasPremium() {
                       width={128}
                       height={128}
                       className="object-contain opacity-90 group-hover:opacity-100 transition max-w-[128px] max-h-[128px] brightness-0 invert"
+                      quality={75}
+                      loading="lazy"
                     />
                   </div>
                 </Link>
@@ -55,9 +58,10 @@ export default function MarcasPremium() {
           <Link
             href="/produtos"
             className="inline-block text-[#FF0000] hover:text-[#FF0000]/80 transition flex items-center gap-2 mx-auto"
+            prefetch
           >
             Ver todas as marcas
-            <span>→</span>
+            <span aria-hidden="true">→</span>
           </Link>
         </div>
       </div>

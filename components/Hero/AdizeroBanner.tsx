@@ -28,24 +28,25 @@ export default function AdizeroBanner({
           fill
           className="object-cover"
           priority
-          quality={95}
+          fetchPriority="high"
+          quality={90}
           sizes="100vw"
         />
       </div>
 
-      {/* Gradiente sutil para legibilidade */}
-      <div className="absolute inset-0 bg-gradient-to-l from-white/10 via-transparent to-transparent pointer-events-none" />
+      {/* Overlay gradiente sutil para legibilidade */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80 pointer-events-none" />
 
       {/* Overlay de tipografia profissional - alinhado à direita */}
       <div className="absolute inset-0 flex items-center justify-end pr-8 md:pr-16 lg:pr-24 pointer-events-none z-10">
         <div className="max-w-lg text-right flex flex-col items-end">
           {/* Título */}
-          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-[70px] font-black text-[#1a1a1a] leading-[0.9] tracking-tighter uppercase drop-shadow-sm mb-4 whitespace-pre-line">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-[70px] font-black text-white leading-[0.9] tracking-[0.05em] uppercase drop-shadow-lg mb-4 whitespace-pre-line">
             {title}
           </h3>
           
-          {/* Linha divisória */}
-          <div className="w-full max-w-[280px] h-[1px] bg-[#333333] mb-4 opacity-20" />
+          {/* Linha vermelha abaixo do título */}
+          <div className="w-full max-w-[280px] h-0.5 bg-[#FF0000] mb-4" />
           
           {/* Subtítulo */}
           <p className="text-xs sm:text-sm md:text-lg font-normal text-[#333333] tracking-tight mb-8">

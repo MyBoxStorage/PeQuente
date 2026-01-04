@@ -4,8 +4,10 @@ import { useState } from 'react';
 import { Product } from '@/types';
 import { formatPrice, formatInstallment } from '@/lib/utils';
 import { useCartStore } from '@/store/cartStore';
-import { ShoppingBag, Heart } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
+import { ShoppingBag, Heart, MapPin } from 'lucide-react';
 import Link from 'next/link';
+import RetireHoje from './RetireHoje';
 
 interface ProductDetailsProps {
   product: Product;
@@ -17,6 +19,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   );
   const [quantity, setQuantity] = useState(1);
   const addItem = useCartStore((state) => state.addItem);
+  const { toast } = useToast();
 
   const discount = product.compareAtPrice && product.compareAtPrice > product.price
     ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
@@ -37,14 +40,24 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       });
     }
 
-    // Feedback visual (você pode adicionar um toast aqui)
-    alert('Produto adicionado ao carrinho!');
+    // Toast notification
+    toast({
+      title: 'Adicionado ao carrinho!',
+      description: `Venha retirar na loja • ${quantity} ${quantity > 1 ? 'itens' : 'item'}`,
+      variant: 'success',
+    });
   };
 
   return (
     <div className="bg-[#1a1a1a] rounded-lg p-8 border border-[#252525]">
       {/* Badges */}
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-2 mb-4 flex-wrap">
+        {product.stock > 0 && (
+          <span className="bg-green-600 text-white text-sm font-bold px-3 py-1 rounded flex items-center gap-1">
+            <MapPin size={14} />
+            Disponível para Retirada Imediata
+          </span>
+        )}
         {discount > 0 && (
           <span className="bg-[#FF0000] text-white text-sm font-bold px-3 py-1 rounded">
             {discount}% OFF
@@ -170,6 +183,9 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           <span className="text-white">PIX (5% OFF), Cartão, Boleto</span>
         </div>
       </div>
+
+      {/* Seção Retire Hoje */}
+      {product.stock > 0 && <RetireHoje />}
     </div>
   );
 }

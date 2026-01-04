@@ -30,13 +30,14 @@ export default function PeQuenteBanner2({
           fill
           className="object-cover"
           priority
-          quality={95}
+          fetchPriority="high"
+          quality={90}
           sizes="100vw"
         />
       </div>
 
-      {/* Gradiente sutil */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/10 pointer-events-none" />
+      {/* Overlay gradiente sutil para legibilidade */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80 pointer-events-none" />
 
       {/* Overlay profissional - alinhado à direita */}
       <div className="absolute inset-0 flex items-center justify-end pr-12 md:pr-24 lg:pr-32 pointer-events-none z-10">

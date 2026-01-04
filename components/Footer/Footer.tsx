@@ -23,6 +23,8 @@ export default function Footer() {
     setTimeout(() => setSubscribed(false), 3000);
   };
 
+  const [isHovered, setIsHovered] = useState(false);
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -64,9 +66,9 @@ export default function Footer() {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <footer className="bg-[#00008B] border-t border-[#252525] text-gray-300">
+      <footer className="bg-[#00008B] border-t border-[#252525] text-gray-300 relative">
         <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* Sobre a loja */}
             <div>
               <h3 className="text-white font-bold text-lg mb-4">Pé Quente Calçados</h3>
@@ -80,7 +82,7 @@ export default function Footer() {
                     href={storeInfo.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-[#FF0000] transition"
+                    className="text-gray-400 hover:text-[#FF0000] transition-all duration-250 hover:scale-110"
                     aria-label="Instagram"
                   >
                     <Instagram size={24} />
@@ -91,7 +93,7 @@ export default function Footer() {
                     href={storeInfo.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-[#FF0000] transition"
+                    className="text-gray-400 hover:text-[#FF0000] transition-all duration-250 hover:scale-110"
                     aria-label="Facebook"
                   >
                     <Facebook size={24} />
@@ -227,6 +229,23 @@ export default function Footer() {
                 <span className="px-2 py-1 bg-[#1a1a1a] rounded">Boleto</span>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Nota de portfólio */}
+        <div className="border-t border-[#1a1aff]/30 mt-8 pt-6">
+          <div className="container mx-auto px-4">
+            <p className="text-center text-gray-400 text-xs">
+              Site desenvolvido por{' '}
+              <a
+                href="https://github.com/MyBoxStorage/PeQuente"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-[#FF0000] transition-colors duration-250 underline"
+              >
+                VibeCoding
+              </a>
+            </p>
           </div>
         </div>
       </footer>

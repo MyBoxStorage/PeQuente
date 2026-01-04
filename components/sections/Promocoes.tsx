@@ -22,16 +22,17 @@ export default function Promocoes() {
             <h2 className="text-4xl font-bold text-white mb-4">
               Promoções Especiais
             </h2>
-            <p className="text-gray-400 text-lg">
+            <p className="text-gray-300 text-lg">
               Aproveite nossos melhores descontos
             </p>
           </div>
           <Link
             href="/produtos"
             className="text-[#FF0000] hover:text-[#FF0000]/80 transition flex items-center gap-2"
+            prefetch
           >
             Ver todas as promoções
-            <span>→</span>
+            <span aria-hidden="true">→</span>
           </Link>
         </div>
 

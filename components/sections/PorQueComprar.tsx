@@ -38,9 +38,10 @@ export default function PorQueComprar() {
     <section className="py-16 bg-[#1a1a1a]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">
+          <h2 className="text-4xl font-bold text-white mb-4 tracking-[0.05em]">
             Por Que Comprar na Pé Quente Calçados?
           </h2>
+          <div className="w-24 h-0.5 bg-[#FF0000] mx-auto mb-4" />
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Oferecemos a melhor experiência de compra com produtos de qualidade e atendimento diferenciado
           </p>
@@ -52,7 +53,7 @@ export default function PorQueComprar() {
             return (
               <div
                 key={index}
-                className="bg-[#252525] rounded-lg p-6 border border-[#353535] hover:border-[#FF0000] transition-all duration-300 hover:shadow-lg hover:shadow-[#FF0000]/10"
+                className="bg-[#2d2d2d] rounded-lg p-6 border border-[#353535] hover:border-[#FF0000] transition-all duration-250 hover:shadow-lg hover:shadow-[#FF0000]/20 hover:-translate-y-1"
               >
                 <div className="flex items-start gap-4">
                   <div className="bg-[#FF0000]/10 p-3 rounded-lg flex-shrink-0">

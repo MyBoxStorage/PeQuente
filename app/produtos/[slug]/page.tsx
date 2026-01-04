@@ -3,11 +3,12 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
-import { getProductBySlug, getAllProducts, getStoreInfo } from '@/lib/api';
+import { getProductBySlug, getAllProducts, getStoreInfo, getAllCategories } from '@/lib/api';
 import { formatPrice, formatInstallment } from '@/lib/utils';
 import ProductGallery from '@/components/product/ProductGallery';
 import ProductDetails from '@/components/product/ProductDetails';
 import RelatedProducts from '@/components/product/RelatedProducts';
+import { Breadcrumb } from '@/components/ui/breadcrumb';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -85,23 +86,27 @@ export default async function ProductPage({ params }: PageProps) {
       <div className="min-h-screen bg-[#0a0a0a] py-8">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
-          <nav className="mb-6 text-sm text-gray-400">
-            <ol className="flex items-center gap-2">
-              <li>
-                <Link href="/" className="hover:text-[#FF0000] transition">
-                  Início
-                </Link>
-              </li>
-              <li>/</li>
-              <li>
-                <Link href="/produtos" className="hover:text-[#FF0000] transition">
-                  Produtos
-                </Link>
-              </li>
-              <li>/</li>
-              <li className="text-white">{product.name}</li>
-            </ol>
-          </nav>
+          <Breadcrumb
+            className="mb-6"
+            items={[
+              { label: 'Produtos', href: '/produtos' },
+              ...(product.categoryId
+                ? (() => {
+                    const categories = getAllCategories();
+                    const category = categories.find((c: { id: string }) => c.id === product.categoryId);
+                    return category
+                      ? [
+                          {
+                            label: category.name,
+                            href: `/produtos?categoria=${category.slug}`,
+                          },
+                        ]
+                      : [];
+                  })()
+                : []),
+              { label: product.name },
+            ]}
+          />
 
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
             {/* Galeria de Imagens */}
