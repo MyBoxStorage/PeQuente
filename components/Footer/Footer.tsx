@@ -1,11 +1,27 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import { Instagram, Facebook, Mail, Phone, MapPin, Clock } from 'lucide-react';
 import { getStoreInfo, getAllCategories } from '@/lib/api';
 import Script from 'next/script';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function Footer() {
   const storeInfo = getStoreInfo();
   const categories = getAllCategories();
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Aqui você pode integrar com sua API/email service
+    console.log('Newsletter subscription:', email);
+    setSubscribed(true);
+    setEmail('');
+    setTimeout(() => setSubscribed(false), 3000);
+  };
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -136,10 +152,10 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Contato */}
+            {/* Contato e Newsletter */}
             <div>
               <h3 className="text-white font-bold text-lg mb-4">Contato</h3>
-              <ul className="space-y-3">
+              <ul className="space-y-3 mb-6">
                 <li className="flex items-start space-x-3">
                   <MapPin size={20} className="text-[#FF0000] mt-0.5 flex-shrink-0" />
                   <span className="text-sm">{storeInfo.address}</span>
@@ -173,6 +189,28 @@ export default function Footer() {
                   </div>
                 </li>
               </ul>
+
+              {/* Newsletter */}
+              <div>
+                <h4 className="text-white font-bold mb-2 text-sm">Newsletter</h4>
+                {subscribed ? (
+                  <p className="text-green-500 text-sm">Inscrito com sucesso!</p>
+                ) : (
+                  <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                    <Input
+                      type="email"
+                      placeholder="Seu e-mail"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="flex-1"
+                    />
+                    <Button type="submit" size="sm">
+                      Inscrever
+                    </Button>
+                  </form>
+                )}
+              </div>
             </div>
           </div>
 

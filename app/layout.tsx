@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 import { getStoreInfo } from "@/lib/api";
 
 const inter = Inter({
@@ -77,6 +78,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );

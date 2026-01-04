@@ -11,7 +11,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
       href={`/produtos/${product.slug}`}
-      className="group bg-[#1a1a1a] rounded-lg overflow-hidden hover:bg-[#252525] transition-all duration-300 hover:shadow-lg hover:shadow-[#FFD700]/10"
+      className="group bg-[#1a1a1a] rounded-lg overflow-hidden hover:bg-[#252525] transition-all duration-300 hover:shadow-xl hover:shadow-[#FF0000]/20 hover:-translate-y-1"
     >
       {/* Imagem do produto */}
       <div className="relative aspect-square bg-[#252525] overflow-hidden">
@@ -47,7 +47,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Informações do produto */}
       <div className="p-4">
         <p className="text-gray-400 text-sm mb-1">{product.brand}</p>
-        <h3 className="text-white font-medium mb-2 line-clamp-2 group-hover:text-[#FFD700] transition">
+        <h3 className="text-white font-medium mb-2 line-clamp-2 group-hover:text-[#FFD700] transition min-h-[3rem]">
           {product.name}
         </h3>
         <div className="flex items-baseline space-x-2">

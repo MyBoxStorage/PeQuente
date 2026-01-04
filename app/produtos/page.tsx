@@ -1,48 +1,75 @@
 'use client';
 
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Product, Category, Brand } from '@/types';
 import { filterProducts, FilterOptions } from '@/lib/utils/filterProducts';
 import ProductCard from '@/components/Products/ProductCard';
+import ProductPagination from '@/components/Products/ProductPagination';
+import ProductCardSkeleton from '@/components/Products/ProductCardSkeleton';
+import ProductFiltersSheet from '@/components/Products/ProductFiltersSheet';
 import { X, Filter } from 'lucide-react';
 import { getAllProducts, getAllCategories, getAllBrands } from '@/lib/api';
 
 type SortOption = 'relevance' | 'price-asc' | 'price-desc' | 'name-asc' | 'name-desc' | 'newest';
 
-export default function ProdutosPage() {
+const ITEMS_PER_PAGE = 12;
+
+function ProdutosContent() {
+  const searchParams = useSearchParams();
   const allProducts = getAllProducts();
   const categories = getAllCategories();
   const brands = getAllBrands();
 
-  const [filters, setFilters] = useState<FilterOptions>({});
-  const [sortBy, setSortBy] = useState<SortOption>('relevance');
-  const [showFilters, setShowFilters] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  // Inicializar filtros a partir da URL apenas no client-side
-  useEffect(() => {
-    setMounted(true);
+  const [filters, setFilters] = useState<FilterOptions>(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
-      setFilters({
+      return {
         marca: params.get('marca') || undefined,
         categoria: params.get('categoria') || undefined,
         genero: params.get('genero') || undefined,
         precoMin: params.get('precoMin') ? Number(params.get('precoMin')) : undefined,
         precoMax: params.get('precoMax') ? Number(params.get('precoMax')) : undefined,
         search: params.get('busca') || undefined,
-      });
-      const ordenar = params.get('ordenar');
-      if (ordenar) {
-        setSortBy(ordenar as SortOption);
-      }
+      };
     }
-  }, []);
+    return {};
+  });
+
+  const [sortBy, setSortBy] = useState<SortOption>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      return (params.get('ordenar') as SortOption) || 'relevance';
+    }
+    return 'relevance';
+  });
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setFilters({
+      marca: params.get('marca') || undefined,
+      categoria: params.get('categoria') || undefined,
+      genero: params.get('genero') || undefined,
+      precoMin: params.get('precoMin') ? Number(params.get('precoMin')) : undefined,
+      precoMax: params.get('precoMax') ? Number(params.get('precoMax')) : undefined,
+      search: params.get('busca') || undefined,
+    });
+    const ordenar = params.get('ordenar');
+    if (ordenar) {
+      setSortBy(ordenar as SortOption);
+    }
+  }, [searchParams]);
+
+  // Resetar página quando filtros mudarem
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filters]);
 
   const filteredProducts = useMemo(() => {
     let result = filterProducts(allProducts, filters);
 
-    // Aplicar ordenação
     switch (sortBy) {
       case 'price-asc':
         result.sort((a, b) => a.price - b.price);
@@ -58,7 +85,7 @@ export default function ProdutosPage() {
         break;
       case 'newest':
         result.sort((a, b) => 
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          new Date(b.createdAt || '').getTime() - new Date(a.createdAt || '').getTime()
         );
         break;
       default:
@@ -68,31 +95,20 @@ export default function ProdutosPage() {
     return result;
   }, [allProducts, filters, sortBy]);
 
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
   const clearFilters = () => {
-    setFilters({
-      marca: undefined,
-      categoria: undefined,
-      genero: undefined,
-      precoMin: undefined,
-      precoMax: undefined,
-      search: undefined,
-    });
+    setFilters({});
+    if (typeof window !== 'undefined') {
+      window.history.pushState({}, '', '/produtos');
+    }
   };
 
   const hasActiveFilters = Object.values(filters).some((value) => value !== undefined && value !== '');
-
-  if (!mounted) {
-    return (
-      <div className="min-h-screen bg-[#0a0a0a] py-8">
-        <div className="container mx-auto px-4">
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-white mb-2">Produtos</h1>
-            <p className="text-gray-400">Carregando...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] py-8">
@@ -105,8 +121,8 @@ export default function ProdutosPage() {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar de Filtros */}
-          <aside className={`lg:w-64 ${showFilters ? 'block' : 'hidden lg:block'}`}>
+          {/* Sidebar de Filtros - Desktop */}
+          <aside className="hidden lg:block lg:w-64">
             <div className="bg-[#1a1a1a] rounded-lg p-6 border border-[#252525] sticky top-24">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-white font-bold text-lg flex items-center gap-2">
@@ -214,13 +230,13 @@ export default function ProdutosPage() {
             {/* Barra de ferramentas */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
               <div className="flex items-center gap-4">
-                <button
-                  onClick={() => setShowFilters(!showFilters)}
-                  className="lg:hidden bg-[#1a1a1a] text-white px-4 py-2 rounded-lg border border-[#252525] hover:bg-[#252525] transition flex items-center gap-2"
-                >
-                  <Filter size={20} />
-                  Filtros
-                </button>
+                {/* Sheet de filtros - Mobile */}
+                <ProductFiltersSheet
+                  filters={filters}
+                  onFiltersChange={setFilters}
+                  onClearFilters={clearFilters}
+                  hasActiveFilters={hasActiveFilters}
+                />
                 <p className="text-gray-400">
                   {filteredProducts.length} {filteredProducts.length === 1 ? 'produto encontrado' : 'produtos encontrados'}
                 </p>
@@ -260,15 +276,51 @@ export default function ProdutosPage() {
                 )}
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {paginatedProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+                
+                {totalPages > 1 && (
+                  <ProductPagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
+                  />
+                )}
+              </>
             )}
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function ProdutosLoading() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] py-8">
+      <div className="container mx-auto px-4">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-white mb-2">Produtos</h1>
+          <p className="text-gray-400">Carregando produtos...</p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <ProductCardSkeleton key={i} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function ProdutosPage() {
+  return (
+    <Suspense fallback={<ProdutosLoading />}>
+      <ProdutosContent />
+    </Suspense>
   );
 }
