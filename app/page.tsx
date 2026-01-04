@@ -39,11 +39,11 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-white mb-8">Categorias</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {[
-              { name: "Tênis Masculino", slug: "tenis-masculino", image: "/images/categorias/tenis-masc.jpg.png" },
-              { name: "Tênis Feminino", slug: "tenis-feminino", image: "/images/categorias/tenis-fem.jpg.png" },
-              { name: "Chinelos", slug: "chinelos-e-sandalias", image: "/images/categorias/chinelos.jpg.png" },
-              { name: "Acessórios", slug: "acessorios", image: "/images/categorias/acessorios.jpg.png" },
-              { name: "Outlet", slug: "outlet", image: "/images/categorias/outlet.jpg.png" },
+              { name: "Tênis Masculino", slug: "tenis-masculino", image: "/images/categorias/tenis-masc.png" },
+              { name: "Tênis Feminino", slug: "tenis-feminino", image: "/images/categorias/tenis-fem.png" },
+              { name: "Chinelos", slug: "chinelos-e-sandalias", image: "/images/categorias/chinelos.png" },
+              { name: "Acessórios", slug: "acessorios", image: "/images/categorias/acessorios.png" },
+              { name: "Outlet", slug: "outlet", image: "/images/categorias/outlet.png" },
             ].map((category) => (
               <Link
                 key={category.slug}
