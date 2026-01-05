@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -104,25 +104,45 @@ const banners: Banner[] = [
 
 export default function HeroBanner() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
+  // Função para iniciar/reiniciar o intervalo automático
+  const startAutoPlay = () => {
+    // Limpar intervalo anterior se existir
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    
+    // Criar novo intervalo
+    intervalRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % banners.length);
     }, 5000);
+  };
 
-    return () => clearInterval(interval);
+  useEffect(() => {
+    startAutoPlay();
+    
+    // Limpar intervalo ao desmontar
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, []);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
+    startAutoPlay(); // Reiniciar contagem quando mudar manualmente
   };
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + banners.length) % banners.length);
+    startAutoPlay(); // Reiniciar contagem quando mudar manualmente
   };
 
   const goToNext = () => {
     setCurrentIndex((prev) => (prev + 1) % banners.length);
+    startAutoPlay(); // Reiniciar contagem quando mudar manualmente
   };
 
   // Calcular índices visíveis: atual + próximo (para preload suave)

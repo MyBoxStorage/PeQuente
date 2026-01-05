@@ -40,10 +40,20 @@ export default function AdizeroBanner({
       {/* Overlay de tipografia profissional - alinhado à direita */}
       <div className="absolute inset-0 flex items-center justify-end pr-8 md:pr-16 lg:pr-24 pointer-events-none z-10">
         <div className="max-w-lg text-right flex flex-col items-end">
-          {/* Título */}
-          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-[70px] font-black text-white leading-[0.9] tracking-[0.05em] uppercase drop-shadow-lg mb-4 whitespace-pre-line">
-            {title}
-          </h3>
+          {/* Título com efeito Forest */}
+          <div className="forest-title-container group relative z-10 mb-4">
+            <div className="forest-title flex flex-col items-end">
+              {title.split('\n').map((line, lineIndex) => (
+                <div key={lineIndex} className="flex">
+                  {line.split('').map((letter, i) => (
+                    <span key={i} className="forest-letter forest-letter-large inline-block">
+                      {letter === ' ' ? '\u00A0' : letter}
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
           
           {/* Linha vermelha abaixo do título */}
           <div className="w-full max-w-[280px] h-0.5 bg-[#FF0000] mb-4" />

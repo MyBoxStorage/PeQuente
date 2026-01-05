@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -1146,7 +1147,7 @@ body {
 }
 
 .category-circle-shadow-blue:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 139, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 139, 0.65);
 }
 
 .category-circle:hover .category-circle-image-wrapper .category-circle-image {
@@ -1175,4 +1176,117 @@ body {
 
 .product-card-3d-wrapper:hover .product-card-3d {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+/* ============================================
+   EFEITO FOREST PREMIUM - Títulos de Banners
+   ============================================ */
+
+.forest-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.forest-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.forest-letter {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 7rem;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 3px #ffffff;
+  text-stroke: 3px #ffffff;
+  text-shadow: none;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin: 0 0.05em;
+  display: inline-block;
+}
+
+.forest-title-container:hover .forest-letter {
+  transform: scale(1.5);
+  color: #ffffff;
+  -webkit-text-stroke: 0 transparent;
+  text-stroke: 0 transparent;
+  text-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Tamanhos variados para diferentes banners */
+.forest-letter-large {
+  font-size: 8rem;
+}
+
+.forest-letter-medium {
+  font-size: 6rem;
+}
+
+.forest-letter-small {
+  font-size: 5rem;
+}
+
+/* Variantes de cor para banners específicos */
+.forest-letter-red {
+  -webkit-text-stroke: 3px #e31e24;
+  text-stroke: 3px #e31e24;
+}
+
+.forest-title-container:hover .forest-letter-red {
+  color: #e31e24;
+  -webkit-text-stroke: 0 transparent;
+  text-stroke: 0 transparent;
+}
+
+.forest-letter-blue {
+  -webkit-text-stroke: 3px #2e3192;
+  text-stroke: 3px #2e3192;
+}
+
+.forest-title-container:hover .forest-letter-blue {
+  color: #2e3192;
+  -webkit-text-stroke: 0 transparent;
+  text-stroke: 0 transparent;
+}
+
+/* Responsividade maestria */
+@media (max-width: 1024px) {
+  .forest-letter {
+    font-size: 5rem;
+  }
+  .forest-letter-large {
+    font-size: 6rem;
+  }
+  .forest-letter-medium {
+    font-size: 4.5rem;
+  }
+  .forest-letter-small {
+    font-size: 4rem;
+  }
+  .forest-title-container:hover .forest-letter {
+    transform: scale(1.4);
+  }
+}
+
+@media (max-width: 768px) {
+  .forest-letter {
+    font-size: 3.5rem;
+  }
+  .forest-letter-large {
+    font-size: 4rem;
+  }
+  .forest-letter-medium {
+    font-size: 3rem;
+  }
+  .forest-letter-small {
+    font-size: 2.5rem;
+  }
+  .forest-title-container:hover .forest-letter {
+    transform: scale(1.3);
+  }
 }

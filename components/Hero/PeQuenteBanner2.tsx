@@ -20,6 +20,11 @@ export default function PeQuenteBanner2({
   ctaText = "VEJA MAIS",
   ctaLink = "/produtos"
 }: PeQuenteBanner2Props) {
+  // Separar "MESMA ATITUDE" em duas palavras
+  const secondaryWords = secondaryTitle.split(' ');
+  const firstWord = secondaryWords[0] || 'MESMA';
+  const secondWord = secondaryWords[1] || 'ATITUDE';
+
   return (
     <div className="relative h-full w-full overflow-hidden">
       {/* Imagem de fundo */}
@@ -49,15 +54,36 @@ export default function PeQuenteBanner2({
             {/* Top horizontal line */}
             <div className="w-full border-t-2 border-[#cccccc]"></div>
 
-            {/* ANO NOVO - Principal, bold, vermelho como o logo */}
-            <h1 className="text-[#e31e24] text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-none">
-              {mainTitle}
-            </h1>
+            {/* ANO NOVO - Principal com efeito Forest */}
+            <div className="forest-title-container group relative z-10">
+              <div className="forest-title flex">
+                {mainTitle.split('').map((letter, i) => (
+                  <span key={i} className="forest-letter forest-letter-large forest-letter-red inline-block">
+                    {letter === ' ' ? '\u00A0' : letter}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-            {/* MESMA ATITUDE - Normal weight, azul como o logo */}
-            <h2 className="text-[#2e3192] text-6xl md:text-7xl lg:text-8xl font-normal uppercase tracking-tighter leading-none">
-              {secondaryTitle}
-            </h2>
+            {/* MESMA ATITUDE - Secundário com efeito Forest (separado em duas linhas) */}
+            <div className="forest-title-container group relative z-10 flex flex-col items-center">
+              {/* MESMA - Primeira linha */}
+              <div className="forest-title flex">
+                {firstWord.split('').map((letter, i) => (
+                  <span key={i} className="forest-letter forest-letter-large forest-letter-blue inline-block">
+                    {letter === ' ' ? '\u00A0' : letter}
+                  </span>
+                ))}
+              </div>
+              {/* ATITUDE - Segunda linha */}
+              <div className="forest-title flex">
+                {secondWord.split('').map((letter, i) => (
+                  <span key={i} className="forest-letter forest-letter-large forest-letter-blue inline-block">
+                    {letter === ' ' ? '\u00A0' : letter}
+                  </span>
+                ))}
+              </div>
+            </div>
 
             {/* Bottom horizontal line */}
             <div className="w-full border-b-2 border-[#cccccc]"></div>

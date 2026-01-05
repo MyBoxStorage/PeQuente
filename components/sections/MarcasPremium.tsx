@@ -159,7 +159,7 @@ export default function MarcasPremium() {
               const borderColor = isRed ? 'border-[#FF0000]' : 'border-[#00008B]';
               const hoverBorderColor = 'hover:border-white';
               // Se for vermelho, sombra azul; se for azul, sombra vermelha
-              const hoverShadow = isRed ? 'hover:shadow-[0_20px_40px_rgba(0,0,139,0.4)]' : 'hover:shadow-[0_20px_40px_rgba(255,0,0,0.4)]';
+              const hoverShadow = isRed ? 'hover:shadow-[0_20px_40px_rgba(0,0,139,0.65)]' : 'hover:shadow-[0_20px_40px_rgba(255,0,0,0.4)]';
               
               return (
                 <div
