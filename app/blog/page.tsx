@@ -4,8 +4,34 @@ import Image from 'next/image';
 import { Calendar, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Dicas, novidades e conteúdos sobre calçados, moda e esportes',
+  title: 'Blog - Dicas e Novidades sobre Calçados | Pé Quente Calçados',
+  description: 'Dicas, novidades e conteúdos sobre calçados, moda e esportes. Fique por dentro das últimas tendências em tênis e calçados esportivos.',
+  keywords: ['blog', 'dicas', 'calçados', 'tênis', 'moda', 'esportes', 'tendências', 'Paraíba do Sul', 'Pé Quente Calçados'],
+  openGraph: {
+    type: "website",
+    url: "https://www.pequentecalcados.com.br/blog",
+    siteName: "Pé Quente Calçados",
+    title: "Blog - Dicas e Novidades sobre Calçados | Pé Quente Calçados",
+    description: "Dicas, novidades e conteúdos sobre calçados, moda e esportes. Fique por dentro das últimas tendências em tênis e calçados esportivos.",
+    images: [
+      {
+        url: "https://www.pequentecalcados.com.br/images/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Blog Pé Quente Calçados",
+      },
+    ],
+    locale: "pt_BR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog - Dicas e Novidades sobre Calçados | Pé Quente Calçados",
+    description: "Dicas, novidades e conteúdos sobre calçados, moda e esportes. Fique por dentro das últimas tendências em tênis e calçados esportivos.",
+    images: ["https://www.pequentecalcados.com.br/images/logo.png"],
+  },
+  alternates: {
+    canonical: "https://www.pequentecalcados.com.br/blog",
+  },
 };
 
 // Dados de exemplo para o blog - você pode substituir por dados reais

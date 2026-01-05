@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { MapPin, Phone, Mail, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, Instagram, Facebook } from 'lucide-react';
 import { getStoreInfo } from '@/lib/api';
 
 const contactSchema = z.object({
@@ -213,7 +213,59 @@ export default function ContatoPage() {
                   <p>{storeInfo.hours.sunday}</p>
                 </div>
               </div>
+
+              {/* Redes Sociais */}
+              <div className="bg-[#1a1a1a] rounded-lg p-6 border border-[#252525]">
+                <h3 className="text-lg font-bold text-white mb-4">Redes Sociais</h3>
+                <div className="flex gap-4">
+                  {storeInfo.instagram && (
+                    <a
+                      href={storeInfo.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-white hover:text-[#E4405F] transition-colors"
+                      aria-label="Instagram"
+                    >
+                      <Instagram size={24} />
+                      <span>Instagram</span>
+                    </a>
+                  )}
+                  {storeInfo.facebook && (
+                    <a
+                      href={storeInfo.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-white hover:text-[#1877F2] transition-colors"
+                      aria-label="Facebook"
+                    >
+                      <Facebook size={24} />
+                      <span>Facebook</span>
+                    </a>
+                  )}
+                </div>
+              </div>
             </div>
+          </div>
+
+          {/* Google Maps */}
+          <div className="mt-8 bg-[#1a1a1a] rounded-lg p-6 border border-[#252525]">
+            <h2 className="text-xl font-bold text-white mb-4">Localização</h2>
+            <div className="w-full h-[400px] rounded-lg overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.5!2d-43.0!3d-22.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDAwJzAwLjAiUyA0M8KwMDAnMDAuMCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Localização da loja Pé Quente Calçados"
+                aria-label="Mapa mostrando a localização da loja na Praça Garcia 136/140, Paraíba do Sul, RJ"
+              />
+            </div>
+            <p className="text-gray-400 text-sm mt-4 text-center">
+              Praça Garcia 136/140 - Centro, Paraíba do Sul, RJ 25850-000
+            </p>
           </div>
         </div>
       </div>

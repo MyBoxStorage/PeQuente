@@ -24,13 +24,41 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const productUrl = `https://www.pequentecalcados.com.br/produtos/${slug}`;
+  const productImage = product.images.length > 0 
+    ? product.images[0].startsWith('http') 
+      ? product.images[0] 
+      : `https://www.pequentecalcados.com.br${product.images[0]}`
+    : 'https://www.pequentecalcados.com.br/images/logo.png';
+
   return {
-    title: `${product.name} - ${product.brand}`,
-    description: product.description || product.shortDescription || `Compre ${product.name} da ${product.brand} na Pé Quente Calçados.`,
+    title: `${product.name} - ${product.brand} | Pé Quente Calçados`,
+    description: product.description || product.shortDescription || `Compre ${product.name} da ${product.brand} na Pé Quente Calçados. Retirada na loja em Paraíba do Sul, RJ.`,
+    keywords: [product.name, product.brand, 'tênis', 'calçados', 'Paraíba do Sul', 'RJ', 'Pé Quente Calçados'],
     openGraph: {
-      title: `${product.name} - ${product.brand}`,
-      description: product.description || product.shortDescription || '',
-      images: product.images.length > 0 ? [product.images[0]] : [],
+      type: "product",
+      url: productUrl,
+      siteName: "Pé Quente Calçados",
+      title: `${product.name} - ${product.brand} | Pé Quente Calçados`,
+      description: product.description || product.shortDescription || `Compre ${product.name} da ${product.brand} na Pé Quente Calçados. Retirada na loja em Paraíba do Sul, RJ.`,
+      images: [
+        {
+          url: productImage,
+          width: 1200,
+          height: 630,
+          alt: product.name,
+        },
+      ],
+      locale: "pt_BR",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} - ${product.brand} | Pé Quente Calçados`,
+      description: product.description || product.shortDescription || `Compre ${product.name} da ${product.brand} na Pé Quente Calçados.`,
+      images: [productImage],
+    },
+    alternates: {
+      canonical: productUrl,
     },
   };
 }

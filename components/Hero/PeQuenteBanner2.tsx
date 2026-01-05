@@ -41,7 +41,7 @@ export default function PeQuenteBanner2({
 
       {/* Overlay profissional - alinhado à direita */}
       <div className="absolute inset-0 flex items-center justify-end pr-12 md:pr-24 lg:pr-32 pointer-events-none z-10">
-        <div className="flex flex-col items-center text-center max-w-[50%] animate-[fadeIn_0.8s_ease-out_forwards]">
+        <div className="flex flex-col items-center text-center max-w-[50%]">
 
           {/* PROMOTIONAL TEXT BLOCK */}
           <div className="w-full space-y-2 py-8">
@@ -71,7 +71,7 @@ export default function PeQuenteBanner2({
           {/* CTA BUTTON - Cinza escuro */}
           <Link
             href={ctaLink}
-            className="bg-[#4a4a4a] text-white px-16 py-4 rounded-md text-base font-black tracking-widest uppercase hover:bg-[#333333] transition-all pointer-events-auto shadow-2xl hover:-translate-y-1 active:translate-y-0 border-b-4 border-black/20"
+            className="bg-[#4a4a4a] text-white px-16 py-4 rounded-md text-base font-black tracking-widest uppercase shadow-2xl border-b-4 border-black/20 inline-flex items-center justify-center pointer-events-auto"
           >
             {ctaText}
           </Link>

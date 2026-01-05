@@ -1,7 +1,40 @@
-﻿import Link from 'next/link';
-import Image from 'next/image';
+﻿import { Metadata } from 'next';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import HeroBanner from "@/components/Hero/HeroBanner";
+import CategoryCard from "@/components/sections/CategoryCard";
+import { getStoreInfo } from "@/lib/api";
+
+export const metadata: Metadata = {
+  title: 'Pé Quente Calçados - Sua Loja de Tênis, Roupas e Acessórios em Paraíba do Sul, RJ',
+  description: 'Pé Quente Calçados - Sua loja de tênis, roupas e acessórios em Paraíba do Sul, RJ. Os melhores produtos das principais marcas: Nike, Adidas, Mizuno, Puma, Fila, Olympikus, Asics e mais. Retirada na loja com 5% de desconto no PIX.',
+  keywords: ['tênis', 'calçados', 'Nike', 'Adidas', 'Mizuno', 'Puma', 'Fila', 'Olympikus', 'Asics', 'Paraíba do Sul', 'RJ', 'loja de tênis', 'calçados esportivos'],
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "https://www.pequentecalcados.com.br",
+    siteName: "Pé Quente Calçados",
+    title: "Pé Quente Calçados - Sua Loja de Tênis, Roupas e Acessórios em Paraíba do Sul, RJ",
+    description: "Os melhores produtos das principais marcas em Paraíba do Sul, RJ. Retirada na loja com 5% de desconto no PIX.",
+    images: [
+      {
+        url: "https://www.pequentecalcados.com.br/images/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Pé Quente Calçados - Loja de Tênis e Acessórios em Paraíba do Sul, RJ",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pé Quente Calçados - Sua Loja de Tênis em Paraíba do Sul, RJ",
+    description: "Os melhores produtos das principais marcas. Retirada na loja com 5% de desconto no PIX.",
+    images: ["https://www.pequentecalcados.com.br/images/logo.png"],
+  },
+  alternates: {
+    canonical: "https://www.pequentecalcados.com.br",
+  },
+};
 
 // Lazy load do ProductSlider (componente acima do fold mas pode ser otimizado)
 const ProductSlider = dynamic(() => import("@/components/Products/ProductSlider"), {
@@ -29,15 +62,53 @@ const VisiteNossaLoja = dynamic(() => import("@/components/sections/VisiteNossaL
   loading: () => <div className="py-16 bg-[#0a0a0a]" />,
 });
 
-import { getNewLaunchProducts } from "@/lib/api";
+import { getNewLaunchProducts, getAllCategories } from "@/lib/api";
 
 export default function HomePage() {
   const newLaunchProducts = getNewLaunchProducts();
+  const categories = getAllCategories();
+
+  // Mapear categorias com imagens
+  const categoryImages: Record<string, string> = {
+    'tenis-masculino': '/images/categorias/tenis-masc.png',
+    'tenis-feminino': '/images/categorias/tenis-fem.png',
+    'chinelos-e-sandalias': '/images/categorias/chinelos.png',
+    'acessorios': '/images/categorias/acessorios.png',
+    'outlet': '/images/categorias/outlet.png',
+  };
+
+  // Categorias populares (filtrar apenas as que têm imagem)
+  const popularCategories = categories.filter(cat => categoryImages[cat.slug]);
 
   return (
     <div>
       {/* Hero Banner */}
       <HeroBanner />
+
+      {/* Seção de Categorias Populares */}
+      <section className="py-16 bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a]">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Categorias Populares
+            </h2>
+            <p className="text-gray-400 text-lg">
+              Explore nossas principais categorias
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 justify-items-center">
+            {popularCategories.map((category, index) => (
+              <CategoryCard
+                key={category.id}
+                name={category.name}
+                slug={category.slug}
+                image={categoryImages[category.slug]}
+                priority={index < 2}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Produtos em Destaque - Lançamentos */}
       <section className="py-12 bg-[#0a0a0a]">
@@ -58,46 +129,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Seção de Categorias */}
-      <section className="py-12 bg-[#1a1a1a]">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-white mb-8">Categorias</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
-            {[
-              { name: "Tênis Masculino", slug: "tenis-masculino", image: "/images/categorias/tenis-masc.png" },
-              { name: "Tênis Feminino", slug: "tenis-feminino", image: "/images/categorias/tenis-fem.png" },
-              { name: "Chinelos", slug: "chinelos-e-sandalias", image: "/images/categorias/chinelos.png" },
-              { name: "Acessórios", slug: "acessorios", image: "/images/categorias/acessorios.png" },
-              { name: "Outlet", slug: "outlet", image: "/images/categorias/outlet.png" },
-            ].map((category, index) => (
-              <Link
-                key={category.slug}
-                href={`/produtos?categoria=${category.slug}`}
-                className="group bg-[#252525] rounded-lg overflow-hidden hover:bg-[#2a2a2a] transition relative"
-                prefetch
-              >
-                <div className="aspect-square relative">
-                  <Image
-                    src={category.image}
-                    alt={category.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                    priority={index < 2}
-                    fetchPriority={index === 0 ? "high" : index === 1 ? "high" : "auto"}
-                    quality={85}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
-                    <span className="text-white font-bold text-center w-full px-4 pb-4 group-hover:text-[#FF0000] transition">
-                      {category.name}
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Marcas Premium */}
       <MarcasPremium />

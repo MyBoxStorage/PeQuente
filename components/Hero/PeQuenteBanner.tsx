@@ -37,7 +37,7 @@ export default function PeQuenteBanner({
 
       {/* Overlay profissional - alinhado à direita */}
       <div className="absolute inset-0 flex items-center justify-end pr-8 md:pr-16 lg:pr-24 pointer-events-none z-10">
-        <div className="flex flex-col items-center text-center animate-[fadeIn_0.8s_ease-out_forwards]">
+        <div className="flex flex-col items-center text-center">
           
           {/* LOGO GROUP - P/Q mesmo tamanho */}
           <div className="flex items-center scale-75 md:scale-90 lg:scale-110 origin-right mb-4">
@@ -83,7 +83,7 @@ export default function PeQuenteBanner({
           {/* CTA BUTTON - Vermelho */}
           <Link
             href={ctaLink}
-            className="bg-[#e31e24] text-white px-16 py-4 rounded-xl text-base font-black tracking-widest uppercase hover:bg-[#c71c20] transition-all pointer-events-auto shadow-xl hover:-translate-y-1 active:translate-y-0 border border-white/20"
+            className="bg-[#e31e24] text-white px-16 py-4 rounded-xl text-base font-black tracking-widest uppercase shadow-xl border border-white/20 inline-flex items-center justify-center pointer-events-auto"
           >
             {ctaText}
           </Link>

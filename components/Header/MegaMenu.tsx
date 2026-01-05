@@ -64,7 +64,7 @@ export default function MegaMenu() {
       </Link>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-[600px] bg-[#2d2d2d] border border-[#353535] rounded-lg shadow-xl z-50 overflow-hidden animate-in fade-in-0 slide-in-from-top-2 duration-250">
+        <div className="absolute top-full left-0 mt-2 w-[600px] bg-[#2d2d2d] border border-[#353535] rounded-lg shadow-xl z-50 overflow-visible animate-in fade-in-0 slide-in-from-top-2 duration-250">
           <div className="p-6">
             <h3 className="text-white font-semibold mb-4 text-lg">
               Categorias
@@ -77,24 +77,26 @@ export default function MegaMenu() {
                     key={category.id}
                     href={`/produtos?categoria=${category.slug}`}
                     onClick={() => setIsOpen(false)}
-                    className="group flex flex-col items-center space-y-2 p-3 rounded-lg hover:bg-[#252525] transition-colors duration-250"
+                    className="group flex flex-col items-center space-y-2 p-4 rounded-lg hover:bg-[#252525] transition-colors duration-250"
                   >
-                    <div className="relative w-20 h-20 rounded-lg overflow-hidden bg-[#252525]">
+                    {/* Container com efeito 3D pop-out - circular */}
+                    <div className="category-icon-3d relative w-24 h-24 rounded-full bg-gradient-to-br from-[#353535] to-[#252525] flex items-center justify-center">
                       {imageUrl ? (
                         <Image
                           src={imageUrl}
                           alt={category.name}
                           fill
-                          className="object-cover group-hover:scale-110 transition-transform duration-250"
-                          sizes="80px"
+                          className="object-contain rounded-full p-2"
+                          sizes="96px"
+                          quality={90}
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-gray-500 text-xs text-center px-1">
+                        <div className="w-full h-full flex items-center justify-center text-gray-500 text-xs text-center px-1 rounded-full">
                           {category.name}
                         </div>
                       )}
                     </div>
-                    <span className="text-white text-sm text-center group-hover:text-[#FF0000] transition-colors duration-250">
+                    <span className="text-white text-sm text-center group-hover:text-[#FF0000] transition-colors duration-250 mt-1">
                       {category.name}
                     </span>
                   </Link>

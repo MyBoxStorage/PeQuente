@@ -6,6 +6,28 @@ import { getStoreInfo } from '@/lib/api';
 export const metadata: Metadata = {
   title: 'Sobre Nós',
   description: 'Conheça a história da Pé Quente Calçados, sua loja de tênis e acessórios em Paraíba do Sul.',
+  openGraph: {
+    type: "website",
+    url: "https://www.pequentecalcados.com.br/sobre",
+    siteName: "Pé Quente Calçados",
+    title: "Sobre Nós - Pé Quente Calçados",
+    description: "Conheça a história da Pé Quente Calçados, sua loja de tênis e acessórios em Paraíba do Sul.",
+    images: [
+      {
+        url: "https://www.pequentecalcados.com.br/images/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Sobre a Pé Quente Calçados",
+      },
+    ],
+    locale: "pt_BR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sobre Nós - Pé Quente Calçados",
+    description: "Conheça a história da Pé Quente Calçados, sua loja de tênis e acessórios em Paraíba do Sul.",
+    images: ["https://www.pequentecalcados.com.br/images/logo.png"],
+  },
 };
 
 export default function SobrePage() {

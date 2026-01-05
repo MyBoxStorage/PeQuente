@@ -28,8 +28,8 @@ export const metadata: Metadata = {
     default: `${storeInfo.name} - Sua Loja de Tênis, Roupas e Acessórios`,
     template: `%s | ${storeInfo.name}`,
   },
-  description: "Pé Quente Calçados - Sua loja de tênis, roupas e acessórios em Paraíba do Sul, RJ. Os melhores produtos das principais marcas: Nike, Adidas, Mizuno, Puma e mais.",
-  keywords: ["tênis", "calçados", "Nike", "Adidas", "Mizuno", "Puma", "Paraíba do Sul", "RJ"],
+  description: "Pé Quente Calçados - Sua loja de tênis, roupas e acessórios em Paraíba do Sul, RJ. Os melhores produtos das principais marcas: Nike, Adidas, Mizuno, Puma, Fila, Olympikus, Asics e mais. Retirada na loja com 5% de desconto no PIX.",
+  keywords: ["tênis", "calçados", "Nike", "Adidas", "Mizuno", "Puma", "Fila", "Olympikus", "Asics", "Paraíba do Sul", "RJ", "loja de tênis", "calçados esportivos", "tênis esportivo", "Paraíba do Sul RJ"],
   authors: [{ name: storeInfo.name }],
   openGraph: {
     type: "website",
@@ -38,15 +38,27 @@ export const metadata: Metadata = {
     siteName: storeInfo.name,
     title: `${storeInfo.name} - Sua Loja de Tênis, Roupas e Acessórios`,
     description: "Os melhores produtos das principais marcas em Paraíba do Sul, RJ",
+    images: [
+      {
+        url: "https://www.pequentecalcados.com.br/images/logo.png",
+        width: 1200,
+        height: 630,
+        alt: `${storeInfo.name} - Loja de Tênis e Acessórios`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${storeInfo.name} - Sua Loja de Tênis`,
     description: "Os melhores produtos das principais marcas",
+    images: ["https://www.pequentecalcados.com.br/images/logo.png"],
   },
   robots: {
     index: true,
     follow: true,
+  },
+  alternates: {
+    canonical: "https://www.pequentecalcados.com.br",
   },
 };
 

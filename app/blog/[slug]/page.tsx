@@ -111,9 +111,45 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const blogUrl = `https://www.pequentecalcados.com.br/blog/${slug}`;
+  const blogImage = post.image 
+    ? post.image.startsWith('http')
+      ? post.image
+      : `https://www.pequentecalcados.com.br${post.image}`
+    : 'https://www.pequentecalcados.com.br/images/logo.png';
+
   return {
-    title: `${post.title} | Blog`,
+    title: `${post.title} | Blog - Pé Quente Calçados`,
     description: post.excerpt,
+    keywords: [post.title, 'blog', 'calçados', 'tênis', 'dicas', 'Paraíba do Sul', 'Pé Quente Calçados', ...(post.category ? [post.category] : [])],
+    openGraph: {
+      type: "article",
+      url: blogUrl,
+      siteName: "Pé Quente Calçados",
+      title: `${post.title} | Blog - Pé Quente Calçados`,
+      description: post.excerpt,
+      images: [
+        {
+          url: blogImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+      locale: "pt_BR",
+      publishedTime: post.date,
+      authors: post.author ? [post.author] : undefined,
+      tags: post.category ? [post.category] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | Blog - Pé Quente Calçados`,
+      description: post.excerpt,
+      images: [blogImage],
+    },
+    alternates: {
+      canonical: blogUrl,
+    },
   };
 }
 

@@ -224,7 +224,7 @@ export default function HeroBanner() {
                       </p>
                       <Link
                         href={banner.link}
-                        className="inline-block bg-[#FFD700] text-[#0a0a0a] font-bold px-8 py-4 rounded-lg hover:bg-[#FFD700]/90 transition text-lg shadow-xl"
+                        className="inline-block bg-[#FFD700] text-[#0a0a0a] font-bold px-8 py-4 rounded-lg text-lg shadow-xl"
                       >
                         {banner.cta}
                       </Link>
@@ -302,7 +302,7 @@ export default function HeroBanner() {
                 </p>
                 <Link
                   href={banner.link}
-                  className="inline-block bg-[#FFD700] text-[#0a0a0a] font-bold px-8 py-4 rounded-lg hover:bg-[#FFD700]/90 transition text-lg"
+                  className="inline-block bg-[#FFD700] text-[#0a0a0a] font-bold px-8 py-4 rounded-lg text-lg"
                 >
                   {banner.cta}
                 </Link>
@@ -320,7 +320,7 @@ export default function HeroBanner() {
                 </p>
                 <Link
                   href="/produtos"
-                  className="inline-block bg-[#FFD700] text-[#0a0a0a] font-bold px-8 py-4 rounded-lg hover:bg-[#FFD700]/90 transition text-lg"
+                  className="inline-block bg-[#FFD700] text-[#0a0a0a] font-bold px-8 py-4 rounded-lg text-lg"
                 >
                   Ver Produtos
                 </Link>
@@ -334,14 +334,14 @@ export default function HeroBanner() {
       {/* Botões de navegação */}
       <button
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition z-20"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full z-20"
         aria-label="Slide anterior"
       >
         <ChevronLeft size={24} />
       </button>
       <button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition z-20"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full z-20"
         aria-label="Próximo slide"
       >
         <ChevronRight size={24} />
@@ -353,11 +353,11 @@ export default function HeroBanner() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition p-3"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full p-3"
             aria-label={`Ir para slide ${index + 1}`}
           >
-            <span className={`w-3 h-3 rounded-full transition ${
-              index === currentIndex ? 'bg-[#FFD700]' : 'bg-white/50 hover:bg-white/70'
+            <span className={`w-3 h-3 rounded-full ${
+              index === currentIndex ? 'bg-[#FFD700]' : 'bg-white/50'
             }`} />
           </button>
         ))}
