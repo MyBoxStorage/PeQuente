@@ -12,10 +12,6 @@ export function getProductBySlug(slug: string): Product | undefined {
   return (productsData as Product[]).find(product => product.slug === slug);
 }
 
-export function getFeaturedProducts(): Product[] {
-  return (productsData as Product[]).filter(product => product.featured && product.active);
-}
-
 export function getNewLaunchProducts(): Product[] {
   // Retorna os 8 primeiros produtos novos (IDs 31-59), priorizando os featured
   const newProducts = (productsData as Product[]).filter(

@@ -113,7 +113,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                       <p className="text-gray-400 text-xs">Tamanho: {item.size}</p>
                     )}
                     <div className="flex items-center justify-between mt-2">
-                      <span className="text-[#FF0000] font-bold">
+                      <span className="text-red-price font-bold">
                         {formatPrice(item.price * item.quantity)}
                       </span>
                       <div className="flex items-center gap-2">

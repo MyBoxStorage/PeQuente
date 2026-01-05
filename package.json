@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
+    "analyze": "cross-env ANALYZE=true next build --webpack",
     "lighthouse": "lighthouse http://localhost:3000 --view --only-categories=performance,accessibility,seo,best-practices",
     "lighthouse:json": "lighthouse http://localhost:3000 --output=json --output-path=./lighthouse-report.json --only-categories=performance,accessibility,seo",
     "download-images": "node scripts/download-product-images.js",
@@ -17,10 +18,10 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-toast": "^1.2.15",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.23.26",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
     "react": "19.2.3",
@@ -31,10 +32,13 @@
     "zustand": "^5.0.9"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.1.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^7.0.3",
+    "depcheck": "^1.4.7",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "lighthouse": "^13.0.1",

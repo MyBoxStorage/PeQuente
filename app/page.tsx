@@ -29,10 +29,9 @@ const VisiteNossaLoja = dynamic(() => import("@/components/sections/VisiteNossaL
   loading: () => <div className="py-16 bg-[#0a0a0a]" />,
 });
 
-import { getFeaturedProducts, getNewLaunchProducts } from "@/lib/api";
+import { getNewLaunchProducts } from "@/lib/api";
 
 export default function HomePage() {
-  const featuredProducts = getFeaturedProducts();
   const newLaunchProducts = getNewLaunchProducts();
 
   return (

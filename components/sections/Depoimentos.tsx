@@ -152,18 +152,20 @@ export default function Depoimentos() {
           </button>
 
           {/* Dots indicator */}
-          <div className="flex justify-center gap-2 mt-8">
+          <div className="flex justify-center gap-3 mt-8">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-2 h-2 rounded-full transition ${
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition p-3"
+                aria-label={`Ir para depoimento ${index + 1}`}
+              >
+                <span className={`h-2 rounded-full transition-all duration-300 ${
                   index === currentIndex
                     ? 'bg-[#FF0000] w-8'
-                    : 'bg-[#353535] hover:bg-[#454545]'
-                }`}
-                aria-label={`Ir para depoimento ${index + 1}`}
-              />
+                    : 'bg-[#353535] hover:bg-[#454545] w-2'
+                }`} />
+              </button>
             ))}
           </div>
         </div>

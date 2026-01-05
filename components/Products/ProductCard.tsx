@@ -87,7 +87,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
           <div className="flex items-baseline space-x-2">
-            <span className="text-[#FF0000] font-bold text-lg">
+            <span className="text-red-price font-bold text-lg">
               {formatPrice(product.price)}
             </span>
             {product.compareAtPrice && product.compareAtPrice > product.price && (

@@ -4,16 +4,41 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { getAllBrands } from '@/lib/api';
 
 export default function MarcasPremium() {
   const brands = getAllBrands();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Intersection Observer para fade-in animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (headerRef.current) observer.observe(headerRef.current);
+    if (footerRef.current) observer.observe(footerRef.current);
+
+    return () => {
+      if (headerRef.current) observer.unobserve(headerRef.current);
+      if (footerRef.current) observer.unobserve(footerRef.current);
+    };
+  }, []);
 
   const checkScrollability = useCallback(() => {
     if (!scrollContainerRef.current) return;
@@ -84,12 +109,9 @@ export default function MarcasPremium() {
       </div>
 
       <div className="container mx-auto px-4 relative z-20">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+        <div
+          ref={headerRef}
+          className={`text-center mb-12 transition-opacity duration-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'}`}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Marcas Premium
@@ -97,7 +119,7 @@ export default function MarcasPremium() {
           <p className="text-gray-300 text-lg">
             As melhores marcas do mercado em um só lugar
           </p>
-        </motion.div>
+        </div>
 
         <div
           className="relative group"
@@ -105,22 +127,17 @@ export default function MarcasPremium() {
           onMouseLeave={() => setIsHovered(false)}
         >
           {/* Botão Anterior */}
-          <AnimatePresence>
-            {canScrollLeft && (
-              <motion.button
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: isHovered ? 1 : 0.7, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scroll('left')}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/80 hover:bg-black text-white p-3 rounded-full transition-all duration-300 backdrop-blur-md shadow-lg border border-white/10"
-                aria-label="Marcas anteriores"
-              >
-                <ChevronLeft size={24} className="stroke-[2.5]" />
-              </motion.button>
-            )}
-          </AnimatePresence>
+          {canScrollLeft && (
+            <button
+              onClick={() => scroll('left')}
+              className={`absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/80 hover:bg-black text-white p-3 rounded-full transition-all duration-300 backdrop-blur-md shadow-lg border border-white/10 hover:scale-110 active:scale-95 ${
+                isHovered ? 'opacity-100 translate-x-0' : 'opacity-70 -translate-x-5'
+              }`}
+              aria-label="Marcas anteriores"
+            >
+              <ChevronLeft size={24} className="stroke-[2.5]" />
+            </button>
+          )}
 
           {/* Container do carrossel */}
           <div
@@ -140,103 +157,82 @@ export default function MarcasPremium() {
               const hoverBorderColor = 'hover:border-white';
               
               return (
-                <motion.div
+                <div
                   key={brand.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="flex-shrink-0"
+                  className="flex-shrink-0 opacity-0 animate-fade-in-scale"
+                  style={{
+                    animationDelay: `${index * 50}ms`,
+                    animationFillMode: 'forwards',
+                  }}
                 >
                   <Link
                     href={`/produtos?marca=${brand.name.toLowerCase()}`}
                     className="group block"
                     prefetch
                   >
-                    <motion.div
-                      whileHover={{ scale: 1.05, y: -5 }}
-                      whileTap={{ scale: 0.98 }}
-                      className={`${bgColor} ${hoverBgColor} rounded-xl p-8 ${borderColor} ${hoverBorderColor} transition-all duration-300 w-48 h-48 flex items-center justify-center shadow-lg hover:shadow-2xl`}
+                    <div
+                      className={`${bgColor} ${hoverBgColor} rounded-xl p-8 ${borderColor} ${hoverBorderColor} transition-all duration-300 w-48 h-48 flex items-center justify-center shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-1 active:scale-100`}
                     >
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
+                      <div className="transition-transform duration-300 group-hover:scale-110 w-32 h-32 flex items-center justify-center">
                         <Image
                           src={`/images/brands/${brand.slug}.png`}
                           alt={brand.name}
                           width={128}
                           height={128}
-                          className="object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300 max-w-[128px] max-h-[128px] brightness-0 invert drop-shadow-lg"
+                          className="object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300 brightness-0 invert drop-shadow-lg w-full h-full"
                           quality={90}
                           loading="lazy"
                         />
-                      </motion.div>
-                    </motion.div>
+                      </div>
+                    </div>
                   </Link>
-                </motion.div>
+                </div>
               );
             })}
           </div>
 
           {/* Botão Próximo */}
-          <AnimatePresence>
-            {canScrollRight && (
-              <motion.button
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: isHovered ? 1 : 0.7, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scroll('right')}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/80 hover:bg-black text-white p-3 rounded-full transition-all duration-300 backdrop-blur-md shadow-lg border border-white/10"
-                aria-label="Próximas marcas"
-              >
-                <ChevronRight size={24} className="stroke-[2.5]" />
-              </motion.button>
-            )}
-          </AnimatePresence>
+          {canScrollRight && (
+            <button
+              onClick={() => scroll('right')}
+              className={`absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/80 hover:bg-black text-white p-3 rounded-full transition-all duration-300 backdrop-blur-md shadow-lg border border-white/10 hover:scale-110 active:scale-95 ${
+                isHovered ? 'opacity-100 translate-x-0' : 'opacity-70 translate-x-5'
+              }`}
+              aria-label="Próximas marcas"
+            >
+              <ChevronRight size={24} className="stroke-[2.5]" />
+            </button>
+          )}
         </div>
 
         {/* Indicadores de posição (dots) */}
         {brands.length > 6 && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="flex justify-center gap-2 mt-8"
+          <div
+            className={`flex justify-center gap-3 mt-8 transition-opacity duration-400 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
           >
             {Array.from({ length: Math.min(Math.ceil(brands.length / 6), 5) }).map((_, index) => {
               const isActive = Math.floor(currentIndex / 6) === index;
               return (
-                <motion.button
+                <button
                   key={index}
                   onClick={() => scrollToIndex(index * 6)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    isActive
-                      ? 'bg-[#FF0000] w-8'
-                      : 'bg-gray-600 w-2 hover:bg-gray-500'
-                  }`}
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110 active:scale-95 p-3"
                   aria-label={`Ir para página ${index + 1}`}
-                  animate={{
-                    width: isActive ? 32 : 8,
-                    opacity: isActive ? 1 : 0.6,
-                  }}
-                />
+                >
+                  <span className={`h-2 rounded-full transition-all duration-300 ${
+                    isActive
+                      ? 'bg-[#FF0000] w-8 opacity-100'
+                      : 'bg-gray-600 w-2 opacity-60 hover:opacity-80'
+                  }`} />
+                </button>
               );
             })}
-          </motion.div>
+          </div>
         )}
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="text-center mt-8"
+        <div
+          ref={footerRef}
+          className={`text-center mt-8 transition-opacity duration-500 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         >
           <Link
             href="/produtos"
@@ -244,16 +240,13 @@ export default function MarcasPremium() {
             prefetch
           >
             <span>Ver todas as marcas</span>
-            <motion.span
-              animate={{ x: [0, 5, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-              aria-hidden="true"
-            >
+            <span className="inline-block animate-bounce-x" aria-hidden="true">
               →
-            </motion.span>
+            </span>
           </Link>
-        </motion.div>
+        </div>
       </div>
+
     </section>
   );
 }

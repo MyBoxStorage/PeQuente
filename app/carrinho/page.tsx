@@ -101,7 +101,7 @@ export default function CarrinhoPage() {
                           +
                         </button>
                       </div>
-                      <span className="text-[#FF0000] font-bold text-lg">
+                      <span className="text-red-price font-bold text-lg">
                         {formatPrice(item.price * item.quantity)}
                       </span>
                     </div>
@@ -133,7 +133,7 @@ export default function CarrinhoPage() {
                   </div>
                   <div className="border-t border-[#252525] pt-4 flex justify-between">
                     <span className="text-white font-bold text-lg">Total:</span>
-                    <span className="text-[#FF0000] font-bold text-xl">
+                    <span className="text-red-price font-bold text-xl">
                       {formatPrice(totalWithPixDiscount)}
                     </span>
                   </div>

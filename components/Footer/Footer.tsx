@@ -17,7 +17,6 @@ export default function Footer() {
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Aqui você pode integrar com sua API/email service
-    console.log('Newsletter subscription:', email);
     setSubscribed(true);
     setEmail('');
     setTimeout(() => setSubscribed(false), 3000);

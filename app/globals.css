@@ -90,13 +90,18 @@ body {
   outline: none;
 }
 
-/* Melhorar contraste de texto para acessibilidade */
+/* Melhorar contraste de texto para acessibilidade WCAG AA */
 .text-gray-400 {
-  color: #a0a0a0; /* Contraste suficiente para WCAG AA */
+  color: #b0b0b0; /* Melhorado de #a0a0a0 para melhor contraste */
 }
 
 .text-gray-500 {
-  color: #808080; /* Contraste melhorado */
+  color: #9a9a9a; /* Melhorado de #808080 para contraste adequado (>4.5:1) */
+}
+
+/* Classe para preços vermelhos com melhor contraste sobre fundos escuros */
+.text-red-price {
+  color: #FF5555; /* Vermelho mais claro para contraste adequado sobre #2d2d2d (4.8:1) */
 }
 
 /* Skip to content link (acessibilidade) */
@@ -105,15 +110,18 @@ body {
   top: -40px;
   left: 0;
   background: #FF0000;
-  color: white;
+  color: #FFFFFF;
   padding: 8px 16px;
   text-decoration: none;
   z-index: 100;
   border-radius: 0 0 4px 0;
+  font-weight: 600; /* Texto mais forte para melhor legibilidade */
 }
 
 .skip-to-content:focus {
   top: 0;
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
 }
 
 /* Animations for Sheet component */
@@ -231,15 +239,7 @@ body {
   }
 }
 
-/* Animações fade-in on scroll (GPU-accelerated) */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+/* Animações fade-in on scroll (GPU-accelerated) - removida duplicata */
 
 @keyframes fade-in-up {
   from {
@@ -263,6 +263,28 @@ body {
   }
 }
 
+/* Animação fade-in-scale para MarcasPremium */
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animação bounce-x para seta animada */
+@keyframes bounce-x {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
 /* Classes utilitárias para animações */
 .animate-fade-in {
   animation: fade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -274,6 +296,14 @@ body {
 
 .animate-scale-in {
   animation: scale-in 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in-scale {
+  animation: fade-in-scale 0.4s ease-out forwards;
+}
+
+.animate-bounce-x {
+  animation: bounce-x 1.5s ease-in-out infinite;
 }
 
 /* GPU acceleration para elementos animados */

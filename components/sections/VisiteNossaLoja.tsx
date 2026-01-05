@@ -56,7 +56,7 @@ export default function VisiteNossaLoja() {
                 {/* Telefone */}
                 {storeInfo.phone && (
                   <div className="flex items-center gap-4 pt-4 border-t border-[#353535]">
-                    <div className="text-[#FF0000] text-lg font-semibold">
+                    <div className="text-red-price text-lg font-semibold">
                       {storeInfo.phone}
                     </div>
                   </div>

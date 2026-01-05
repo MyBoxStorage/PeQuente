@@ -348,16 +348,18 @@ export default function HeroBanner() {
       </button>
 
       {/* Indicadores */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
         {banners.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition ${
-              index === currentIndex ? 'bg-[#FFD700]' : 'bg-white/50 hover:bg-white/70'
-            }`}
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition p-3"
             aria-label={`Ir para slide ${index + 1}`}
-          />
+          >
+            <span className={`w-3 h-3 rounded-full transition ${
+              index === currentIndex ? 'bg-[#FFD700]' : 'bg-white/50 hover:bg-white/70'
+            }`} />
+          </button>
         ))}
       </div>
     </div>
