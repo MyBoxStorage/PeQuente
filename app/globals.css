@@ -124,6 +124,290 @@ body {
   outline-offset: 2px;
 }
 
+/* Creative menu hover effect para navegação */
+.nav-link-creative {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.nav-link-creative::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-top: 2px solid #FF0000;
+  border-bottom: 2px solid #FF0000;
+  transform: scaleY(2);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.nav-link-creative::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FF0000;
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.3s;
+  z-index: -1;
+}
+
+.nav-link-creative:hover {
+  color: #fff !important;
+}
+
+.nav-link-creative:hover::before {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+.nav-link-creative:hover::after {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+/* Estado ativo para links ativos */
+.nav-link-creative.active {
+  color: #FF0000 !important;
+}
+
+.nav-link-creative.active::after {
+  transform: scaleY(1);
+  opacity: 1;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+/* Icon hover effect para ícones de ação - com cores variadas */
+.icon-action-button {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  background: #0a0a0a;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  border: 1px solid transparent;
+}
+
+.icon-action-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.icon-action-button::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transition: 0.5s;
+  filter: blur(15px);
+  z-index: -1;
+  opacity: 0;
+}
+
+/* Variações de cor por ícone */
+.icon-action-button.icon-red::before {
+  background: linear-gradient(45deg, #FF0000, #ff3333);
+}
+
+.icon-action-button.icon-red::after {
+  background: linear-gradient(45deg, #FF0000, #ff3333);
+}
+
+.icon-action-button.icon-red:hover {
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+  border-color: #FF0000;
+}
+
+.icon-action-button.icon-blue::before {
+  background: linear-gradient(45deg, #00008B, #1a1aff);
+}
+
+.icon-action-button.icon-blue::after {
+  background: linear-gradient(45deg, #00008B, #1a1aff);
+}
+
+.icon-action-button.icon-blue:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 139, 0.3);
+  border-color: #00008B;
+}
+
+.icon-action-button.icon-yellow::before {
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+}
+
+.icon-action-button.icon-yellow::after {
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+}
+
+.icon-action-button.icon-yellow:hover {
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+  border-color: #FFD700;
+}
+
+.icon-action-button:hover::before {
+  opacity: 1;
+}
+
+.icon-action-button:hover::after {
+  opacity: 0.4;
+}
+
+.icon-action-button svg {
+  color: #fff;
+  stroke: #fff;
+  font-size: 1.375em;
+  transition: 0.5s;
+  transition-delay: 0.25s;
+  z-index: 1;
+  position: relative;
+}
+
+.icon-action-button:hover svg {
+  color: #fff;
+  stroke: #fff;
+  transform: scale(1.1);
+  transition-delay: 0s;
+}
+
+/* Fancy hover effect on avatar para ícones de produtos */
+.product-icon-avatar {
+  --s: 44px;
+  --b: 3px;
+  --c: #FF0000;
+  --f: 1;
+  
+  width: var(--s);
+  height: var(--s);
+  cursor: pointer;
+  border-radius: 50%;
+  --_g: 50% / calc(100% / var(--f)) 100% no-repeat content-box;
+  --_o: calc((1 / var(--f) - 1) * var(--s) / 2 - var(--b));
+  outline: var(--b) solid var(--c);
+  outline-offset: var(--_o);
+  background: radial-gradient(
+      circle closest-side,
+      #2d2d2d calc(99% - var(--b)),
+      var(--c) calc(100% - var(--b)) 99%,
+      #0000
+    )
+    var(--_g);
+  -webkit-mask: linear-gradient(#000 0 0) no-repeat 50% calc(1px - var(--_o)) /
+      calc(100% / var(--f) - 2 * var(--b) - 2px) 50%,
+    radial-gradient(circle closest-side, #000 99%, #0000) var(--_g);
+  mask: linear-gradient(#000 0 0) no-repeat 50% calc(1px - var(--_o)) /
+      calc(100% / var(--f) - 2 * var(--b) - 2px) 50%,
+    radial-gradient(circle closest-side, #000 99%, #0000) var(--_g);
+  transform: scale(var(--f));
+  transition: 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.product-icon-avatar:hover {
+  --f: 1.35;
+  --c: #FF0000;
+}
+
+.product-icon-avatar svg {
+  color: #fff;
+  stroke: #fff;
+  z-index: 1;
+  position: relative;
+  transition: 0.3s;
+}
+
+/* Fancy hover effect para cards Marcas Premium */
+.brand-card-avatar {
+  --s: 192px;
+  --b: 5px;
+  --c: #FF0000;
+  --f: 1;
+  
+  width: var(--s);
+  height: var(--s);
+  cursor: pointer;
+  border-radius: 16px;
+  --_g: 50% / calc(100% / var(--f)) 100% no-repeat content-box;
+  --_o: calc((1 / var(--f) - 1) * var(--s) / 2 - var(--b));
+  outline: var(--b) solid var(--c);
+  outline-offset: var(--_o);
+  background: radial-gradient(
+      circle closest-side,
+      #FF0000 calc(99% - var(--b)),
+      var(--c) calc(100% - var(--b)) 99%,
+      #0000
+    )
+    var(--_g);
+  -webkit-mask: linear-gradient(#000 0 0) no-repeat 50% calc(1px - var(--_o)) /
+      calc(100% / var(--f) - 2 * var(--b) - 2px) 50%,
+    radial-gradient(circle closest-side, #000 99%, #0000) var(--_g);
+  mask: linear-gradient(#000 0 0) no-repeat 50% calc(1px - var(--_o)) /
+      calc(100% / var(--f) - 2 * var(--b) - 2px) 50%,
+    radial-gradient(circle closest-side, #000 99%, #0000) var(--_g);
+  transform: scale(var(--f));
+  transition: 0.5s;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-card-avatar:hover {
+  --f: 1.1;
+}
+
+.brand-card-avatar.brand-blue {
+  --c: #00008B;
+  background: radial-gradient(
+      circle closest-side,
+      #00008B calc(99% - var(--b)),
+      var(--c) calc(100% - var(--b)) 99%,
+      #0000
+    )
+    var(--_g);
+}
+
+.brand-card-avatar.brand-blue:hover {
+  --c: #00008B;
+}
+
+/* Efeito 3D pop-out para categorias no MegaMenu */
+.category-icon-3d {
+  overflow: visible;
+  transition: all 0.4s ease-out;
+}
+
+.category-icon-3d:hover {
+  transform: scale(1.5) translateY(-8px);
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
+}
+
+.category-icon-3d:hover img {
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
 /* Animations for Sheet component */
 @keyframes slide-in-from-right {
   from {
@@ -431,5 +715,412 @@ body {
     -ms-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Expanding search overlay - aparece no lugar do ícone */
+.expanding-search-overlay {
+  position: relative;
+  background: #1a1a1a;
+  border: 1px solid #252525;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  min-width: 300px;
+  max-width: 500px;
+  padding: 1rem;
+  animation: slideDownFade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top right;
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.expanding-search-container {
+  position: relative;
+  width: 100%;
+}
+
+.expanding-search-container input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 9999px;
+  padding: 10px 40px 10px 16px;
+  font-size: 14px;
+  background: #252525;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.expanding-search-container input::placeholder {
+  color: #9a9a9a;
+}
+
+.expanding-search-container .search-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #9a9a9a;
+}
+
+/* Product Card 3D Flip Effect */
+.product-card-3d-wrapper {
+  position: relative;
+  perspective: 800px;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.product-card-3d {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 100ms ease-out;
+  min-height: 500px;
+}
+
+.product-card-3d.animate {
+  box-shadow: 0 13px 21px -5px rgba(0, 0, 0, 0.3);
+}
+
+.product-card-3d.flip-10 {
+  transform: rotateY(-10deg);
+  transition: transform 50ms ease-out;
+}
+
+.product-card-3d.flip90 {
+  transform: rotateY(90deg);
+  transition: transform 100ms ease-in;
+}
+
+.product-card-3d.flip190 {
+  transform: rotateY(190deg);
+  transition: transform 100ms ease-out;
+}
+
+.product-card-3d.flip180 {
+  transform: rotateY(180deg);
+  transition: transform 150ms ease-out;
+}
+
+.product-card-front,
+.product-card-back {
+  width: 100%;
+  height: 100%;
+  background: #2d2d2d;
+  position: absolute;
+  backface-visibility: hidden;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: all 100ms ease-out;
+}
+
+.product-card-back {
+  transform: rotateY(180deg);
+  display: none;
+}
+
+.product-card-back:not(.hidden) {
+  display: block;
+}
+
+.product-card-front.hidden {
+  display: none;
+}
+
+.product-card-shadow {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: none;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  pointer-events: none;
+}
+
+.product-card-back .product-card-shadow {
+  z-index: 10;
+  opacity: 1;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+}
+
+.product-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FF0000;
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+  pointer-events: none;
+}
+
+.product-card-3d.animate .product-image-overlay {
+  opacity: 0.7;
+}
+
+.product-view-details {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 10px 0;
+  width: 152px;
+  opacity: 0;
+  transition: all 200ms ease-out;
+  background: transparent;
+  cursor: pointer;
+  z-index: 20;
+  border-radius: 4px;
+}
+
+.product-view-details:hover {
+  background: #fff;
+  color: #FF0000;
+}
+
+.product-card-3d.animate .product-view-details {
+  opacity: 1;
+}
+
+.product-stats-container {
+  background: #2d2d2d;
+  position: absolute;
+  top: 386px;
+  left: 0;
+  width: 100%;
+  min-height: 114px;
+  padding: 27px 35px 35px;
+  transition: all 200ms ease-out;
+}
+
+.product-card-3d.animate .product-stats-container {
+  top: 272px;
+}
+
+.product-stats-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-price {
+  float: right;
+  color: #FF0000;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.product-name {
+  font-size: 22px;
+  color: #fff;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.product-stats-content p {
+  font-size: 16px;
+  color: #b1b1b3;
+  padding: 2px 0;
+}
+
+/* Carousel no verso */
+.product-carousel {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background: #252525;
+}
+
+.product-carousel-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: left 300ms ease-out;
+}
+
+.product-carousel-item {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.product-carousel-arrows {
+  width: 100%;
+  height: 55px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transform-style: preserve-3d;
+  perspective: 335px;
+  pointer-events: none;
+}
+
+.product-carousel-prev,
+.product-carousel-next {
+  width: 50px;
+  height: 55px;
+  background: #ccc;
+  position: absolute;
+  top: 0;
+  transition: all 200ms ease-out;
+  opacity: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-carousel-next {
+  right: -26px;
+  transform: rotateY(-117deg);
+}
+
+.product-carousel-next.visible {
+  right: 0;
+  opacity: 0.8;
+  background: #efefef;
+  transform: rotateY(0deg);
+}
+
+.product-carousel-prev {
+  left: -26px;
+  transform: rotateY(117deg);
+}
+
+.product-carousel-prev.visible {
+  left: 0;
+  opacity: 0.8;
+  background: #eee;
+  transform: rotateY(0deg);
+}
+
+.arrow-y,
+.arrow-x {
+  height: 2px;
+  width: 15px;
+  background: #FF0000;
+  position: absolute;
+  transform: rotate(45deg);
+}
+
+.arrow-y {
+  top: 31px;
+  left: 17px;
+}
+
+.arrow-x {
+  transform: rotate(135deg);
+  top: 21px;
+  left: 17px;
+}
+
+.product-carousel-next .arrow-x {
+  transform: rotate(45deg);
+}
+
+.product-carousel-next .arrow-y {
+  transform: rotate(135deg);
+}
+
+/* Botão flip back */
+.product-flip-back {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  z-index: 20;
+}
+
+.flip-x,
+.flip-y {
+  background: #d2d5dc;
+  position: absolute;
+  width: 0;
+  top: 15px;
+  right: 15px;
+  height: 3px;
+  transition: all 250ms ease-in-out;
+}
+
+.product-flip-back:hover .flip-x,
+.product-flip-back:hover .flip-y {
+  background: #979ca7;
+}
+
+.product-card-back:not(.hidden) .flip-x,
+.product-card-back:not(.hidden) .flip-y {
+  right: 0;
+  width: 30px;
+}
+
+.product-card-back:not(.hidden) .flip-y {
+  transform: rotate(45deg);
+}
+
+.product-card-back:not(.hidden) .flip-x {
+  transform: rotate(135deg);
+}
+
+@media (max-width: 768px) {
+  .product-card-3d {
+    min-height: 450px;
+  }
+  
+  .product-view-details {
+    font-size: 13px;
+    width: 130px;
+    padding: 8px 0;
+  }
+
+  .product-stats-container {
+    top: auto;
+    position: relative;
+    padding: 20px;
+  }
+
+  .product-card-3d.animate .product-stats-container {
+    top: auto;
   }
 }

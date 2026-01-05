@@ -93,68 +93,51 @@ export default function Header() {
             <MegaMenu />
             <Link
               href="/produtos"
-              className={`text-white hover:text-[#FF0000] transition-colors duration-250 relative ${
-                isActive('/produtos')
-                  ? 'text-[#FF0000]'
-                  : ''
-              }`}
+              className={`nav-link-creative ${isActive('/produtos') ? 'active' : ''} text-white px-4 py-2`}
               prefetch
             >
               Lançamentos
-              {isActive('/produtos') && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#FF0000] -mb-2" />
-              )}
             </Link>
             <Link
               href="/sobre"
-              className={`text-white hover:text-[#FF0000] transition-colors duration-250 relative ${
-                isActive('/sobre') ? 'text-[#FF0000]' : ''
-              }`}
+              className={`nav-link-creative ${isActive('/sobre') ? 'active' : ''} text-white px-4 py-2`}
               prefetch
             >
               Sobre
-              {isActive('/sobre') && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#FF0000] -mb-2" />
-              )}
             </Link>
             <Link
               href="/faq"
-              className={`text-white hover:text-[#FF0000] transition-colors duration-250 relative ${
-                isActive('/faq') ? 'text-[#FF0000]' : ''
-              }`}
+              className={`nav-link-creative ${isActive('/faq') ? 'active' : ''} text-white px-4 py-2`}
               prefetch
             >
               FAQ
-              {isActive('/faq') && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#FF0000] -mb-2" />
-              )}
             </Link>
             <Link
               href="/blog"
-              className={`text-white hover:text-[#FF0000] transition-colors duration-250 relative ${
-                isActive('/blog') ? 'text-[#FF0000]' : ''
-              }`}
+              className={`nav-link-creative ${isActive('/blog') ? 'active' : ''} text-white px-4 py-2`}
               prefetch
             >
               Blog
-              {isActive('/blog') && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#FF0000] -mb-2" />
-              )}
             </Link>
           </nav>
 
           {/* Ações do usuário */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 relative">
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="text-white hover:text-[#FF0000] transition-all duration-250 p-2 hover:scale-110 active:scale-95"
+              className="icon-action-button icon-red"
               aria-label="Buscar"
             >
               <Search size={22} />
             </button>
+            {searchOpen && (
+              <div className="absolute top-full right-0 mt-2 z-50">
+                <SearchBar onClose={() => setSearchOpen(false)} />
+              </div>
+            )}
             <Link
               href="/minha-conta"
-              className="text-white hover:text-[#FF0000] transition-all duration-250 p-2 hidden sm:block hover:scale-110 active:scale-95"
+              className="icon-action-button icon-blue hidden sm:flex"
               aria-label="Conta"
               prefetch
             >
@@ -162,13 +145,13 @@ export default function Header() {
             </Link>
             <button
               onClick={() => setCartOpen(true)}
-              className="text-white hover:text-[#FF0000] transition-all duration-250 p-2 relative hover:scale-110 active:scale-95"
+              className="icon-action-button icon-yellow relative"
               aria-label="Carrinho"
             >
               <ShoppingBag size={22} />
-              {/* Badge do carrinho - CSS puro (otimizado) */}
+              {/* Badge do carrinho */}
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#FF0000] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold animate-bounce">
+                <span className="absolute -top-1 -right-1 bg-[#FF0000] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold z-10">
                   {itemCount > 99 ? '99+' : itemCount}
                 </span>
               )}
@@ -176,9 +159,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-
-      {/* Barra de busca expandida */}
-      {searchOpen && <SearchBar onClose={() => setSearchOpen(false)} />}
 
       {/* Menu mobile */}
       {mobileMenuOpen && <MobileMenu onClose={() => setMobileMenuOpen(false)} />}
