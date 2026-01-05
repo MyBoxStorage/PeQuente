@@ -58,35 +58,33 @@ export default function Header() {
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          {/* Logo - usando logo original PNG e logo escrita */}
+          {/* Logo - usando apenas logo escrita */}
           <Link href="/" className="flex items-center group" prefetch>
-            <div className="flex items-center gap-3 sm:gap-4">
-              {/* Logo quadrada (P e Q) */}
-              <div className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex-shrink-0 flex items-center justify-center">
-                <Image
-                  src="/images/logo.png"
-                  alt="Pé Quente Calçados"
-                  width={72}
-                  height={72}
-                  className="object-contain w-full h-full"
-                  style={{ imageRendering: 'crisp-edges' }}
-                  priority
-                  quality={100}
-                />
-              </div>
-              {/* Logo escrita "Pé Quente" */}
-              <div className="relative h-7 sm:h-8 md:h-9 flex items-center">
-                <Image
-                  src="/images/logo-escrita.png"
-                  alt="Pé Quente"
-                  width={180}
-                  height={36}
-                  className="object-contain h-full w-auto opacity-100"
-                  style={{ imageRendering: 'crisp-edges' }}
-                  priority
-                  quality={100}
-                />
-              </div>
+            {/* Logo escrita "Pé Quente" - Mobile */}
+            <div className="relative w-[180px] h-[50px] flex items-center lg:hidden">
+              <Image
+                src="/images/logo-escrita-mobile.png"
+                alt="Pé Quente Calçados"
+                fill
+                className="object-contain opacity-100"
+                style={{ imageRendering: 'crisp-edges' }}
+                priority
+                quality={100}
+                sizes="180px"
+              />
+            </div>
+            {/* Logo escrita "Pé Quente" - Desktop */}
+            <div className="relative w-[220px] h-[60px] flex items-center hidden lg:flex">
+              <Image
+                src="/images/logo-escrita-desktop.png"
+                alt="Pé Quente Calçados"
+                fill
+                className="object-contain opacity-100"
+                style={{ imageRendering: 'crisp-edges' }}
+                priority
+                quality={100}
+                sizes="220px"
+              />
             </div>
           </Link>
 
@@ -94,16 +92,16 @@ export default function Header() {
           <nav className="hidden lg:flex items-center space-x-8">
             <MegaMenu />
             <Link
-              href="/produtos?categoria=tenis"
+              href="/produtos"
               className={`text-white hover:text-[#FF0000] transition-colors duration-250 relative ${
-                isActive('/produtos?categoria=tenis')
+                isActive('/produtos')
                   ? 'text-[#FF0000]'
                   : ''
               }`}
               prefetch
             >
               Lançamentos
-              {isActive('/produtos?categoria=tenis') && (
+              {isActive('/produtos') && (
                 <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#FF0000] -mb-2" />
               )}
             </Link>

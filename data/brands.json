@@ -28,5 +28,50 @@
     "id": "6",
     "name": "Vans",
     "slug": "vans"
+  },
+  {
+    "id": "7",
+    "name": "Fila",
+    "slug": "fila"
+  },
+  {
+    "id": "8",
+    "name": "Olympikus",
+    "slug": "olympikus"
+  },
+  {
+    "id": "9",
+    "name": "Asics",
+    "slug": "asics"
+  },
+  {
+    "id": "10",
+    "name": "Umbro",
+    "slug": "umbro"
+  },
+  {
+    "id": "11",
+    "name": "Kenner",
+    "slug": "kenner"
+  },
+  {
+    "id": "12",
+    "name": "Ferracini",
+    "slug": "ferracini"
+  },
+  {
+    "id": "13",
+    "name": "Under Armour",
+    "slug": "under-armour"
+  },
+  {
+    "id": "14",
+    "name": "All Star",
+    "slug": "all-star"
+  },
+  {
+    "id": "15",
+    "name": "Penalty",
+    "slug": "penalty"
   }
 ]

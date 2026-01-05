@@ -9,7 +9,10 @@
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "lighthouse": "lighthouse http://localhost:3000 --view --only-categories=performance,accessibility,seo,best-practices",
-    "lighthouse:json": "lighthouse http://localhost:3000 --output=json --output-path=./lighthouse-report.json --only-categories=performance,accessibility,seo"
+    "lighthouse:json": "lighthouse http://localhost:3000 --output=json --output-path=./lighthouse-report.json --only-categories=performance,accessibility,seo",
+    "download-images": "node scripts/download-product-images.js",
+    "search-images": "node scripts/search-and-download-images.js",
+    "fetch-images": "node scripts/fetch-real-product-images.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

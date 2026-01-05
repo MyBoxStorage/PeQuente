@@ -64,7 +64,7 @@
     "categoryId": "1",
     "brand": "Adidas",
     "images": [
-      "https://static.netshoes.com.br/produtos/tenis-adidas-duramo-rc-2-masculino/06/FBA-7043-006/FBA-7043-006_zoom1.jpg"
+      "/images/produtos/FBA-7042-424_zoom1.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -92,7 +92,7 @@
     "categoryId": "2",
     "brand": "Adidas",
     "images": [
-      "https://static.netshoes.com.br/produtos/tenis-adidas-duramo-rc-2-feminino/24/FBA-7042-424/FBA-7042-424_zoom1.jpg"
+      "/images/produtos/FBA-7043-006_zoom1.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -118,7 +118,7 @@
     "categoryId": "2",
     "brand": "Adidas",
     "images": [
-      "https://static.netshoes.com.br/produtos/tenis-adidas-boost-run-feminino/73/FBA-81S0-473/FBA-81S0-473_zoom1.jpg"
+      "/images/produtos/tenis-adidas-boost-run-feminino-1.jpeg"
     ],
     "featured": true,
     "active": true,
@@ -197,7 +197,7 @@
     "categoryId": "2",
     "brand": "Mizuno",
     "images": [
-      "https://static.netshoes.com.br/produtos/tenis-mizuno-wave-prophecy-13s-feminino/02/2FV-1253-102/2FV-1253-102_zoom1.jpg"
+      "/images/produtos/tenis-mizuno-wave-prophecy-13s-feminino-1.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -304,7 +304,7 @@
     "categoryId": "2",
     "brand": "Puma",
     "images": [
-      "https://static.netshoes.com.br/produtos/tenis-puma-magnify-nitro-2-psychedelic-rush-feminino/06/PI3-1777-006/PI3-1777-006_zoom1.jpg"
+      "/images/produtos/tenis-puma-magnify-nitro-2-psychedelic-rush-feminino-1.jpeg"
     ],
     "featured": true,
     "active": true,
@@ -384,7 +384,7 @@
     "categoryId": "1",
     "brand": "Nike",
     "images": [
-      "https://static.netshoes.com.br/produtos/tenis-nike-rival-fly-4-masculino/08/SGL-0176-008/SGL-0176-008_zoom1.jpg"
+      "/images/produtos/tenis-nike-rival-fly-4-masculino.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -411,7 +411,7 @@
     "categoryId": "1",
     "brand": "Nike",
     "images": [
-      "https://static.netshoes.com.br/produtos/tenis-nike-rival-fly-4-masculino/58/SGL-0176-058/SGL-0176-058_zoom1.jpg"
+      "/images/produtos/tenis-nike-rival-fly-4-masculino-variacao-1.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -464,7 +464,7 @@
     "categoryId": "2",
     "brand": "Nike",
     "images": [
-      "https://static.netshoes.com.br/produtos/tenis-nike-downshifter-12-feminino/18/2IC-8614-018/2IC-8614-018_zoom1.jpg"
+      "/images/produtos/tenis-nike-downshifter-12-feminino-1.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -516,7 +516,7 @@
     "categoryId": "1",
     "brand": "Adidas",
     "images": [
-      "/images/produtos/adidas-ultraboost-masculino.jpg"
+      "/images/produtos/adidas-ultraboost-masculino.jpeg"
     ],
     "featured": true,
     "active": true,
@@ -544,7 +544,7 @@
     "categoryId": "1",
     "brand": "Nike",
     "images": [
-      "/images/produtos/nike-air-force-1-masculino.jpg"
+      "/images/produtos/nike-air-force-1-masculino.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -572,7 +572,7 @@
     "categoryId": "2",
     "brand": "Puma",
     "images": [
-      "/images/produtos/puma-velocity-nitro-feminino.jpg"
+      "/images/produtos/puma-velocity-nitro-feminino.jpeg"
     ],
     "featured": true,
     "active": true,
@@ -598,7 +598,7 @@
     "categoryId": "1",
     "brand": "New Balance",
     "images": [
-      "/images/produtos/new-balance-9060-masculino.jpg"
+      "/images/produtos/new-balance-9060-masculino.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -625,7 +625,7 @@
     "categoryId": "1",
     "brand": "Vans",
     "images": [
-      "/images/produtos/vans-old-skool-unissex.jpg"
+      "/images/produtos/vans-old-skool-unissex.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -653,7 +653,7 @@
     "categoryId": "3",
     "brand": "Adidas",
     "images": [
-      "/images/produtos/adidas-adilette-slide.jpg"
+      "/images/produtos/adidas-adilette-slide.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -681,7 +681,7 @@
     "categoryId": "2",
     "brand": "Nike",
     "images": [
-      "/images/produtos/nike-dunk-low-feminino.jpg"
+      "/images/produtos/nike-dunk-low-feminino.jpeg"
     ],
     "featured": true,
     "active": true,
@@ -707,7 +707,7 @@
     "categoryId": "1",
     "brand": "Puma",
     "images": [
-      "/images/produtos/puma-speedcat-masculino.jpg"
+      "/images/produtos/puma-speedcat-masculino.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -734,7 +734,7 @@
     "categoryId": "3",
     "brand": "Puma",
     "images": [
-      "/images/produtos/puma-slide-unissex.jpg"
+      "/images/produtos/puma-slide-unissex.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -762,7 +762,7 @@
     "categoryId": "2",
     "brand": "New Balance",
     "images": [
-      "/images/produtos/new-balance-990-feminino.jpg"
+      "/images/produtos/new-balance-990-feminino.jpeg"
     ],
     "featured": true,
     "active": true,
@@ -788,7 +788,7 @@
     "categoryId": "2",
     "brand": "Vans",
     "images": [
-      "/images/produtos/vans-slip-on-feminino.jpg"
+      "/images/produtos/vans-slip-on-feminino.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -814,7 +814,7 @@
     "categoryId": "1",
     "brand": "Mizuno",
     "images": [
-      "/images/produtos/mizuno-wave-rider-masculino.jpg"
+      "/images/produtos/mizuno-wave-rider-masculino.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -842,7 +842,7 @@
     "categoryId": "2",
     "brand": "Mizuno",
     "images": [
-      "/images/produtos/mizuno-wave-sky-feminino.jpg"
+      "/images/produtos/mizuno-wave-sky-feminino.jpeg"
     ],
     "featured": true,
     "active": true,
@@ -868,7 +868,7 @@
     "categoryId": "4",
     "brand": "Nike",
     "images": [
-      "/images/produtos/meias-nike-performance.jpg"
+      "/images/produtos/meias-nike-performance.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -889,7 +889,7 @@
     "categoryId": "4",
     "brand": "Adidas",
     "images": [
-      "/images/produtos/meias-adidas-originals.jpg"
+      "/images/produtos/meias-adidas-originals.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -910,7 +910,7 @@
     "categoryId": "4",
     "brand": "Nike",
     "images": [
-      "/images/produtos/cadarco-nike-laces.jpg"
+      "/images/produtos/cadarco-nike-laces.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -931,7 +931,7 @@
     "categoryId": "4",
     "brand": "Nike",
     "images": [
-      "/images/produtos/palmilha-nike-air-max.jpg"
+      "/images/produtos/palmilha-nike-air-max.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -952,7 +952,7 @@
     "categoryId": "5",
     "brand": "Adidas",
     "images": [
-      "/images/produtos/adidas-outlet-1.jpg"
+      "/images/produtos/adidas-outlet-1.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -977,7 +977,7 @@
     "categoryId": "5",
     "brand": "Nike",
     "images": [
-      "/images/produtos/nike-outlet-1.jpg"
+      "/images/produtos/nike-outlet-1.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -1000,7 +1000,7 @@
     "categoryId": "5",
     "brand": "Puma",
     "images": [
-      "/images/produtos/puma-outlet-1.jpg"
+      "/images/produtos/puma-outlet-1.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -1024,7 +1024,7 @@
     "categoryId": "5",
     "brand": "Vans",
     "images": [
-      "/images/produtos/vans-outlet-1.jpg"
+      "/images/produtos/vans-outlet-1.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -1048,7 +1048,7 @@
     "categoryId": "1",
     "brand": "Adidas",
     "images": [
-      "/images/produtos/adidas-superstar-masculino.jpg"
+      "/images/produtos/adidas-superstar-masculino.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -1075,7 +1075,7 @@
     "categoryId": "1",
     "brand": "Nike",
     "images": [
-      "/images/produtos/nike-air-max-90-masculino.jpg"
+      "/images/produtos/nike-air-max-90-masculino.jpeg"
     ],
     "featured": true,
     "active": true,
@@ -1102,7 +1102,7 @@
     "categoryId": "1",
     "brand": "Puma",
     "images": [
-      "/images/produtos/puma-rs-x-masculino.jpg"
+      "/images/produtos/puma-rs-x-masculino.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -1129,7 +1129,7 @@
     "categoryId": "2",
     "brand": "New Balance",
     "images": [
-      "/images/produtos/new-balance-574-feminino.jpg"
+      "/images/produtos/new-balance-574-feminino.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -1155,7 +1155,7 @@
     "categoryId": "1",
     "brand": "Vans",
     "images": [
-      "/images/produtos/vans-sk8-hi-masculino.jpg"
+      "/images/produtos/vans-sk8-hi-masculino.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -1182,7 +1182,7 @@
     "categoryId": "1",
     "brand": "Nike",
     "images": [
-      "/images/produtos/nike-revolution-6-masculino.jpg"
+      "/images/produtos/nike-revolution-6-masculino.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -1209,7 +1209,7 @@
     "categoryId": "2",
     "brand": "Vans",
     "images": [
-      "/images/produtos/vans-sherpa-feminino.jpg"
+      "/images/produtos/vans-sherpa-feminino.jpeg"
     ],
     "featured": true,
     "active": true,
@@ -1235,7 +1235,7 @@
     "categoryId": "1",
     "brand": "New Balance",
     "images": [
-      "/images/produtos/new-balance-327-masculino.jpg"
+      "/images/produtos/new-balance-327-masculino.jpeg"
     ],
     "featured": false,
     "active": true,
@@ -1250,6 +1250,1633 @@
       "44"
     ],
     "createdAt": "2025-01-04T10:00:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "60",
+    "name": "Tênis Fila Recovery Masculino",
+    "slug": "tenis-fila-recovery-masculino",
+    "description": "Tênis masculino com tecnologia de recuperação. Design moderno e confortável. Ideal para caminhadas e uso diário.",
+    "price": 229.99,
+    "compareAtPrice": 399.99,
+    "categoryId": "1",
+    "brand": "Fila",
+    "images": [
+      "/images/produtos/fila-recovery-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 12,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "61",
+    "name": "Tênis Fila Euro Jogger Feminino",
+    "slug": "tenis-fila-euro-jogger-feminino",
+    "description": "Tênis feminino com design esportivo moderno. Conforto e estilo para o dia a dia.",
+    "price": 249.99,
+    "compareAtPrice": 379.99,
+    "categoryId": "2",
+    "brand": "Fila",
+    "images": [
+      "/images/produtos/fila-euro-jogger-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 15,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "62",
+    "name": "Tênis Fila Fx Court Masculino",
+    "slug": "tenis-fila-fx-court-masculino",
+    "description": "Tênis para quadra com excelente tração. Design clássico e versátil.",
+    "price": 299.99,
+    "compareAtPrice": 449.99,
+    "categoryId": "1",
+    "brand": "Fila",
+    "images": [
+      "/images/produtos/fila-fx-court-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "63",
+    "name": "Tênis Fila Float Maxxi Feminino",
+    "slug": "tenis-fila-float-maxxi-feminino",
+    "description": "Tênis feminino com solado elevado. Estilo único e moderno para quem gosta de se destacar.",
+    "price": 279.99,
+    "compareAtPrice": 429.99,
+    "categoryId": "2",
+    "brand": "Fila",
+    "images": [
+      "/images/produtos/fila-float-maxxi-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 13,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "64",
+    "name": "Tênis Fila Disruptor II Masculino",
+    "slug": "tenis-fila-disruptor-ii-masculino",
+    "description": "Tênis retrô com solado oversized. Design icônico da Fila com máximo conforto.",
+    "price": 349.99,
+    "compareAtPrice": 499.99,
+    "categoryId": "1",
+    "brand": "Fila",
+    "images": [
+      "/images/produtos/fila-disruptor-ii-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 8,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "65",
+    "name": "Tênis Fila Ray Tracer Feminino",
+    "slug": "tenis-fila-ray-tracer-feminino",
+    "description": "Tênis feminino com linhas futuristas. Conforto e estilo moderno para atividades leves.",
+    "price": 259.99,
+    "compareAtPrice": 369.99,
+    "categoryId": "2",
+    "brand": "Fila",
+    "images": [
+      "/images/produtos/fila-ray-tracer-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 14,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "66",
+    "name": "Tênis Fila Mindblower Masculino",
+    "slug": "tenis-fila-mindblower-masculino",
+    "description": "Tênis esportivo com design impactante. Tecnologia de amortecimento para maior conforto.",
+    "price": 289.99,
+    "compareAtPrice": 419.99,
+    "categoryId": "1",
+    "brand": "Fila",
+    "images": [
+      "/images/produtos/fila-mindblower-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 11,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "67",
+    "name": "Tênis Fila Original Fitness Feminino",
+    "slug": "tenis-fila-original-fitness-feminino",
+    "description": "Tênis feminino para treino e fitness. Design clássico com performance moderna.",
+    "price": 269.99,
+    "compareAtPrice": 389.99,
+    "categoryId": "2",
+    "brand": "Fila",
+    "images": [
+      "/images/produtos/fila-original-fitness-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 16,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "68",
+    "name": "Tênis Fila Grant Hill 2 Masculino",
+    "slug": "tenis-fila-grant-hill-2-masculino",
+    "description": "Tênis de basquete com design icônico. Homenagem ao jogador Grant Hill com estilo retrô.",
+    "price": 379.99,
+    "compareAtPrice": 549.99,
+    "categoryId": "1",
+    "brand": "Fila",
+    "images": [
+      "/images/produtos/fila-grant-hill-2-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 9,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "69",
+    "name": "Tênis Fila Crater Feminino",
+    "slug": "tenis-fila-crater-feminino",
+    "description": "Tênis feminino com solado texturizado. Design moderno e confortável para o dia a dia.",
+    "price": 319.99,
+    "compareAtPrice": 459.99,
+    "categoryId": "2",
+    "brand": "Fila",
+    "images": [
+      "/images/produtos/fila-crater-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 12,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "70",
+    "name": "Tênis Olympikus Corre 4 Masculino",
+    "slug": "tenis-olympikus-corre-4-masculino",
+    "description": "Tênis de corrida de alta performance. Tecnologia de amortecimento avançada para corridas longas.",
+    "price": 599.99,
+    "compareAtPrice": 799.99,
+    "categoryId": "1",
+    "brand": "Olympikus",
+    "images": [
+      "/images/produtos/olympikus-corre-4-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 7,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "71",
+    "name": "Tênis Olympikus Dynamic Feminino",
+    "slug": "tenis-olympikus-dynamic-feminino",
+    "description": "Tênis feminino versátil e confortável. Ideal para caminhadas e atividades do dia a dia.",
+    "price": 161.99,
+    "compareAtPrice": 229.99,
+    "categoryId": "2",
+    "brand": "Olympikus",
+    "images": [
+      "/images/produtos/olympikus-dynamic-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 20,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "72",
+    "name": "Tênis Olympikus Action Masculino",
+    "slug": "tenis-olympikus-action-masculino",
+    "description": "Tênis esportivo masculino com excelente custo-benefício. Conforto e durabilidade.",
+    "price": 195.99,
+    "compareAtPrice": 279.99,
+    "categoryId": "1",
+    "brand": "Olympikus",
+    "images": [
+      "/images/produtos/olympikus-action-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 18,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "73",
+    "name": "Tênis Olympikus Forma Feminino",
+    "slug": "tenis-olympikus-forma-feminino",
+    "description": "Tênis feminino com design elegante. Perfeito para quem busca estilo e conforto.",
+    "price": 181.99,
+    "compareAtPrice": 259.99,
+    "categoryId": "2",
+    "brand": "Olympikus",
+    "images": [
+      "/images/produtos/olympikus-forma-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 19,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "74",
+    "name": "Tênis Olympikus Fusion Masculino",
+    "slug": "tenis-olympikus-fusion-masculino",
+    "description": "Tênis masculino com tecnologia de fusão. Amortecimento avançado para maior conforto.",
+    "price": 244.99,
+    "compareAtPrice": 349.99,
+    "categoryId": "1",
+    "brand": "Olympikus",
+    "images": [
+      "/images/produtos/olympikus-fusion-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 15,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "75",
+    "name": "Tênis Olympikus Move Feminino",
+    "slug": "tenis-olympikus-move-feminino",
+    "description": "Tênis feminino para movimento contínuo. Leveza e flexibilidade para atividades físicas.",
+    "price": 209.99,
+    "compareAtPrice": 299.99,
+    "categoryId": "2",
+    "brand": "Olympikus",
+    "images": [
+      "/images/produtos/olympikus-move-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 17,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "76",
+    "name": "Tênis Olympikus Speed Masculino",
+    "slug": "tenis-olympikus-speed-masculino",
+    "description": "Tênis de velocidade para corridas. Design aerodinâmico e máximo desempenho.",
+    "price": 279.99,
+    "compareAtPrice": 399.99,
+    "categoryId": "1",
+    "brand": "Olympikus",
+    "images": [
+      "/images/produtos/olympikus-speed-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "77",
+    "name": "Tênis Olympikus Super Feminino",
+    "slug": "tenis-olympikus-super-feminino",
+    "description": "Tênis feminino super confortável. Tecnologia de ponta para máximo desempenho.",
+    "price": 230.99,
+    "compareAtPrice": 329.99,
+    "categoryId": "2",
+    "brand": "Olympikus",
+    "images": [
+      "/images/produtos/olympikus-super-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 14,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "78",
+    "name": "Tênis Asics Gel-Excite Masculino",
+    "slug": "tenis-asics-gel-excite-masculino",
+    "description": "Tênis de corrida com tecnologia Gel da Asics. Amortecimento superior para impacto reduzido.",
+    "price": 399.99,
+    "compareAtPrice": 499.99,
+    "categoryId": "1",
+    "brand": "Asics",
+    "images": [
+      "/images/produtos/asics-gel-excite-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 11,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "79",
+    "name": "Tênis Asics Japan S Feminino",
+    "slug": "tenis-asics-japan-s-feminino",
+    "description": "Tênis feminino com inspiração japonesa. Design minimalista e elegante.",
+    "price": 499.99,
+    "compareAtPrice": 699.99,
+    "categoryId": "2",
+    "brand": "Asics",
+    "images": [
+      "/images/produtos/asics-japan-s-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 9,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "80",
+    "name": "Tênis Asics Gel-Quantum 360 Masculino",
+    "slug": "tenis-asics-gel-quantum-360-masculino",
+    "description": "Tênis premium com tecnologia Gel 360. Amortecimento completo em todo o solado.",
+    "price": 679.99,
+    "compareAtPrice": 899.99,
+    "categoryId": "1",
+    "brand": "Asics",
+    "images": [
+      "/images/produtos/asics-gel-quantum-360-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 6,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "81",
+    "name": "Tênis Asics Gel-Nimbus Feminino",
+    "slug": "tenis-asics-gel-nimbus-feminino",
+    "description": "Tênis feminino de alta performance. Tecnologia Gel-Nimbus para máximo conforto em corridas.",
+    "price": 599.99,
+    "compareAtPrice": 799.99,
+    "categoryId": "2",
+    "brand": "Asics",
+    "images": [
+      "/images/produtos/asics-gel-nimbus-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 8,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "82",
+    "name": "Tênis Asics Gel-Kayano Masculino",
+    "slug": "tenis-asics-gel-kayano-masculino",
+    "description": "Tênis de estabilidade premium. Tecnologia Gel-Kayano para correção de pisada.",
+    "price": 749.99,
+    "compareAtPrice": 999.99,
+    "categoryId": "1",
+    "brand": "Asics",
+    "images": [
+      "/images/produtos/asics-gel-kayano-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 5,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "83",
+    "name": "Tênis Asics Gel-Cumulus Feminino",
+    "slug": "tenis-asics-gel-cumulus-feminino",
+    "description": "Tênis feminino com tecnologia Gel-Cumulus. Conforto e performance para corridas moderadas.",
+    "price": 484.99,
+    "compareAtPrice": 649.99,
+    "categoryId": "2",
+    "brand": "Asics",
+    "images": [
+      "/images/produtos/asics-gel-cumulus-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 12,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "84",
+    "name": "Tênis Asics Gel-Contend Masculino",
+    "slug": "tenis-asics-gel-contend-masculino",
+    "description": "Tênis de entrada da linha Gel. Excelente custo-benefício com tecnologia Asics.",
+    "price": 359.99,
+    "compareAtPrice": 449.99,
+    "categoryId": "1",
+    "brand": "Asics",
+    "images": [
+      "/images/produtos/asics-gel-contend-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 16,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "85",
+    "name": "Tênis Asics Gel-Venture Feminino",
+    "slug": "tenis-asics-gel-venture-feminino",
+    "description": "Tênis feminino para trilha e caminhadas. Solado resistente com tecnologia Gel.",
+    "price": 439.99,
+    "compareAtPrice": 549.99,
+    "categoryId": "2",
+    "brand": "Asics",
+    "images": [
+      "/images/produtos/asics-gel-venture-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 13,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "86",
+    "name": "Chuteira Umbro Neo Striker Society",
+    "slug": "chuteira-umbro-neo-striker-society",
+    "description": "Chuteira de campo com tecnologia de toque. Ideal para futebol de campo com melhor controle de bola.",
+    "price": 139.99,
+    "compareAtPrice": 229.99,
+    "categoryId": "1",
+    "brand": "Umbro",
+    "images": [
+      "/images/produtos/umbro-neo-striker-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 18,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "87",
+    "name": "Chuteira Umbro Class Futsal",
+    "slug": "chuteira-umbro-class-futsal",
+    "description": "Chuteira para futsal com solado adaptado. Controle e aderência para quadras.",
+    "price": 129.99,
+    "compareAtPrice": 179.99,
+    "categoryId": "1",
+    "brand": "Umbro",
+    "images": [
+      "/images/produtos/umbro-class-futsal-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 20,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "88",
+    "name": "Tênis Umbro Especiali Sala Masculino",
+    "slug": "tenis-umbro-especiali-sala-masculino",
+    "description": "Tênis para quadra com design clássico. Perfeito para futsal e esportes indoor.",
+    "price": 149.99,
+    "compareAtPrice": 199.99,
+    "categoryId": "1",
+    "brand": "Umbro",
+    "images": [
+      "/images/produtos/umbro-especiali-sala-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 16,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "89",
+    "name": "Chuteira Umbro Velocita Campo",
+    "slug": "chuteira-umbro-velocita-campo",
+    "description": "Chuteira de velocidade para campo. Design leve e aerodinâmico.",
+    "price": 199.99,
+    "compareAtPrice": 279.99,
+    "categoryId": "1",
+    "brand": "Umbro",
+    "images": [
+      "/images/produtos/umbro-velocita-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 14,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "90",
+    "name": "Tênis Umbro UX Accuro II Futsal",
+    "slug": "tenis-umbro-ux-accuro-ii-futsal",
+    "description": "Tênis de futsal com tecnologia de precisão. Controle superior e conforto.",
+    "price": 179.99,
+    "compareAtPrice": 249.99,
+    "categoryId": "1",
+    "brand": "Umbro",
+    "images": [
+      "/images/produtos/umbro-ux-accuro-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 17,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "91",
+    "name": "Chuteira Umbro Tocco Pro Campo",
+    "slug": "chuteira-umbro-tocco-pro-campo",
+    "description": "Chuteira profissional para campo. Máximo controle de bola e toque preciso.",
+    "price": 229.99,
+    "compareAtPrice": 329.99,
+    "categoryId": "1",
+    "brand": "Umbro",
+    "images": [
+      "/images/produtos/umbro-tocco-pro-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 11,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "92",
+    "name": "Chinelo Kenner Rakka Full Force",
+    "slug": "chinelo-kenner-rakka-full-force",
+    "description": "Chinelo unissex com tecnologia Full Force. Conforto superior para o dia a dia.",
+    "price": 171.91,
+    "compareAtPrice": 199.9,
+    "categoryId": "3",
+    "brand": "Kenner",
+    "images": [
+      "/images/produtos/kenner-rakka-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 25,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "93",
+    "name": "Chinelo Kenner Turf Masculino",
+    "slug": "chinelo-kenner-turf-masculino",
+    "description": "Chinelo masculino com solado especial. Ideal para uso após esportes.",
+    "price": 144.92,
+    "compareAtPrice": 169.9,
+    "categoryId": "3",
+    "brand": "Kenner",
+    "images": [
+      "/images/produtos/kenner-turf-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 22,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "94",
+    "name": "Chinelo Kenner Relax Feminino",
+    "slug": "chinelo-kenner-relax-feminino",
+    "description": "Chinelo feminino ultra confortável. Perfeito para relaxar e descansar.",
+    "price": 152.92,
+    "compareAtPrice": 179.9,
+    "categoryId": "3",
+    "brand": "Kenner",
+    "images": [
+      "/images/produtos/kenner-relax-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 24,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "95",
+    "name": "Chinelo Kenner Active Unissex",
+    "slug": "chinelo-kenner-active-unissex",
+    "description": "Chinelo unissex para atividades. Design esportivo e confortável.",
+    "price": 161.92,
+    "compareAtPrice": 189.9,
+    "categoryId": "3",
+    "brand": "Kenner",
+    "images": [
+      "/images/produtos/kenner-active-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 21,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "96",
+    "name": "Chinelo Kenner Pro Masculino",
+    "slug": "chinelo-kenner-pro-masculino",
+    "description": "Chinelo masculino profissional. Máxima qualidade e durabilidade.",
+    "price": 186.92,
+    "compareAtPrice": 219.9,
+    "categoryId": "3",
+    "brand": "Kenner",
+    "images": [
+      "/images/produtos/kenner-pro-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 19,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "97",
+    "name": "Sapato Ferracini London Couro Masculino",
+    "slug": "sapato-ferracini-london-couro-masculino",
+    "description": "Sapato social masculino em couro legítimo. Elegância e sofisticação para ocasiões especiais.",
+    "price": 272.93,
+    "compareAtPrice": 389.9,
+    "categoryId": "1",
+    "brand": "Ferracini",
+    "images": [
+      "/images/produtos/ferracini-london-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 12,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "98",
+    "name": "Sapato Ferracini Oxford Social Masculino",
+    "slug": "sapato-ferracini-oxford-social-masculino",
+    "description": "Sapato Oxford social clássico. Perfeito para trabalho e eventos formais.",
+    "price": 314.93,
+    "compareAtPrice": 449.9,
+    "categoryId": "1",
+    "brand": "Ferracini",
+    "images": [
+      "/images/produtos/ferracini-oxford-social-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 10,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "99",
+    "name": "Sapato Ferracini Casual Derby Masculino",
+    "slug": "sapato-ferracini-casual-derby-masculino",
+    "description": "Sapato Derby casual em couro. Versatilidade e conforto para o dia a dia.",
+    "price": 230.93,
+    "compareAtPrice": 329.9,
+    "categoryId": "1",
+    "brand": "Ferracini",
+    "images": [
+      "/images/produtos/ferracini-casual-derby-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 14,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "100",
+    "name": "Sapato Ferracini Business Couro Masculino",
+    "slug": "sapato-ferracini-business-couro-masculino",
+    "description": "Sapato executivo em couro. Elegância profissional para ambiente corporativo.",
+    "price": 349.93,
+    "compareAtPrice": 499.9,
+    "categoryId": "1",
+    "brand": "Ferracini",
+    "images": [
+      "/images/produtos/ferracini-business-couro-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 8,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "101",
+    "name": "Mochila Under Armour Hustle Lite",
+    "slug": "mochila-under-armour-hustle-lite",
+    "description": "Mochila esportiva leve e resistente. Ideal para academia, treinos e viagens curtas.",
+    "price": 139.99,
+    "compareAtPrice": 329.99,
+    "categoryId": "4",
+    "brand": "Under Armour",
+    "images": [
+      "/images/produtos/under-hustle-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 30,
+    "sizes": [],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "102",
+    "name": "Boné Under Armour Performance",
+    "slug": "bone-under-armour-performance",
+    "description": "Boné esportivo com tecnologia de respirabilidade. Proteção solar e estilo.",
+    "price": 99.99,
+    "compareAtPrice": 149.99,
+    "categoryId": "4",
+    "brand": "Under Armour",
+    "images": [
+      "/images/produtos/under-hustle-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 35,
+    "sizes": [],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "103",
+    "name": "Tênis Under Armour Charged Rogue Masculino",
+    "slug": "tenis-under-armour-charged-rogue-masculino",
+    "description": "Tênis de corrida com tecnologia Charged. Amortecimento responsivo para treinos intensos.",
+    "price": 449.99,
+    "compareAtPrice": 599.99,
+    "categoryId": "1",
+    "brand": "Under Armour",
+    "images": [
+      "/images/produtos/under-charged-rogue-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 13,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "104",
+    "name": "Tênis Under Armour Assert 9 Feminino",
+    "slug": "tenis-under-armour-assert-9-feminino",
+    "description": "Tênis feminino versátil para treino. Conforto e durabilidade para diversas atividades.",
+    "price": 412.49,
+    "compareAtPrice": 549.99,
+    "categoryId": "2",
+    "brand": "Under Armour",
+    "images": [
+      "/images/produtos/under-assert-9-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 15,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "105",
+    "name": "Mochila Under Armour Undeniable 4.0",
+    "slug": "mochila-under-armour-undeniable-4",
+    "description": "Mochila esportiva com múltiplos compartimentos. Resistente à água e ideal para uso intenso.",
+    "price": 199.99,
+    "compareAtPrice": 399.99,
+    "categoryId": "4",
+    "brand": "Under Armour",
+    "images": [
+      "/images/produtos/under-undeniable-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 22,
+    "sizes": [],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "106",
+    "name": "Boné Under Armour Launch",
+    "slug": "bone-under-armour-launch",
+    "description": "Boné com design moderno. Tecido tecnológico para máxima respirabilidade.",
+    "price": 119.99,
+    "compareAtPrice": 169.99,
+    "categoryId": "4",
+    "brand": "Under Armour",
+    "images": [
+      "/images/produtos/under-hustle-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 28,
+    "sizes": [],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "107",
+    "name": "Tênis Converse Chuck Taylor All Star Cano Alto",
+    "slug": "converse-chuck-taylor-all-star-cano-alto",
+    "description": "Tênis cano alto icônico da Converse. Design clássico atemporal. Perfeito para qualquer estilo.",
+    "price": 249.9,
+    "compareAtPrice": 319.9,
+    "categoryId": "1",
+    "brand": "All Star",
+    "images": [
+      "/images/produtos/converse-alto-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 20,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "108",
+    "name": "Tênis Converse Chuck Taylor All Star Cano Baixo",
+    "slug": "converse-chuck-taylor-all-star-cano-baixo",
+    "description": "Tênis cano baixo clássico. Versão mais versátil do icônico Chuck Taylor.",
+    "price": 229.9,
+    "compareAtPrice": 289.9,
+    "categoryId": "1",
+    "brand": "All Star",
+    "images": [
+      "/images/produtos/converse-baixo-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 24,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "109",
+    "name": "Tênis Converse All Star Platform Feminino",
+    "slug": "converse-all-star-platform-feminino",
+    "description": "Tênis feminino com plataforma. Estilo único com altura extra e conforto.",
+    "price": 279.9,
+    "compareAtPrice": 349.9,
+    "categoryId": "2",
+    "brand": "All Star",
+    "images": [
+      "/images/produtos/converse-platform-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 18,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "110",
+    "name": "Tênis Converse Jack Purcell Masculino",
+    "slug": "converse-jack-purcell-masculino",
+    "description": "Tênis clássico com biqueira característica. Design elegante e atemporal.",
+    "price": 299.9,
+    "compareAtPrice": 379.9,
+    "categoryId": "1",
+    "brand": "All Star",
+    "images": [
+      "/images/produtos/converse-jack-purcell-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 16,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "111",
+    "name": "Tênis Converse One Star Ox Masculino",
+    "slug": "converse-one-star-ox-masculino",
+    "description": "Tênis com estrela característica. Estilo skate com design minimalista.",
+    "price": 319.9,
+    "compareAtPrice": 399.9,
+    "categoryId": "1",
+    "brand": "All Star",
+    "images": [
+      "/images/produtos/converse-one-star-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 14,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "112",
+    "name": "Tênis Converse Run Star Hike Feminino",
+    "slug": "converse-run-star-hike-feminino",
+    "description": "Tênis feminino com plataforma e solado robusto. Estilo único e moderno.",
+    "price": 359.9,
+    "compareAtPrice": 449.9,
+    "categoryId": "2",
+    "brand": "All Star",
+    "images": [
+      "/images/produtos/converse-run-star-hike-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 12,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "113",
+    "name": "Tênis Converse All Star Lift Feminino",
+    "slug": "converse-all-star-lift-feminino",
+    "description": "Tênis feminino com elevação. Estilo moderno com altura extra e conforto.",
+    "price": 339.9,
+    "compareAtPrice": 429.9,
+    "categoryId": "2",
+    "brand": "All Star",
+    "images": [
+      "/images/produtos/converse-lift-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 15,
+    "sizes": [
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "114",
+    "name": "Tênis Converse Chuck 70 Vintage Masculino",
+    "slug": "converse-chuck-70-vintage-masculino",
+    "description": "Tênis premium com design vintage. Versão aprimorada do clássico Chuck Taylor.",
+    "price": 379.9,
+    "compareAtPrice": 479.9,
+    "categoryId": "1",
+    "brand": "All Star",
+    "images": [
+      "/images/produtos/converse-chuck-70-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 11,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "115",
+    "name": "Bola de Futebol Penalty Brasil 70",
+    "slug": "bola-futebol-penalty-brasil-70",
+    "description": "Bola oficial de futebol campo. Tecnologia avançada para melhor controle e durabilidade.",
+    "price": 129.99,
+    "compareAtPrice": 179.99,
+    "categoryId": "4",
+    "brand": "Penalty",
+    "images": [
+      "/images/produtos/bola-penalty-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 40,
+    "sizes": [],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "116",
+    "name": "Mala de Viagem Nike Academy",
+    "slug": "mala-viagem-nike-academy",
+    "description": "Mala de viagem esportiva resistente. Ideal para viagens e competições.",
+    "price": 299.99,
+    "compareAtPrice": 399.99,
+    "categoryId": "4",
+    "brand": "Nike",
+    "images": [
+      "/images/produtos/mala-nike-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 15,
+    "sizes": [],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "117",
+    "name": "Chuteira Futsal Umbro Pro 5",
+    "slug": "chuteira-futsal-umbro-pro-5",
+    "description": "Chuteira profissional para futsal. Tecnologia de toque superior e aderência máxima.",
+    "price": 269.9,
+    "compareAtPrice": 399.9,
+    "categoryId": "1",
+    "brand": "Umbro",
+    "images": [
+      "/images/produtos/umbro-class-futsal-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 12,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "118",
+    "name": "Boné Adidas Originals Trefoil",
+    "slug": "bone-adidas-originals-trefoil",
+    "description": "Boné clássico com logo Trefoil. Estilo esportivo e casual.",
+    "price": 104.99,
+    "compareAtPrice": 149.99,
+    "categoryId": "4",
+    "brand": "Adidas",
+    "images": [
+      "/images/produtos/adidas-bone-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 32,
+    "sizes": [],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "119",
+    "name": "Mochila Puma Backpack Classic",
+    "slug": "mochila-puma-backpack-classic",
+    "description": "Mochila clássica da Puma. Design versátil e funcional para uso diário.",
+    "price": 199.99,
+    "compareAtPrice": 279.99,
+    "categoryId": "4",
+    "brand": "Puma",
+    "images": [
+      "/images/produtos/puma-mochila-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 18,
+    "sizes": [],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "120",
+    "name": "Bola de Futsal Penalty Futsal Duo",
+    "slug": "bola-futsal-penalty-futsal-duo",
+    "description": "Bola oficial para futsal. Tecnologia de rebote e controle para quadras.",
+    "price": 119.99,
+    "compareAtPrice": 159.99,
+    "categoryId": "4",
+    "brand": "Penalty",
+    "images": [
+      "/images/produtos/bola-penalty-futsal-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 35,
+    "sizes": [],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "121",
+    "name": "Mala de Viagem Adidas Classic",
+    "slug": "mala-viagem-adidas-classic",
+    "description": "Mala de viagem clássica Adidas. Resistente e espaçosa para suas aventuras.",
+    "price": 249.99,
+    "compareAtPrice": 349.99,
+    "categoryId": "4",
+    "brand": "Adidas",
+    "images": [
+      "/images/produtos/mala-adidas-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 12,
+    "sizes": [],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "122",
+    "name": "Boné Nike Heritage 86",
+    "slug": "bone-nike-heritage-86",
+    "description": "Boné retrô com design clássico. Homenagem aos anos 80 da Nike.",
+    "price": 118.99,
+    "compareAtPrice": 169.99,
+    "categoryId": "4",
+    "brand": "Nike",
+    "images": [
+      "/images/produtos/nike-bone-branco.jpeg"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 28,
+    "sizes": [],
+    "createdAt": "2025-01-04T10:00:00Z",
+    "updatedAt": "2025-01-04T10:00:00Z"
+  },
+  {
+    "id": "123",
+    "name": "Mochila Nike Brasilia",
+    "slug": "mochila-nike-brasilia",
+    "description": "Mochila esportiva com múltiplos bolsos. Ideal para academia e atividades ao ar livre.",
+    "price": 174.99,
+    "compareAtPrice": 249.99,
+    "categoryId": "4",
+    "brand": "Nike",
+    "images": [
+      "/images/produtos/nike-mochila-branco.jpeg"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 20,
+    "sizes": [],
+    "createdAt": "2025-01-04T10:00:00Z",
     "updatedAt": "2025-01-04T10:00:00Z"
   }
 ]
