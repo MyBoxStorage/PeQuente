@@ -130,11 +130,7 @@ export default function Header() {
             >
               <Search size={22} />
             </button>
-            {searchOpen && (
-              <div className="absolute top-full right-0 mt-2 z-50">
-                <SearchBar onClose={() => setSearchOpen(false)} />
-              </div>
-            )}
+            {searchOpen && <SearchBar onClose={() => setSearchOpen(false)} />}
             <Link
               href="/minha-conta"
               className="icon-action-button icon-blue hidden sm:flex"
