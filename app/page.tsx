@@ -104,6 +104,7 @@ export default function HomePage() {
                 slug={category.slug}
                 image={categoryImages[category.slug]}
                 priority={index < 2}
+                index={index}
               />
             ))}
           </div>

@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Menu, X, Search, User, Heart, ShoppingBag } from 'lucide-react';
+import { Menu, X, Search, User, ShoppingBag } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 import SearchBar from './SearchBar';
 import MegaMenu from './MegaMenu';
@@ -15,17 +14,8 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const itemCount = useCartStore((state) => state.getItemCount());
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const isActive = (path: string) => {
     if (path === '/produtos') {
@@ -35,124 +25,102 @@ export default function Header() {
   };
 
   return (
-    <header
-      className={`sticky top-0 z-50 bg-[#0a0a0a] border-b transition-all duration-250 ${
-        scrolled ? 'border-[#FF0000]' : 'border-[#252525]'
-      }`}
-    >
-      {/* Banner promocional no topo - removido mensagem de frete */}
-      <div className="bg-[#00008B] text-white text-center py-2 text-sm">
-        <p>Sempre um passo à frente</p>
+    <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-gray-800 shadow-lg">
+      {/* Banner promocional no topo */}
+      <div className="bg-[#00008B] text-white text-center py-2 text-sm font-medium">
+        <p>5% OFF NO PIX | PARCELAMENTO EM 12X | RETIRE NA LOJA EM PARAÍBA DO SUL</p>
       </div>
 
       {/* Header principal */}
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          {/* Menu hamburguer mobile */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden text-white p-3 touch-friendly"
-            aria-label="Menu"
-            style={{ minWidth: '44px', minHeight: '44px' }}
+      <div className="container mx-auto flex items-center justify-between py-4 px-6 max-w-7xl">
+        {/* Menu hamburguer mobile */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="lg:hidden text-white p-2 touch-friendly"
+          aria-label="Menu"
+          style={{ minWidth: '44px', minHeight: '44px' }}
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Logo SVG */}
+        <Link href="/" className="flex items-center group" prefetch>
+          <img 
+            src="/logo-pe-quente.svg" 
+            alt="Pé Quente Calçados" 
+            className="h-14 md:h-20 w-auto object-contain drop-shadow-md bg-transparent" 
+            style={{ background: 'transparent' }}
+          />
+        </Link>
+
+        {/* Navegação desktop */}
+        <nav className="hidden lg:flex items-center space-x-8 text-white font-semibold">
+          <MegaMenu />
+          <Link 
+            href="/produtos" 
+            className={`hover:text-[#00008B] transition duration-300 ${isActive('/produtos') ? 'text-[#00008B]' : ''}`}
+            prefetch
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-
-          {/* Logo - usando apenas logo escrita */}
-          <Link href="/" className="flex items-center group" prefetch>
-            {/* Logo escrita "Pé Quente" - Mobile */}
-            <div className="relative w-[180px] h-[50px] flex items-center lg:hidden">
-              <Image
-                src="/images/logo-escrita-mobile.png"
-                alt="Pé Quente Calçados"
-                fill
-                className="object-contain opacity-100"
-                style={{ imageRendering: 'crisp-edges' }}
-                priority
-                quality={100}
-                sizes="180px"
-              />
-            </div>
-            {/* Logo escrita "Pé Quente" - Desktop */}
-            <div className="relative w-[220px] h-[60px] flex items-center hidden lg:flex">
-              <Image
-                src="/images/logo-escrita-desktop.png"
-                alt="Pé Quente Calçados"
-                fill
-                className="object-contain opacity-100"
-                style={{ imageRendering: 'crisp-edges' }}
-                priority
-                quality={100}
-                sizes="220px"
-              />
-            </div>
+            Lançamentos
           </Link>
+          <Link 
+            href="/sobre" 
+            className={`hover:text-[#00008B] transition duration-300 ${isActive('/sobre') ? 'text-[#00008B]' : ''}`}
+            prefetch
+          >
+            Sobre
+          </Link>
+          <Link 
+            href="/faq" 
+            className={`hover:text-[#00008B] transition duration-300 ${isActive('/faq') ? 'text-[#00008B]' : ''}`}
+            prefetch
+          >
+            FAQ
+          </Link>
+          <Link 
+            href="/blog" 
+            className={`hover:text-[#00008B] transition duration-300 ${isActive('/blog') ? 'text-[#00008B]' : ''}`}
+            prefetch
+          >
+            Blog
+          </Link>
+        </nav>
 
-          {/* Navegação desktop */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            <MegaMenu />
-            <Link
-              href="/produtos"
-              className={`nav-link-creative ${isActive('/produtos') ? 'active' : ''} text-white px-4 py-2`}
-              prefetch
-            >
-              Lançamentos
-            </Link>
-            <Link
-              href="/sobre"
-              className={`nav-link-creative ${isActive('/sobre') ? 'active' : ''} text-white px-4 py-2`}
-              prefetch
-            >
-              Sobre
-            </Link>
-            <Link
-              href="/faq"
-              className={`nav-link-creative ${isActive('/faq') ? 'active' : ''} text-white px-4 py-2`}
-              prefetch
-            >
-              FAQ
-            </Link>
-            <Link
-              href="/blog"
-              className={`nav-link-creative ${isActive('/blog') ? 'active' : ''} text-white px-4 py-2`}
-              prefetch
-            >
-              Blog
-            </Link>
-          </nav>
-
-          {/* Ações do usuário */}
-          <div className="flex items-center space-x-4 relative">
+        {/* Ações do usuário */}
+        <div className="flex items-center space-x-4 relative">
+          <div className="relative">
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="icon-action-button icon-red"
+              className="text-white hover:text-[#00008B] transition-colors duration-300 p-2"
               aria-label="Buscar"
             >
               <Search size={22} />
             </button>
             {searchOpen && <SearchBar onClose={() => setSearchOpen(false)} />}
-            <Link
-              href="/minha-conta"
-              className="icon-action-button icon-blue hidden sm:flex"
-              aria-label="Conta"
-              prefetch
-            >
-              <User size={22} />
-            </Link>
-            <button
-              onClick={() => setCartOpen(true)}
-              className="icon-action-button icon-yellow relative"
-              aria-label="Carrinho"
-            >
-              <ShoppingBag size={22} />
-              {/* Badge do carrinho */}
-              {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#FF0000] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold z-10">
-                  {itemCount > 99 ? '99+' : itemCount}
-                </span>
-              )}
-            </button>
           </div>
+          
+          <Link
+            href="/minha-conta"
+            className="text-white hover:text-[#00008B] transition-colors duration-300 p-2 hidden sm:flex"
+            aria-label="Conta"
+            prefetch
+          >
+            <User size={22} />
+          </Link>
+          
+          <button
+            onClick={() => setCartOpen(true)}
+            className="text-white hover:text-[#00008B] transition-colors duration-300 p-2 relative"
+            aria-label="Carrinho"
+          >
+            <ShoppingBag size={22} />
+            {/* Badge do carrinho */}
+            {itemCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-[#FF0000] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold z-10">
+                {itemCount > 99 ? '99+' : itemCount}
+              </span>
+            )}
+          </button>
         </div>
       </div>
 

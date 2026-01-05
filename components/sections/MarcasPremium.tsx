@@ -7,7 +7,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { getAllBrands } from '@/lib/api';
 
 export default function MarcasPremium() {
-  const brands = getAllBrands();
+  // Ordenar marcas alfabeticamente por nome
+  const brands = getAllBrands().sort((a, b) => 
+    a.name.localeCompare(b.name, 'pt-BR', { sensitivity: 'base' })
+  );
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
@@ -155,6 +158,8 @@ export default function MarcasPremium() {
               const hoverBgColor = isRed ? 'hover:bg-[#CC0000]' : 'hover:bg-[#000066]';
               const borderColor = isRed ? 'border-[#FF0000]' : 'border-[#00008B]';
               const hoverBorderColor = 'hover:border-white';
+              // Se for vermelho, sombra azul; se for azul, sombra vermelha
+              const hoverShadow = isRed ? 'hover:shadow-[0_20px_40px_rgba(0,0,139,0.4)]' : 'hover:shadow-[0_20px_40px_rgba(255,0,0,0.4)]';
               
               return (
                 <div
@@ -171,7 +176,7 @@ export default function MarcasPremium() {
                     prefetch
                   >
                     <div
-                      className={`${bgColor} ${hoverBgColor} rounded-xl p-8 ${borderColor} ${hoverBorderColor} transition-all duration-300 w-48 h-48 flex items-center justify-center shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-1 active:scale-100`}
+                      className={`${bgColor} ${hoverBgColor} rounded-xl p-8 ${borderColor} ${hoverBorderColor} transition-all duration-300 w-48 h-48 flex items-center justify-center shadow-lg ${hoverShadow} hover:scale-105 hover:-translate-y-1 active:scale-100`}
                     >
                       <div className="transition-transform duration-300 group-hover:scale-110 w-32 h-32 flex items-center justify-center">
                         <Image
