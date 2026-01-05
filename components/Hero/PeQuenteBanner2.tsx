@@ -58,7 +58,7 @@ export default function PeQuenteBanner2({
             <div className="forest-title-container group relative z-10">
               <div className="forest-title flex">
                 {mainTitle.split('').map((letter, i) => (
-                  <span key={i} className="forest-letter forest-letter-large forest-letter-red inline-block">
+                  <span key={i} className="forest-letter forest-letter-medium forest-letter-red inline-block">
                     {letter === ' ' ? '\u00A0' : letter}
                   </span>
                 ))}
@@ -70,7 +70,7 @@ export default function PeQuenteBanner2({
               {/* MESMA - Primeira linha */}
               <div className="forest-title flex">
                 {firstWord.split('').map((letter, i) => (
-                  <span key={i} className="forest-letter forest-letter-large forest-letter-blue inline-block">
+                  <span key={i} className="forest-letter forest-letter-medium forest-letter-blue inline-block">
                     {letter === ' ' ? '\u00A0' : letter}
                   </span>
                 ))}
@@ -78,7 +78,7 @@ export default function PeQuenteBanner2({
               {/* ATITUDE - Segunda linha */}
               <div className="forest-title flex">
                 {secondWord.split('').map((letter, i) => (
-                  <span key={i} className="forest-letter forest-letter-large forest-letter-blue inline-block">
+                  <span key={i} className="forest-letter forest-letter-medium forest-letter-blue inline-block">
                     {letter === ' ' ? '\u00A0' : letter}
                   </span>
                 ))}

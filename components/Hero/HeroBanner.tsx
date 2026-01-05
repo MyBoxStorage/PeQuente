@@ -152,7 +152,7 @@ export default function HeroBanner() {
   ];
 
   return (
-    <div className="relative h-[500px] md:h-[600px] overflow-hidden bg-[#0a0a0a]">
+    <div className="relative h-[500px] md:h-[600px] overflow-hidden bg-[#0a0a0a]" style={{ zIndex: 1 }}>
       {banners.map((banner, index) => {
         // Renderizar apenas banner ativo + próximo (otimização LCP crítica)
         const isVisible = visibleIndices.includes(index);

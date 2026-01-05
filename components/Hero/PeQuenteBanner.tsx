@@ -39,38 +39,14 @@ export default function PeQuenteBanner({
       <div className="absolute inset-0 flex items-center justify-end pr-8 md:pr-16 lg:pr-24 pointer-events-none z-10">
         <div className="flex flex-col items-center text-center">
           
-          {/* LOGO GROUP - P/Q mesmo tamanho */}
-          <div className="flex items-center scale-75 md:scale-90 lg:scale-110 origin-right mb-4">
-            <div className="flex flex-col items-start justify-center">
-              <div className="flex items-baseline relative">
-                {/* P vermelho */}
-                <span className="text-[#e31e24] text-8xl md:text-9xl font-black italic leading-none tracking-tighter">
-                  P
-                </span>
-                
-                {/* é azul */}
-                <span className="text-[#2e3192] text-6xl md:text-7xl font-black italic leading-none tracking-tighter relative left-[-3px]">
-                  é
-                </span>
-                
-                {/* Q vermelho + uente azul - Q com mesmo tamanho do P */}
-                <div className="flex items-baseline relative ml-2">
-                  <span className="text-[#e31e24] text-8xl md:text-9xl font-black italic leading-none tracking-tighter relative top-1">
-                    Q
-                  </span>
-                  <span className="text-[#2e3192] text-7xl md:text-8xl font-black italic leading-none tracking-tighter relative left-[-20px] md:left-[-25px]">
-                    uente
-                  </span>
-                </div>
-              </div>
-              
-              {/* CALÇADOS muito mais próximo do nome */}
-              <div className="w-full text-right mt-[-8px] pr-1">
-                <span className="text-[#2e3192] text-2xl md:text-4xl font-black tracking-widest uppercase">
-                  CALÇADOS
-                </span>
-              </div>
-            </div>
+          {/* LOGO SVG */}
+          <div className="mb-6 flex items-center justify-center">
+            <img 
+              src="/logo-pe-quente.svg" 
+              alt="Pé Quente Calçados" 
+              className="h-32 md:h-44 lg:h-52 w-auto object-contain drop-shadow-2xl bg-transparent" 
+              style={{ background: 'transparent' }}
+            />
           </div>
 
           {/* SLOGAN - Negrito forte */}

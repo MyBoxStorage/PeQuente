@@ -39,27 +39,32 @@ export default function AdizeroBanner({
 
       {/* Overlay de tipografia profissional - alinhado à direita */}
       <div className="absolute inset-0 flex items-center justify-end pr-8 md:pr-16 lg:pr-24 pointer-events-none z-10">
-        <div className="max-w-lg text-right flex flex-col items-end">
-          {/* Título com efeito Forest */}
-          <div className="forest-title-container group relative z-10 mb-4">
-            <div className="forest-title flex flex-col items-end">
-              {title.split('\n').map((line, lineIndex) => (
-                <div key={lineIndex} className="flex">
-                  {line.split('').map((letter, i) => (
-                    <span key={i} className="forest-letter forest-letter-large inline-block">
-                      {letter === ' ' ? '\u00A0' : letter}
-                    </span>
+        <div className="max-w-lg text-right flex flex-col items-end justify-center h-full py-12">
+          {/* Título com efeito Canyon */}
+          <div className="canyon-title-container relative z-10 mb-10 pointer-events-auto -mt-32 md:-mt-40">
+            {title.split('\n').map((line, lineIndex) => {
+              const letters = line.split('');
+              return (
+                <div key={lineIndex} className="canyon-word flex items-center justify-end">
+                  {letters.map((letter, letterIndex) => (
+                    <div key={letterIndex} className="canyon-hover flex-1 relative">
+                      <div className="canyon-hover-area"></div>
+                      <div className="canyon-hover-area"></div>
+                      <h1 className="canyon-letter canyon-letter-large">
+                        {letter === ' ' ? '\u00A0' : letter}
+                      </h1>
+                    </div>
                   ))}
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
           
           {/* Linha vermelha abaixo do título */}
-          <div className="w-full max-w-[280px] h-0.5 bg-[#FF0000] mb-4" />
+          <div className="w-full max-w-[280px] h-0.5 bg-[#FF0000] mb-6" />
           
           {/* Subtítulo */}
-          <p className="text-xs sm:text-sm md:text-lg font-normal text-[#333333] tracking-tight mb-8">
+          <p className="text-xs sm:text-sm md:text-lg font-normal text-[#333333] tracking-tight mb-10">
             {subtitle}
           </p>
           

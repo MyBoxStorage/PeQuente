@@ -49,13 +49,13 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
     <>
       {/* Overlay com backdrop blur */}
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998] transition-opacity duration-250"
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99999] transition-opacity duration-250"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Cart Drawer */}
-      <div className="fixed right-0 top-0 bottom-0 w-full max-w-md sm:max-w-md bg-[#0a0a0a] z-[9999] shadow-2xl flex flex-col animate-in slide-in-from-right">
+      <div className="fixed right-0 top-0 bottom-0 w-full max-w-md sm:max-w-md bg-[#0a0a0a] z-[999999] shadow-2xl flex flex-col animate-in slide-in-from-right">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-[#252525]">
           <h2 className="text-white font-bold text-xl flex items-center gap-2">
