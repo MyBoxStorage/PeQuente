@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: product.description || product.shortDescription || `Compre ${product.name} da ${product.brand} na Pé Quente Calçados. Retirada na loja em Paraíba do Sul, RJ.`,
     keywords: [product.name, product.brand, 'tênis', 'calçados', 'Paraíba do Sul', 'RJ', 'Pé Quente Calçados'],
     openGraph: {
-      type: "product",
+      type: "website",
       url: productUrl,
       siteName: "Pé Quente Calçados",
       title: `${product.name} - ${product.brand} | Pé Quente Calçados`,
