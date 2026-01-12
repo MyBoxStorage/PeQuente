@@ -14,8 +14,13 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const itemCount = useCartStore((state) => state.getItemCount());
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const isActive = (path: string) => {
     if (path === '/produtos') {
@@ -115,7 +120,7 @@ export default function Header() {
           >
             <ShoppingBag size={22} />
             {/* Badge do carrinho */}
-            {itemCount > 0 && (
+            {mounted && itemCount > 0 && (
               <span className="absolute -top-1 -right-1 bg-[#FF0000] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold z-10">
                 {itemCount > 99 ? '99+' : itemCount}
               </span>

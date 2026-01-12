@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { X, ShoppingBag } from 'lucide-react';
 import Link from 'next/link';
 import { useCartStore } from '@/store/cartStore';
@@ -14,12 +15,17 @@ interface CartModalProps {
 }
 
 export default function CartModal({ isOpen, onClose }: CartModalProps) {
+  const [mounted, setMounted] = useState(false);
   const items = useCartStore((state) => state.items);
   const removeItem = useCartStore((state) => state.removeItem);
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const getTotal = useCartStore((state) => state.getTotal);
   const clearCart = useCartStore((state) => state.clearCart);
   const { toast } = useToast();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleRemoveItem = (item: typeof items[0]) => {
     removeItem(item.productId, item.size);
@@ -41,11 +47,11 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
     };
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !mounted) return null;
 
   const total = getTotal();
 
-  return (
+  const cartContent = (
     <>
       {/* Overlay com backdrop blur */}
       <div
@@ -171,4 +177,6 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
       </div>
     </>
   );
+
+  return createPortal(cartContent, document.body);
 }

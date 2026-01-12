@@ -1174,8 +1174,14 @@ body {
   transform: translateY(-10px) scale(1.02);
 }
 
-.product-card-3d-wrapper:hover .product-card-3d {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+/* Sombra vermelha para itens ímpares */
+.product-card-3d-wrapper:nth-child(odd):hover .product-card-3d {
+  box-shadow: 0 20px 40px rgba(255, 0, 0, 0.4);
+}
+
+/* Sombra azul para itens pares */
+.product-card-3d-wrapper:nth-child(even):hover .product-card-3d {
+  box-shadow: 0 20px 40px rgba(0, 0, 139, 0.65);
 }
 /* ============================================
    EFEITO FOREST PREMIUM - Títulos de Banners

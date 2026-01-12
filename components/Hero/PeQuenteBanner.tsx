@@ -51,7 +51,7 @@ export default function PeQuenteBanner({
 
           {/* SLOGAN - Negrito forte */}
           <div className="mb-8">
-            <p className="text-[#2e3192] text-lg md:text-2xl font-black tracking-tight select-none">
+            <p className="text-[#2e3192] text-xl md:text-3xl font-black tracking-tight select-none">
               {slogan}
             </p>
           </div>
