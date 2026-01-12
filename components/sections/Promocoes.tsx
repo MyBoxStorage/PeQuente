@@ -28,11 +28,12 @@ export default function Promocoes() {
           </div>
           <Link
             href="/produtos"
-            className="text-[#FF0000] hover:text-[#FF0000]/80 transition flex items-center gap-2"
+            className="text-[#FF0000] hover:text-[#FF0000]/80 transition flex items-center gap-2 font-medium"
             prefetch
+            aria-label="Ver todas as promoções"
           >
             Ver todas as promoções
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true" className="text-xl">→</span>
           </Link>
         </div>
 

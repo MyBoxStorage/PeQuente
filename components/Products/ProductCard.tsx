@@ -100,6 +100,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     className="object-cover"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 346px"
                     quality={85}
+                    loading="lazy"
                   />
                   <div className="product-image-overlay"></div>
                 </>

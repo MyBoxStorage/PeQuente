@@ -97,7 +97,7 @@ export default function PeQuenteBanner2({
           {/* CTA BUTTON - Cinza escuro */}
           <Link
             href={ctaLink}
-            className="bg-[#4a4a4a] text-white px-16 py-4 rounded-md text-base font-black tracking-widest uppercase shadow-2xl border-b-4 border-black/20 inline-flex items-center justify-center pointer-events-auto"
+            className="bg-[#4a4a4a] text-white px-12 py-4 rounded-lg text-base font-semibold shadow-xl hover:bg-[#5a5a5a] transition-all duration-250 inline-flex items-center justify-center pointer-events-auto"
           >
             {ctaText}
           </Link>

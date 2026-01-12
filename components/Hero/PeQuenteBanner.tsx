@@ -59,7 +59,7 @@ export default function PeQuenteBanner({
           {/* CTA BUTTON - Vermelho */}
           <Link
             href={ctaLink}
-            className="bg-[#e31e24] text-white px-16 py-4 rounded-xl text-base font-black tracking-widest uppercase shadow-xl border border-white/20 inline-flex items-center justify-center pointer-events-auto"
+            className="bg-[#e31e24] text-white px-12 py-4 rounded-xl text-base font-semibold shadow-xl border border-white/20 hover:bg-[#c91e24] transition-all duration-250 inline-flex items-center justify-center pointer-events-auto"
           >
             {ctaText}
           </Link>

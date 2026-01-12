@@ -37,8 +37,9 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
           alt={productName}
           fill
           className="object-cover"
-          priority
+          priority={selectedIndex === 0}
           sizes="(max-width: 768px) 100vw, 50vw"
+          quality={90}
         />
         
         {/* Navegação se houver mais de uma imagem */}

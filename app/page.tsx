@@ -1,115 +1,43 @@
-﻿import { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
+import HeroBanner from '@/components/Hero/HeroBanner';
+import MarcasPremium from '@/components/sections/MarcasPremium';
+import Promocoes from '@/components/sections/Promocoes';
+import PorQueComprar from '@/components/sections/PorQueComprar';
+import VisiteNossaLoja from '@/components/sections/VisiteNossaLoja';
+import Depoimentos from '@/components/sections/Depoimentos';
+import ProductSlider from '@/components/Products/ProductSlider';
+import { getNewLaunchProducts } from '@/lib/api';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import HeroBanner from "@/components/Hero/HeroBanner";
-import CategoryCard from "@/components/sections/CategoryCard";
-import { getStoreInfo } from "@/lib/api";
 
 export const metadata: Metadata = {
-  title: 'Pé Quente Calçados - Sua Loja de Tênis, Roupas e Acessórios em Paraíba do Sul, RJ',
-  description: 'Pé Quente Calçados - Sua loja de tênis, roupas e acessórios em Paraíba do Sul, RJ. Os melhores produtos das principais marcas: Nike, Adidas, Mizuno, Puma, Fila, Olympikus, Asics e mais. Retirada na loja com 5% de desconto no PIX.',
-  keywords: ['tênis', 'calçados', 'Nike', 'Adidas', 'Mizuno', 'Puma', 'Fila', 'Olympikus', 'Asics', 'Paraíba do Sul', 'RJ', 'loja de tênis', 'calçados esportivos'],
+  title: 'Pé Quente Calçados | Tênis, Roupas e Acessórios em Paraíba do Sul',
+  description: 'Loja de tênis, roupas e acessórios das melhores marcas. Retirada na loja em Paraíba do Sul, RJ. Parcelamento em até 12x sem juros. 5% OFF no PIX.',
+  keywords: ['tênis', 'calçados', 'roupas', 'acessórios', 'Paraíba do Sul', 'Nike', 'Adidas', 'Mizuno', 'Asics'],
   openGraph: {
-    type: "website",
-    locale: "pt_BR",
-    url: "https://www.pequentecalcados.com.br",
-    siteName: "Pé Quente Calçados",
-    title: "Pé Quente Calçados - Sua Loja de Tênis, Roupas e Acessórios em Paraíba do Sul, RJ",
-    description: "Os melhores produtos das principais marcas em Paraíba do Sul, RJ. Retirada na loja com 5% de desconto no PIX.",
-    images: [
-      {
-        url: "https://www.pequentecalcados.com.br/images/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Pé Quente Calçados - Loja de Tênis e Acessórios em Paraíba do Sul, RJ",
-      },
-    ],
+    title: 'Pé Quente Calçados | Tênis, Roupas e Acessórios',
+    description: 'Loja de tênis, roupas e acessórios das melhores marcas. Retirada na loja em Paraíba do Sul, RJ.',
+    url: 'https://www.pequentecalcados.com.br',
+    siteName: 'Pé Quente Calçados',
+    locale: 'pt_BR',
+    type: 'website',
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Pé Quente Calçados - Sua Loja de Tênis em Paraíba do Sul, RJ",
-    description: "Os melhores produtos das principais marcas. Retirada na loja com 5% de desconto no PIX.",
-    images: ["https://www.pequentecalcados.com.br/images/logo.png"],
+    card: 'summary_large_image',
+    title: 'Pé Quente Calçados | Tênis, Roupas e Acessórios',
+    description: 'Loja de tênis, roupas e acessórios das melhores marcas. Retirada na loja em Paraíba do Sul, RJ.',
   },
   alternates: {
-    canonical: "https://www.pequentecalcados.com.br",
+    canonical: 'https://www.pequentecalcados.com.br',
   },
 };
 
-// Lazy load do ProductSlider (componente acima do fold mas pode ser otimizado)
-const ProductSlider = dynamic(() => import("@/components/Products/ProductSlider"), {
-  loading: () => <div className="py-12 bg-[#0a0a0a]" />,
-});
-
-// Lazy load de componentes abaixo do fold para melhorar LCP
-const MarcasPremium = dynamic(() => import("@/components/sections/MarcasPremium"), {
-  loading: () => <div className="py-16 bg-[#0a0a0a]" />,
-});
-
-const Promocoes = dynamic(() => import("@/components/sections/Promocoes"), {
-  loading: () => <div className="py-16 bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a]" />,
-});
-
-const Depoimentos = dynamic(() => import("@/components/sections/Depoimentos"), {
-  loading: () => <div className="py-16 bg-[#1a1a1a]" />,
-});
-
-const PorQueComprar = dynamic(() => import("@/components/sections/PorQueComprar"), {
-  loading: () => <div className="py-16 bg-[#1a1a1a]" />,
-});
-
-const VisiteNossaLoja = dynamic(() => import("@/components/sections/VisiteNossaLoja"), {
-  loading: () => <div className="py-16 bg-[#0a0a0a]" />,
-});
-
-import { getNewLaunchProducts, getAllCategories } from "@/lib/api";
-
 export default function HomePage() {
   const newLaunchProducts = getNewLaunchProducts();
-  const categories = getAllCategories();
-
-  // Mapear categorias com imagens
-  const categoryImages: Record<string, string> = {
-    'tenis-masculino': '/images/categorias/tenis-masc.png',
-    'tenis-feminino': '/images/categorias/tenis-fem.png',
-    'chinelos-e-sandalias': '/images/categorias/chinelos.png',
-    'acessorios': '/images/categorias/acessorios.png',
-    'outlet': '/images/categorias/outlet.png',
-  };
-
-  // Categorias populares (filtrar apenas as que têm imagem)
-  const popularCategories = categories.filter(cat => categoryImages[cat.slug]);
 
   return (
     <div>
       {/* Hero Banner */}
       <HeroBanner />
-
-      {/* Seção de Categorias Populares */}
-      <section className="py-16 bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Categorias Populares
-            </h2>
-            <p className="text-gray-400 text-lg">
-              Explore nossas principais categorias
-            </p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 justify-items-center">
-            {popularCategories.map((category, index) => (
-              <CategoryCard
-                key={category.id}
-                name={category.name}
-                slug={category.slug}
-                image={categoryImages[category.slug]}
-                priority={index < 2}
-                index={index}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Produtos em Destaque - Lançamentos */}
       <section className="py-12 bg-[#0a0a0a]">
@@ -118,12 +46,12 @@ export default function HomePage() {
             <h2 className="text-3xl font-bold text-white">Lançamentos</h2>
             <Link
               href="/produtos"
-              className="text-[#FF0000] hover:text-[#FF0000]/80 transition flex items-center space-x-2"
+              className="text-[#FF0000] hover:text-[#FF0000]/80 transition flex items-center space-x-2 font-medium"
               prefetch
               aria-label="Ver todos os lançamentos"
             >
               <span>Ver todos</span>
-              <span aria-hidden="true">→</span>
+              <span aria-hidden="true" className="text-xl">→</span>
             </Link>
           </div>
           <ProductSlider products={newLaunchProducts} />
@@ -158,8 +86,9 @@ export default function HomePage() {
             </p>
                 <Link
                   href="/produtos"
-                  className="inline-block bg-[#FF0000] text-white font-bold px-8 py-3 rounded-lg hover:bg-[#FF0000]/90 transition"
+                  className="inline-block bg-[#FF0000] text-white font-semibold px-8 py-3 rounded-lg hover:bg-[#FF0000]/90 transition"
                   prefetch
+                  aria-label="Ver todos os produtos"
                 >
                   Ver Produtos
                 </Link>

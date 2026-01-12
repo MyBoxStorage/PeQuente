@@ -71,7 +71,7 @@ export default function AdizeroBanner({
           {/* Botão CTA */}
           <Link
             href={ctaLink}
-            className="bg-[#333333] text-white px-10 py-3.5 text-[10px] md:text-xs font-bold tracking-[0.25em] uppercase shadow-xl rounded-none inline-flex items-center justify-center pointer-events-auto"
+            className="bg-[#333333] text-white px-10 py-3.5 text-sm md:text-base font-semibold shadow-xl rounded-md hover:bg-[#404040] transition-all duration-250 inline-flex items-center justify-center pointer-events-auto"
           >
             {ctaText}
           </Link>

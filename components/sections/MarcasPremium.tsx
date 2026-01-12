@@ -174,6 +174,7 @@ export default function MarcasPremium() {
                     href={`/produtos?marca=${brand.name.toLowerCase()}`}
                     className="group block"
                     prefetch
+                    aria-label={`Ver produtos da marca ${brand.name}`}
                   >
                     <div
                       className={`${bgColor} ${hoverBgColor} rounded-xl p-8 ${borderColor} ${hoverBorderColor} transition-all duration-300 w-48 h-48 flex items-center justify-center shadow-lg ${hoverShadow} hover:scale-105 hover:-translate-y-1 active:scale-100`}
@@ -181,12 +182,13 @@ export default function MarcasPremium() {
                       <div className="transition-transform duration-300 group-hover:scale-110 w-32 h-32 flex items-center justify-center">
                         <Image
                           src={`/images/brands/${brand.slug}.png`}
-                          alt={brand.name}
+                          alt={`Logo da marca ${brand.name}`}
                           width={128}
                           height={128}
                           className="object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300 brightness-0 invert drop-shadow-lg w-full h-full"
                           quality={90}
                           loading="lazy"
+                          sizes="(max-width: 768px) 128px, 128px"
                         />
                       </div>
                     </div>

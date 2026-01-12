@@ -110,6 +110,7 @@ export default function Footer() {
                     <Link
                       href={`/produtos?categoria=${category.slug}`}
                       className="text-sm hover:text-[#FF0000] transition"
+                      aria-label={`Ver produtos da categoria ${category.name}`}
                     >
                       {category.name}
                     </Link>
@@ -119,6 +120,7 @@ export default function Footer() {
                   <Link
                     href="/produtos"
                     className="text-sm hover:text-[#FF0000] transition"
+                    aria-label="Ver todos os produtos"
                   >
                     Todos os Produtos
                   </Link>
@@ -131,22 +133,22 @@ export default function Footer() {
               <h3 className="text-white font-bold text-lg mb-4">Ajuda</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/sobre" className="text-sm hover:text-[#FF0000] transition">
+                  <Link href="/sobre" className="text-sm hover:text-[#FF0000] transition" aria-label="Sobre a loja">
                     Sobre Nós
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contato" className="text-sm hover:text-[#FF0000] transition">
+                  <Link href="/contato" className="text-sm hover:text-[#FF0000] transition" aria-label="Página de contato">
                     Fale Conosco
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="text-sm hover:text-[#FF0000] transition">
+                  <Link href="/faq" className="text-sm hover:text-[#FF0000] transition" aria-label="Perguntas frequentes">
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="text-sm hover:text-[#FF0000] transition">
+                  <Link href="/blog" className="text-sm hover:text-[#FF0000] transition" aria-label="Blog da loja">
                     Blog
                   </Link>
                 </li>
@@ -166,6 +168,7 @@ export default function Footer() {
                   <a
                     href={`tel:${storeInfo.phone}`}
                     className="text-sm hover:text-[#FF0000] transition"
+                    aria-label={`Ligar para ${storeInfo.phone}`}
                   >
                     {storeInfo.phone}
                   </a>
@@ -173,12 +176,13 @@ export default function Footer() {
                 {storeInfo.email && (
                   <li className="flex items-center space-x-3">
                     <Mail size={20} className="text-[#FF0000] flex-shrink-0" />
-                    <a
-                      href={`mailto:${storeInfo.email}`}
-                      className="text-sm hover:text-[#FF0000] transition"
-                    >
-                      {storeInfo.email}
-                    </a>
+                  <a
+                    href={`mailto:${storeInfo.email}`}
+                    className="text-sm hover:text-[#FF0000] transition"
+                    aria-label={`Enviar e-mail para ${storeInfo.email}`}
+                  >
+                    {storeInfo.email}
+                  </a>
                   </li>
                 )}
                 <li className="flex items-start space-x-3">
@@ -205,8 +209,9 @@ export default function Footer() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       className="flex-1"
+                      aria-label="E-mail para newsletter"
                     />
-                    <Button type="submit" size="sm">
+                    <Button type="submit" size="sm" aria-label="Inscrever-se na newsletter">
                       Inscrever
                     </Button>
                   </form>

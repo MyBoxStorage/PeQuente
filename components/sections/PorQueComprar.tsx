@@ -38,7 +38,7 @@ export default function PorQueComprar() {
     <section className="py-16 bg-[#1a1a1a]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4 tracking-[0.05em]">
+          <h2 className="text-4xl font-bold text-white mb-4">
             Por Que Comprar na Pé Quente Calçados?
           </h2>
           <div className="w-24 h-0.5 bg-[#FF0000] mx-auto mb-4" />

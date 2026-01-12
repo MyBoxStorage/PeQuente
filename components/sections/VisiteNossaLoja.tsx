@@ -17,7 +17,7 @@ export default function VisiteNossaLoja() {
     <section className="py-16 bg-[#0a0a0a]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4 tracking-[0.05em]">
+          <h2 className="text-4xl font-bold text-white mb-4">
             Visite Nossa Loja
           </h2>
           <div className="w-24 h-0.5 bg-[#FF0000] mx-auto mb-4" />

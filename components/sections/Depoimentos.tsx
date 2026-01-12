@@ -106,7 +106,7 @@ export default function Depoimentos() {
                 key={testimonial.id}
                 className="flex-shrink-0 w-full snap-start"
               >
-                <div className="bg-[#252525] rounded-lg p-8 border border-[#353535] mx-auto max-w-2xl">
+                <div className="bg-[#2d2d2d] rounded-xl p-8 border border-[#353535] hover:border-[#FF0000]/30 transition-all duration-300 shadow-lg hover:shadow-xl mx-auto max-w-2xl">
                   <div className="flex items-center gap-2 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star
@@ -116,19 +116,24 @@ export default function Depoimentos() {
                       />
                     ))}
                   </div>
-                  <Quote className="text-[#FF0000] mb-4" size={32} />
-                  <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                  <Quote className="text-[#FF0000] mb-4 opacity-80" size={32} />
+                  <p className="text-gray-200 text-lg leading-relaxed mb-6">
                     "{testimonial.text}"
                   </p>
-                  <div>
-                    <p className="text-white font-bold text-lg">
-                      {testimonial.name}
-                    </p>
-                    {testimonial.product && (
-                      <p className="text-gray-400 text-sm">
-                        Comprou: {testimonial.product}
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FF0000] to-[#00008B] flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                      {testimonial.name.charAt(0).toUpperCase()}
+                    </div>
+                    <div>
+                      <p className="text-white font-semibold text-lg">
+                        {testimonial.name}
                       </p>
-                    )}
+                      {testimonial.product && (
+                        <p className="text-gray-400 text-sm">
+                          Comprou: {testimonial.product}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

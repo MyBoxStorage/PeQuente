@@ -234,7 +234,7 @@ export default function HeroBanner() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
                     {/* Texto à esquerda */}
                     <div className="text-center lg:text-left z-10 lg:pr-8">
-                      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg tracking-[0.05em]">
+                      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
                         {banner.title}
                       </h1>
                       {/* Linha vermelha abaixo do título */}
@@ -244,7 +244,7 @@ export default function HeroBanner() {
                       </p>
                       <Link
                         href={banner.link}
-                        className="inline-block bg-[#FFD700] text-[#0a0a0a] font-bold px-8 py-4 rounded-lg text-lg shadow-xl"
+                        className="inline-block bg-[#FFD700] text-[#0a0a0a] font-semibold px-8 py-4 rounded-lg text-lg shadow-xl hover:bg-[#FFC700] hover:shadow-2xl transition-all duration-250"
                       >
                         {banner.cta}
                       </Link>
