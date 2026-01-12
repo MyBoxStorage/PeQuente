@@ -2,27 +2,41 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Instagram, Facebook, Mail, Phone, MapPin, Clock } from 'lucide-react';
-import { getStoreInfo, getAllCategories } from '@/lib/api';
 import Script from 'next/script';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { getStoreInfo } from '@/lib/api';
 
 export default function Footer() {
   const storeInfo = getStoreInfo();
-  const categories = getAllCategories();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [emailError, setEmailError] = useState('');
+
+  // Validação simples de email
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Aqui você pode integrar com sua API/email service
+    setEmailError('');
+
+    if (!email) {
+      setEmailError('Por favor, insira um e-mail');
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setEmailError('Por favor, insira um e-mail válido');
+      return;
+    }
+
+    // Mock sendEmail - aqui você integraria com sua API
+    console.log('Newsletter subscription:', email);
     setSubscribed(true);
     setEmail('');
     setTimeout(() => setSubscribed(false), 3000);
   };
-
-  const [isHovered, setIsHovered] = useState(false);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -65,191 +79,195 @@ export default function Footer() {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <footer className="bg-[#00008B] border-t border-[#252525] text-gray-300 relative">
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            {/* Sobre a loja */}
+      <footer className="bg-gray-800 text-white p-8">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {/* Coluna 1: Links Úteis */}
             <div>
-              <h3 className="text-white font-bold text-lg mb-4">Pé Quente Calçados</h3>
-              <p className="text-sm mb-4">
-                Sua loja de tênis, roupas e acessórios em Paraíba do Sul. 
-                Os melhores produtos das principais marcas do mercado.
-              </p>
-              <div className="flex space-x-4">
-                {storeInfo.instagram && (
-                  <a
-                    href={storeInfo.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-[#FF0000] transition-all duration-250 hover:scale-110"
-                    aria-label="Instagram"
-                  >
-                    <Instagram size={24} />
-                  </a>
-                )}
-                {storeInfo.facebook && (
-                  <a
-                    href={storeInfo.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-[#FF0000] transition-all duration-250 hover:scale-110"
-                    aria-label="Facebook"
-                  >
-                    <Facebook size={24} />
-                  </a>
-                )}
-              </div>
-            </div>
-
-            {/* Produtos */}
-            <div>
-              <h3 className="text-white font-bold text-lg mb-4">Produtos</h3>
+              <h3 className="text-white font-bold text-lg mb-4">Links Úteis</h3>
               <ul className="space-y-2">
-                {categories.map((category) => (
-                  <li key={category.id}>
-                    <Link
-                      href={`/produtos?categoria=${category.slug}`}
-                      className="text-sm hover:text-[#FF0000] transition"
-                      aria-label={`Ver produtos da categoria ${category.name}`}
-                    >
-                      {category.name}
-                    </Link>
-                  </li>
-                ))}
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-300 hover:text-white hover:underline transition-colors duration-200"
+                    aria-label="Página inicial"
+                  >
+                    Home
+                  </Link>
+                </li>
                 <li>
                   <Link
                     href="/produtos"
-                    className="text-sm hover:text-[#FF0000] transition"
+                    className="text-gray-300 hover:text-white hover:underline transition-colors duration-200"
                     aria-label="Ver todos os produtos"
                   >
-                    Todos os Produtos
+                    Produtos
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/marcas"
+                    className="text-gray-300 hover:text-white hover:underline transition-colors duration-200"
+                    aria-label="Ver marcas disponíveis"
+                  >
+                    Marcas
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/promocoes"
+                    className="text-gray-300 hover:text-white hover:underline transition-colors duration-200"
+                    aria-label="Ver promoções"
+                  >
+                    Promoções
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Ajuda */}
-            <div>
-              <h3 className="text-white font-bold text-lg mb-4">Ajuda</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/sobre" className="text-sm hover:text-[#FF0000] transition" aria-label="Sobre a loja">
-                    Sobre Nós
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contato" className="text-sm hover:text-[#FF0000] transition" aria-label="Página de contato">
-                    Fale Conosco
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/faq" className="text-sm hover:text-[#FF0000] transition" aria-label="Perguntas frequentes">
-                    FAQ
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog" className="text-sm hover:text-[#FF0000] transition" aria-label="Blog da loja">
-                    Blog
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Contato e Newsletter */}
+            {/* Coluna 2: Contato */}
             <div>
               <h3 className="text-white font-bold text-lg mb-4">Contato</h3>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-start space-x-3">
-                  <MapPin size={20} className="text-[#FF0000] mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">{storeInfo.address}</span>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <i className="fas fa-map-marker-alt text-gray-400 mr-3 mt-1" aria-hidden="true"></i>
+                  <span className="text-gray-300 text-sm">
+                    Praça Garcia 136/140<br />
+                    Paraíba do Sul, RJ
+                  </span>
                 </li>
-                <li className="flex items-center space-x-3">
-                  <Phone size={20} className="text-[#FF0000] flex-shrink-0" />
+                <li className="flex items-center">
+                  <i className="fas fa-phone text-gray-400 mr-3" aria-hidden="true"></i>
                   <a
                     href={`tel:${storeInfo.phone}`}
-                    className="text-sm hover:text-[#FF0000] transition"
+                    className="text-gray-300 hover:text-white hover:underline transition-colors duration-200 text-sm"
                     aria-label={`Ligar para ${storeInfo.phone}`}
                   >
                     {storeInfo.phone}
                   </a>
                 </li>
-                {storeInfo.email && (
-                  <li className="flex items-center space-x-3">
-                    <Mail size={20} className="text-[#FF0000] flex-shrink-0" />
+                <li className="flex items-center">
+                  <i className="fas fa-envelope text-gray-400 mr-3" aria-hidden="true"></i>
                   <a
                     href={`mailto:${storeInfo.email}`}
-                    className="text-sm hover:text-[#FF0000] transition"
+                    className="text-gray-300 hover:text-white hover:underline transition-colors duration-200 text-sm"
                     aria-label={`Enviar e-mail para ${storeInfo.email}`}
                   >
                     {storeInfo.email}
                   </a>
-                  </li>
-                )}
-                <li className="flex items-start space-x-3">
-                  <Clock size={20} className="text-[#FF0000] mt-0.5 flex-shrink-0" />
-                  <div className="text-sm space-y-1">
-                    <div>{storeInfo.hours.weekdays}</div>
-                    <div>{storeInfo.hours.saturday}</div>
-                    <div>{storeInfo.hours.sunday}</div>
-                  </div>
+                </li>
+                <li className="flex items-center">
+                  <i className="fab fa-whatsapp text-green-500 mr-3 text-lg" aria-hidden="true"></i>
+                  <a
+                    href="https://wa.me/552422632334"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-white hover:underline transition-colors duration-200 text-sm"
+                    aria-label="Entrar em contato via WhatsApp"
+                  >
+                    WhatsApp
+                  </a>
                 </li>
               </ul>
+            </div>
 
-              {/* Newsletter */}
-              <div>
-                <h4 className="text-white font-bold mb-2 text-sm">Newsletter</h4>
-                {subscribed ? (
-                  <p className="text-green-500 text-sm">Inscrito com sucesso!</p>
-                ) : (
-                  <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
-                    <Input
+            {/* Coluna 3: Pagamentos */}
+            <div>
+              <h3 className="text-white font-bold text-lg mb-4">Pagamentos</h3>
+              <ul className="space-y-3">
+                <li className="flex items-center">
+                  <i className="fas fa-qrcode text-gray-400 mr-3" aria-hidden="true"></i>
+                  <span className="text-gray-300 text-sm">
+                    PIX <span className="text-green-400 font-semibold">5% OFF</span>
+                  </span>
+                </li>
+                <li className="flex items-center">
+                  <i className="fas fa-credit-card text-gray-400 mr-3" aria-hidden="true"></i>
+                  <span className="text-gray-300 text-sm">Cartão 12x</span>
+                </li>
+                <li className="flex items-center">
+                  <i className="fas fa-store text-gray-400 mr-3" aria-hidden="true"></i>
+                  <span className="text-gray-300 text-sm">Retirada na Loja</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Coluna 4: Newsletter */}
+            <div>
+              <h3 className="text-white font-bold text-lg mb-4">Newsletter</h3>
+              {subscribed ? (
+                <p className="text-green-400 text-sm mb-4">
+                  <i className="fas fa-check-circle mr-2" aria-hidden="true"></i>
+                  Inscrito com sucesso!
+                </p>
+              ) : (
+                <form
+                  onSubmit={handleNewsletterSubmit}
+                  aria-label="Inscreva-se na newsletter"
+                  className="space-y-2"
+                >
+                  <div>
+                    <input
                       type="email"
                       placeholder="Seu e-mail"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className="flex-1"
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        setEmailError('');
+                      }}
+                      className="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                       aria-label="E-mail para newsletter"
+                      aria-invalid={emailError ? 'true' : 'false'}
+                      aria-describedby={emailError ? 'email-error' : undefined}
                     />
-                    <Button type="submit" size="sm" aria-label="Inscrever-se na newsletter">
-                      Inscrever
-                    </Button>
-                  </form>
-                )}
-              </div>
+                    {emailError && (
+                      <p id="email-error" className="text-red-400 text-xs mt-1" role="alert">
+                        {emailError}
+                      </p>
+                    )}
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-200"
+                    aria-label="Inscrever-se na newsletter"
+                  >
+                    Inscrever
+                  </button>
+                </form>
+              )}
             </div>
           </div>
 
           {/* Rodapé inferior */}
-          <div className="border-t border-[#252525] mt-8 pt-8">
+          <div className="border-t border-gray-700 mt-8 pt-6">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-sm text-gray-400">
                 © {new Date().getFullYear()} Pé Quente Calçados. Todos os direitos reservados.
               </p>
               <div className="flex items-center gap-2 text-sm text-gray-400">
                 <span>Formas de Pagamento:</span>
-                <span className="px-2 py-1 bg-[#1a1a1a] rounded">PIX</span>
-                <span className="px-2 py-1 bg-[#1a1a1a] rounded">Cartão</span>
-                <span className="px-2 py-1 bg-[#1a1a1a] rounded">Boleto</span>
+                <span className="px-2 py-1 bg-gray-700 rounded">PIX</span>
+                <span className="px-2 py-1 bg-gray-700 rounded">Cartão</span>
+                <span className="px-2 py-1 bg-gray-700 rounded">Boleto</span>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Nota de portfólio */}
-        <div className="border-t border-[#1a1aff]/30 mt-8 pt-6">
-          <div className="container mx-auto px-4">
-            <p className="text-center text-gray-400 text-xs">
-              Site desenvolvido por{' '}
-              <a
-                href="https://github.com/MyBoxStorage/PeQuente"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-[#FF0000] transition-colors duration-250 underline"
-              >
-                VibeCoding
-              </a>
-            </p>
+          {/* Nota de portfólio - discreto */}
+          <div className="border-t border-gray-700 mt-6 pt-6">
+            <div className="container mx-auto px-4">
+              <p className="text-center text-gray-500 text-xs">
+                Site desenvolvido por{' '}
+                <a
+                  href="https://github.com/MyBoxStorage/PeQuente"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-gray-400 transition-colors duration-250 underline"
+                >
+                  VibeCoding
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </footer>
