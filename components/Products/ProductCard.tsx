@@ -4,9 +4,11 @@ import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ShoppingBag } from 'lucide-react';
 import { Product } from '@/types';
 import { formatPrice, formatInstallment } from '@/lib/utils';
+import { useCartStore } from '@/store/cartStore';
+import { useToast } from '@/components/ui/use-toast';
 
 interface ProductCardProps {
   product: Product;
@@ -20,6 +22,8 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLUListElement>(null);
+  const addItem = useCartStore((state) => state.addItem);
+  const { toast } = useToast();
 
   const images = product.images && product.images.length > 0 ? product.images : [];
   const hasMultipleImages = images.length > 1;
@@ -30,6 +34,49 @@ export default function ProductCard({ product }: ProductCardProps) {
     
     // Navegar diretamente para a página do produto
     router.push(`/produtos/${product.slug}`);
+  };
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!product.images || product.images.length === 0) {
+      toast({
+        title: 'Erro',
+        description: 'Produto sem imagem disponível',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    if (product.stock === 0) {
+      toast({
+        title: 'Produto indisponível',
+        description: 'Este produto está fora de estoque',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    // Adicionar ao carrinho (tamanho padrão será o primeiro disponível ou undefined)
+    const defaultSize = product.sizes && product.sizes.length > 0 ? product.sizes[0] : undefined;
+    
+    addItem({
+      productId: product.id,
+      name: product.name,
+      slug: product.slug,
+      price: product.price,
+      image: product.images[0],
+      brand: product.brand,
+      size: defaultSize,
+    });
+
+    // Toast notification
+    toast({
+      title: 'Adicionado ao carrinho!',
+      description: `${product.name} foi adicionado. Venha retirar na loja!`,
+      variant: 'success',
+    });
   };
 
   const handleFlipBack = (e: React.MouseEvent) => {
@@ -89,7 +136,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         {/* Frente do card */}
         <div className={`product-card-front ${isFlipped ? 'hidden' : ''}`}>
           <div className="product-card-shadow"></div>
-          <Link href={`/produtos/${product.slug}`} className="block h-full">
+          <Link href={`/produtos/${product.slug}`} className="block">
             <div className="relative aspect-square bg-[#252525] overflow-hidden">
               {images.length > 0 ? (
                 <>
@@ -133,15 +180,28 @@ export default function ProductCard({ product }: ProductCardProps) {
               </button>
             </div>
 
-            {/* Informações do produto */}
-            <div className="product-stats-container">
+          </Link>
+          
+          {/* Informações do produto */}
+          <div className="product-stats-container">
+            <Link href={`/produtos/${product.slug}`} className="block">
               <div className="product-stats-content">
                 <span className="product-price">{formatPrice(product.price)}</span>
                 <span className="product-name">{product.name}</span>
                 <p>{product.brand}</p>
               </div>
-            </div>
-          </Link>
+            </Link>
+            {/* Botão Adicionar ao Carrinho */}
+            <button
+              onClick={handleAddToCart}
+              disabled={product.stock === 0}
+              className="mt-3 w-full bg-[#FF0000] hover:bg-[#FF0000]/90 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold py-2 px-4 rounded-lg transition flex items-center justify-center gap-2 text-sm"
+              aria-label={`Adicionar ${product.name} ao carrinho`}
+            >
+              <ShoppingBag size={16} />
+              {product.stock > 0 ? 'Adicionar ao Carrinho' : 'Indisponível'}
+            </button>
+          </div>
         </div>
 
         {/* Verso do card */}

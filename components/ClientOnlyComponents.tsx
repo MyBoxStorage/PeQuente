@@ -15,12 +15,17 @@ const WhatsAppFloatButton = dynamic(() => import("@/components/WhatsAppFloatButt
   ssr: false,
 });
 
+const Analytics = dynamic(() => import("@/components/Analytics"), {
+  ssr: false,
+});
+
 export default function ClientOnlyComponents() {
   return (
     <>
       <ScrollToTop />
       <Toaster />
       <WhatsAppFloatButton />
+      <Analytics />
     </>
   );
 }

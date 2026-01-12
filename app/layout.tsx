@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Inter, Bebas_Neue } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import Header from "@/components/Header/Header";
+import HeaderPremium from "@/components/Header/HeaderPremium";
 import Footer from "@/components/Footer/Footer";
 import ClientOnlyComponents from "@/components/ClientOnlyComponents";
+import ResourceHints from "@/components/ResourceHints";
 import { getStoreInfo } from "@/lib/api";
 
 const inter = Inter({
@@ -25,11 +26,11 @@ const storeInfo = getStoreInfo();
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.pequentecalcados.com.br'),
   title: {
-    default: `${storeInfo.name} - Sua Loja de Tênis, Roupas e Acessórios`,
+    default: 'Pé Quente Calçados - Tênis e Acessórios em Paraíba do Sul, RJ',
     template: `%s | ${storeInfo.name}`,
   },
-  description: "Pé Quente Calçados - Sua loja de tênis, roupas e acessórios em Paraíba do Sul, RJ. Os melhores produtos das principais marcas: Nike, Adidas, Mizuno, Puma, Fila, Olympikus, Asics e mais. Retirada na loja com 5% de desconto no PIX.",
-  keywords: ["tênis", "calçados", "Nike", "Adidas", "Mizuno", "Puma", "Fila", "Olympikus", "Asics", "Paraíba do Sul", "RJ", "loja de tênis", "calçados esportivos", "tênis esportivo", "Paraíba do Sul RJ"],
+  description: "Loja de calçados com promoções em tênis Nike, Adidas. Retirada na loja ou entrega. Os melhores produtos das principais marcas: Nike, Adidas, Mizuno, Puma, Fila, Olympikus, Asics e mais. Retirada na loja com 5% de desconto no PIX.",
+  keywords: ["tênis baratos", "calçados Paraíba do Sul", "promoções tênis", "tênis", "calçados", "Nike", "Adidas", "Mizuno", "Puma", "Fila", "Olympikus", "Asics", "Paraíba do Sul", "RJ", "loja de tênis", "calçados esportivos", "tênis esportivo", "Paraíba do Sul RJ"],
   authors: [{ name: storeInfo.name }],
   openGraph: {
     type: "website",
@@ -90,13 +91,14 @@ export default function RootLayout({
         <a href="#main-content" className="skip-to-content">
           Pular para o conteúdo principal
         </a>
+        <ResourceHints />
         <Script
           id="structured-data"
           type="application/ld+json"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Header />
+        <HeaderPremium />
         <main id="main-content" className="flex-grow" tabIndex={-1}>
           {children}
         </main>

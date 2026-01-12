@@ -15,7 +15,7 @@ import { getAllProducts, getAllCategories, getAllBrands } from '@/lib/api';
 
 type SortOption = 'relevance' | 'price-asc' | 'price-desc' | 'name-asc' | 'name-desc' | 'newest';
 
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 10; // Paginação quando >10 itens
 const USE_INFINITE_SCROLL = true; // Toggle para infinite scroll vs paginação
 
 function ProdutosContent() {
@@ -172,6 +172,7 @@ function ProdutosContent() {
                     value={filters.categoria || ''}
                     onChange={(e) => setFilters({ ...filters, categoria: e.target.value || undefined })}
                     className="w-full px-4 py-2 bg-[#252525] text-white rounded-lg border border-[#353535] focus:outline-none focus:ring-2 focus:ring-[#FF0000]"
+                    aria-label="Filtrar por categoria"
                   >
                     <option value="">Todas</option>
                     {categories.map((cat) => (
@@ -189,6 +190,7 @@ function ProdutosContent() {
                     value={filters.marca || ''}
                     onChange={(e) => setFilters({ ...filters, marca: e.target.value || undefined })}
                     className="w-full px-4 py-2 bg-[#252525] text-white rounded-lg border border-[#353535] focus:outline-none focus:ring-2 focus:ring-[#FF0000]"
+                    aria-label="Filtrar por marca"
                   >
                     <option value="">Todas</option>
                     {brands.map((brand) => (
@@ -206,6 +208,7 @@ function ProdutosContent() {
                     value={filters.genero || ''}
                     onChange={(e) => setFilters({ ...filters, genero: e.target.value || undefined })}
                     className="w-full px-4 py-2 bg-[#252525] text-white rounded-lg border border-[#353535] focus:outline-none focus:ring-2 focus:ring-[#FF0000]"
+                    aria-label="Filtrar por gênero"
                   >
                     <option value="">Todos</option>
                     <option value="Masculino">Masculino</option>
@@ -217,32 +220,78 @@ function ProdutosContent() {
 
                 {/* Filtro por Preço */}
                 <div>
-                  <label className="block text-white font-medium mb-2">Preço</label>
-                  <div className="space-y-2">
-                    <input
-                      type="number"
-                      placeholder="Mínimo"
-                      value={filters.precoMin || ''}
-                      onChange={(e) => 
-                        setFilters({ 
-                          ...filters, 
-                          precoMin: e.target.value ? Number(e.target.value) : undefined 
-                        })
-                      }
-                      className="w-full px-4 py-2 bg-[#252525] text-white rounded-lg border border-[#353535] focus:outline-none focus:ring-2 focus:ring-[#FF0000]"
-                    />
-                    <input
-                      type="number"
-                      placeholder="Máximo"
-                      value={filters.precoMax || ''}
-                      onChange={(e) => 
-                        setFilters({ 
-                          ...filters, 
-                          precoMax: e.target.value ? Number(e.target.value) : undefined 
-                        })
-                      }
-                      className="w-full px-4 py-2 bg-[#252525] text-white rounded-lg border border-[#353535] focus:outline-none focus:ring-2 focus:ring-[#FF0000]"
-                    />
+                  <label className="block text-white font-medium mb-2">Preço (R$)</label>
+                  <div className="space-y-3">
+                    {/* Range Inputs */}
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="range"
+                        min="0"
+                        max="1000"
+                        step="50"
+                        value={filters.precoMin || 0}
+                        onChange={(e) => 
+                          setFilters({ 
+                            ...filters, 
+                            precoMin: Number(e.target.value) || undefined 
+                          })
+                        }
+                        className="flex-1 h-2 bg-[#252525] rounded-lg appearance-none cursor-pointer accent-[#FF0000]"
+                        aria-label="Preço mínimo"
+                      />
+                      <span className="text-white text-sm min-w-[60px]">R$ {filters.precoMin || 0}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="range"
+                        min="0"
+                        max="1000"
+                        step="50"
+                        value={filters.precoMax || 1000}
+                        onChange={(e) => 
+                          setFilters({ 
+                            ...filters, 
+                            precoMax: Number(e.target.value) || undefined 
+                          })
+                        }
+                        className="flex-1 h-2 bg-[#252525] rounded-lg appearance-none cursor-pointer accent-[#FF0000]"
+                        aria-label="Preço máximo"
+                      />
+                      <span className="text-white text-sm min-w-[60px]">R$ {filters.precoMax || 1000}</span>
+                    </div>
+                    {/* Inputs numéricos alternativos */}
+                    <div className="space-y-2">
+                      <input
+                        type="number"
+                        placeholder="Mínimo"
+                        min="0"
+                        max="1000"
+                        value={filters.precoMin || ''}
+                        onChange={(e) => 
+                          setFilters({ 
+                            ...filters, 
+                            precoMin: e.target.value ? Number(e.target.value) : undefined 
+                          })
+                        }
+                        className="w-full px-4 py-2 bg-[#252525] text-white rounded-lg border border-[#353535] focus:outline-none focus:ring-2 focus:ring-[#FF0000]"
+                        aria-label="Preço mínimo em reais"
+                      />
+                      <input
+                        type="number"
+                        placeholder="Máximo"
+                        min="0"
+                        max="1000"
+                        value={filters.precoMax || ''}
+                        onChange={(e) => 
+                          setFilters({ 
+                            ...filters, 
+                            precoMax: e.target.value ? Number(e.target.value) : undefined 
+                          })
+                        }
+                        className="w-full px-4 py-2 bg-[#252525] text-white rounded-lg border border-[#353535] focus:outline-none focus:ring-2 focus:ring-[#FF0000]"
+                        aria-label="Preço máximo em reais"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -251,6 +300,32 @@ function ProdutosContent() {
 
           {/* Área principal */}
           <div className="flex-1">
+            {/* Barra de busca - VISÍVEL ACIMA DO GRID */}
+            <div className="mb-6">
+              <input
+                type="text"
+                placeholder="Buscar produtos..."
+                value={filters.search || ''}
+                onChange={(e) => {
+                  const newFilters = { ...filters, search: e.target.value || undefined };
+                  setFilters(newFilters);
+                  // Atualizar URL
+                  if (typeof window !== 'undefined') {
+                    const params = new URLSearchParams(window.location.search);
+                    if (e.target.value) {
+                      params.set('busca', e.target.value);
+                    } else {
+                      params.delete('busca');
+                    }
+                    const newUrl = params.toString() ? `/produtos?${params.toString()}` : '/produtos';
+                    window.history.pushState({}, '', newUrl);
+                  }
+                }}
+                className="w-full px-4 py-3 bg-[#1a1a1a] text-white rounded-lg border border-[#252525] focus:outline-none focus:ring-2 focus:ring-[#FF0000] placeholder-gray-500"
+                aria-label="Buscar produtos"
+              />
+            </div>
+
             {/* Barra de ferramentas */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
               <div className="flex items-center gap-4">
@@ -275,6 +350,7 @@ function ProdutosContent() {
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as SortOption)}
                   className="px-4 py-2 bg-[#1a1a1a] text-white rounded-lg border border-[#252525] focus:outline-none focus:ring-2 focus:ring-[#FF0000]"
+                  aria-label="Ordenar produtos"
                 >
                   <option value="relevance">Relevância</option>
                   <option value="price-asc">Preço: Menor para Maior</option>
@@ -308,7 +384,7 @@ function ProdutosContent() {
               </div>
             ) : (
               <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {paginatedProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
                   ))}

@@ -41,11 +41,14 @@ export default function PeQuenteBanner({
           
           {/* LOGO SVG */}
           <div className="mb-6 flex items-center justify-center">
-            <img 
-              src="/logo-pe-quente.svg" 
-              alt="Pé Quente Calçados" 
-              className="h-32 md:h-44 lg:h-52 w-auto object-contain drop-shadow-2xl bg-transparent" 
-              style={{ background: 'transparent' }}
+            <Image
+              src="/logo-pe-quente.svg"
+              alt="Pé Quente Calçados"
+              width={208}
+              height={208}
+              className="h-32 md:h-44 lg:h-52 w-auto object-contain drop-shadow-2xl bg-transparent"
+              priority
+              quality={90}
             />
           </div>
 
