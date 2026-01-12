@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { MapPin, Clock, MessageCircle } from 'lucide-react';
 import { getStoreInfo } from '@/lib/api';
 import { Button } from '@/components/ui/button';
+import StreetView from '@/components/StreetView';
 
 export default function VisiteNossaLoja() {
   const storeInfo = getStoreInfo();
@@ -12,6 +13,10 @@ export default function VisiteNossaLoja() {
   // Extrair número do telefone (remover caracteres não numéricos)
   const phoneNumber = storeInfo.phone?.replace(/\D/g, '') || '';
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
+
+  // Coordenadas da loja (extraídas do Google Maps)
+  const storeLatitude = -22.1589563;
+  const storeLongitude = -43.3044178;
 
   return (
     <section className="py-16 bg-[#0a0a0a]">
@@ -67,24 +72,16 @@ export default function VisiteNossaLoja() {
 
           {/* Foto da Fachada e Botão WhatsApp */}
           <div className="space-y-6">
-            {/* Foto da Fachada (placeholder) */}
+            {/* Street View da Fachada */}
             <div className="relative rounded-lg overflow-hidden border border-[#353535] bg-[#2d2d2d] aspect-[4/3]">
-              {/* Placeholder - pode ser substituído por foto real */}
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#252525] to-[#1a1a1a]">
-                <div className="text-center">
-                  <MapPin className="text-[#FF0000] mx-auto mb-4" size={48} />
-                  <p className="text-gray-400 text-sm">Foto da fachada</p>
-                </div>
-              </div>
-              {/* Se tiver foto real, descomentar:
-              <Image
-                src="/images/loja-fachada.jpg"
-                alt="Fachada da Pé Quente Calçados"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
+              <StreetView
+                latitude={storeLatitude}
+                longitude={storeLongitude}
+                heading={78.64}
+                pitch={6.84}
+                zoom={1}
+                className="w-full h-full"
               />
-              */}
             </div>
 
             {/* Card de Destaque com Botão WhatsApp */}
