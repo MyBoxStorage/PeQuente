@@ -15,11 +15,9 @@ interface UseMediaPipePoseReturn {
   error: string | null;
 }
 
-// URLs do CDN otimizadas (apenas o essencial)
+// URLs do CDN otimizadas
 const CDN_URLS = {
-  // TensorFlow.js core (versão lite para mobile)
   tfjs: 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js',
-  // Pose Detection API
   poseDetection: 'https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.1.0/dist/pose-detection.min.js',
 };
 
@@ -31,13 +29,11 @@ const loadedScripts = new Set<string>();
  */
 function loadScript(src: string): Promise<void> {
   return new Promise((resolve, reject) => {
-    // Se já carregamos este script, resolver imediatamente
     if (loadedScripts.has(src)) {
       resolve();
       return;
     }
 
-    // Verificar se o script já existe no DOM
     const existingScript = document.querySelector(`script[src="${src}"]`);
     if (existingScript) {
       loadedScripts.add(src);
@@ -63,7 +59,7 @@ function loadScript(src: string): Promise<void> {
 }
 
 /**
- * Aguarda objeto global com timeout curto
+ * Aguarda objeto global
  */
 function waitForGlobal(name: string, timeout = 10000): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -83,13 +79,28 @@ function waitForGlobal(name: string, timeout = 10000): Promise<void> {
         clearInterval(checkInterval);
         reject(new Error(`Timeout: ${name}`));
       }
-    }, 50); // Check mais frequente
+    }, 50);
   });
 }
 
 /**
+ * Verifica se WebGL está disponível
+ */
+function isWebGLAvailable(): boolean {
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(
+      window.WebGLRenderingContext &&
+      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+    );
+  } catch (e) {
+    return false;
+  }
+}
+
+/**
  * Hook otimizado para MediaPipe Pose Detection
- * Usa runtime TFJS (mais leve e rápido que mediapipe)
+ * Usa runtime TFJS com backend WebGL (compatível com mobile)
  */
 export function useMediaPipePose(): UseMediaPipePoseReturn {
   const [detector, setDetector] = useState<PoseDetector | null>(null);
@@ -112,15 +123,39 @@ export function useMediaPipePose(): UseMediaPipePoseReturn {
         setIsLoading(true);
         setError(null);
 
+        // Verificar suporte a WebGL
+        if (!isWebGLAvailable()) {
+          throw new Error('WebGL não disponível. Seu dispositivo não suporta AR.');
+        }
+
         // 1. Carregar TensorFlow.js
+        console.log('[Pose] Carregando TensorFlow.js...');
         await loadScript(CDN_URLS.tfjs);
-        await waitForGlobal('tf', 8000);
+        await waitForGlobal('tf', 10000);
         
         if (!isMountedRef.current) return;
 
-        // 2. Carregar Pose Detection
+        // 2. Inicializar TensorFlow.js com backend WebGL (compatível com mobile)
+        const tf = (window as any).tf;
+        
+        // Definir backend WebGL (mais compatível que WebGPU)
+        try {
+          await tf.setBackend('webgl');
+        } catch (backendError) {
+          console.warn('[Pose] WebGL backend falhou, tentando CPU...');
+          await tf.setBackend('cpu');
+        }
+        
+        // Aguardar TensorFlow.js estar completamente pronto
+        await tf.ready();
+        console.log('[Pose] TensorFlow.js pronto, backend:', tf.getBackend());
+
+        if (!isMountedRef.current) return;
+
+        // 3. Carregar Pose Detection
+        console.log('[Pose] Carregando Pose Detection...');
         await loadScript(CDN_URLS.poseDetection);
-        await waitForGlobal('poseDetection', 8000);
+        await waitForGlobal('poseDetection', 10000);
 
         if (!isMountedRef.current) return;
 
@@ -128,15 +163,16 @@ export function useMediaPipePose(): UseMediaPipePoseReturn {
         const poseDetection = win.poseDetection;
 
         if (!poseDetection?.createDetector) {
-          throw new Error('API não disponível');
+          throw new Error('API de detecção não disponível');
         }
 
-        // 3. Criar detector com runtime TFJS (mais rápido que mediapipe)
+        // 4. Criar detector BlazePose
+        console.log('[Pose] Criando detector...');
         const model = poseDetection.SupportedModels.BlazePose;
         
         const createdDetector = await poseDetection.createDetector(model, {
           runtime: 'tfjs',
-          modelType: 'lite', // Modelo mais leve para mobile
+          modelType: 'lite', // Modelo leve para mobile
           enableSmoothing: true,
         });
 
@@ -146,16 +182,17 @@ export function useMediaPipePose(): UseMediaPipePoseReturn {
         }
 
         const loadTime = Date.now() - startTime;
-        console.log(`[Pose] Detector pronto em ${loadTime}ms`);
+        console.log(`[Pose] ✅ Detector pronto em ${loadTime}ms`);
 
         detectorRef.current = createdDetector;
         setDetector(createdDetector);
         setIsLoading(false);
         
       } catch (err) {
-        console.error('[Pose] Erro:', err);
+        console.error('[Pose] ❌ Erro:', err);
         if (isMountedRef.current) {
-          setError(err instanceof Error ? err.message : 'Erro ao carregar');
+          const message = err instanceof Error ? err.message : 'Erro ao carregar detector';
+          setError(message);
           setIsLoading(false);
         }
       }
