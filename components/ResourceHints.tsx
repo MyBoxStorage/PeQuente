@@ -20,15 +20,6 @@ export default function ResourceHints() {
       { rel: 'preconnect', href: 'https://ajax.googleapis.com' },
       { rel: 'dns-prefetch', href: 'https://ajax.googleapis.com' },
     ];
-    
-    // Pré-carregar script do model-viewer para 3D instantâneo
-    const modelViewerPreload = document.querySelector('link[href*="model-viewer"]');
-    if (!modelViewerPreload) {
-      const preloadLink = document.createElement('link');
-      preloadLink.rel = 'modulepreload';
-      preloadLink.href = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js';
-      document.head.appendChild(preloadLink);
-    }
 
     preconnects.forEach(({ rel, href }) => {
       // Verificar se já existe

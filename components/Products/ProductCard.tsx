@@ -131,19 +131,6 @@ export default function ProductCard({ product }: ProductCardProps) {
     }
   };
 
-  // Pré-carregar modelo 3D ao passar mouse no botão
-  const prefetchModel = () => {
-    const modelUrl = getModel3DUrl(product.slug);
-    if (modelUrl) {
-      // Prefetch do modelo GLB
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.href = modelUrl;
-      link.as = 'fetch';
-      document.head.appendChild(link);
-    }
-  };
-
   useEffect(() => {
     if (carouselRef.current && isFlipped) {
       carouselRef.current.style.left = `-${currentImageIndex * 100}%`;
@@ -237,8 +224,6 @@ export default function ProductCard({ product }: ProductCardProps) {
               {hasModel3D(product.slug) && (
                 <button
                   onClick={handleTryOnOpen}
-                  onMouseEnter={prefetchModel}
-                  onTouchStart={prefetchModel}
                   className="bg-[#FF0000] hover:bg-[#FF0000]/90 text-white font-semibold py-2 px-4 rounded-lg transition text-sm whitespace-nowrap"
                   aria-label={`Ver ${product.name} em 3D`}
                 >
