@@ -146,9 +146,12 @@ export default function ModelViewerAR({
     modelViewer.setAttribute('ar-scale', 'auto');
     modelViewer.setAttribute('ar-placement', 'floor');
     
-    // Controles de câmera
+    // Controles de câmera - ROTAÇÃO LIVRE 360°
     modelViewer.setAttribute('camera-controls', '');
-    modelViewer.setAttribute('touch-action', 'pan-y');
+    modelViewer.setAttribute('touch-action', 'none');
+    modelViewer.setAttribute('disable-pan', '');
+    modelViewer.setAttribute('orbit-sensitivity', '1');
+    modelViewer.setAttribute('interaction-prompt', 'auto');
     
     // Câmera inicial - vista frontal
     modelViewer.setAttribute('camera-orbit', '0deg 75deg 2.5m');
