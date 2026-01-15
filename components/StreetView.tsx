@@ -3,10 +3,11 @@
 import { useEffect, useRef } from 'react';
 
 interface StreetViewProps {
-  latitude: number;
-  longitude: number;
-  heading?: number; // direção da câmera (0-360)
-  pitch?: number; // inclinação da câmera (-90 a 90)
+  latitude?: number;
+  longitude?: number;
+  panoId?: string; // ID do panorama específico
+  heading?: number;
+  pitch?: number;
   zoom?: number;
   className?: string;
 }
@@ -14,6 +15,7 @@ interface StreetViewProps {
 export default function StreetView({
   latitude,
   longitude,
+  panoId,
   heading = 0,
   pitch = 0,
   zoom = 1,
@@ -32,7 +34,6 @@ export default function StreetView({
       return;
     }
 
-    // Carregar o script do Google Maps se ainda não estiver carregado
     const loadGoogleMaps = (): Promise<void> => {
       return new Promise((resolve, reject) => {
         if (window.google?.maps?.StreetViewPanorama) {
@@ -42,7 +43,6 @@ export default function StreetView({
 
         const existingScript = document.querySelector('script[src*="maps.googleapis.com"]') as HTMLScriptElement;
         if (existingScript) {
-          // Script já existe, aguardar carregamento
           if (window.google?.maps?.StreetViewPanorama) {
             resolve();
           } else {
@@ -66,9 +66,8 @@ export default function StreetView({
       .then(() => {
         if (!panoramaRef.current) return;
 
-        // Criar panorama do Street View
-        const panorama = new google.maps.StreetViewPanorama(panoramaRef.current, {
-          position: { lat: latitude, lng: longitude },
+        // Configuração base do panorama
+        const panoramaOptions: google.maps.StreetViewPanoramaOptions = {
           pov: {
             heading: heading,
             pitch: pitch,
@@ -77,43 +76,50 @@ export default function StreetView({
           visible: true,
           enableCloseButton: false,
           showRoadLabels: false,
-          fullscreenControl: false,
+          fullscreenControl: true,
           panControl: true,
           zoomControl: true,
           addressControl: false,
           linksControl: true, // Permite navegação clicando nas setas
-        });
+        };
+
+        // Se tiver panoId, usar diretamente (mais preciso)
+        if (panoId) {
+          (panoramaOptions as google.maps.StreetViewPanoramaOptions & { pano?: string }).pano = panoId;
+        } else if (latitude && longitude) {
+          panoramaOptions.position = { lat: latitude, lng: longitude };
+        }
+
+        const panorama = new google.maps.StreetViewPanorama(
+          panoramaRef.current,
+          panoramaOptions
+        );
 
         panoramaInstanceRef.current = panorama;
 
-        // Verificar se há Street View disponível na posição
-        const service = new google.maps.StreetViewService();
-        service.getPanorama(
-          { location: { lat: latitude, lng: longitude }, radius: 50 },
-          (data, status) => {
-            if (status === 'OK' && data) {
-              // Se encontrar panorama, usar a posição exata do panorama
-              if (data.location.pano) {
+        // Se usar coordenadas, buscar o panorama mais próximo
+        if (!panoId && latitude && longitude) {
+          const service = new google.maps.StreetViewService();
+          service.getPanorama(
+            { location: { lat: latitude, lng: longitude }, radius: 50 },
+            (data, status) => {
+              if (status === 'OK' && data?.location?.pano) {
                 panorama.setPano(data.location.pano);
               }
-              panorama.setPosition(data.location.latLng);
-            } else {
-              console.warn('Street View não disponível nesta localização');
             }
-          }
-        );
+          );
+        }
       })
       .catch((error) => {
         console.error('Erro ao carregar Google Maps:', error);
       });
 
-    // Cleanup
     return () => {
       if (panoramaInstanceRef.current) {
         panoramaInstanceRef.current = null;
       }
     };
-  }, [latitude, longitude, heading, pitch, zoom]);
+  }, [latitude, longitude, panoId, heading, pitch, zoom]);
 
   return (
     <div

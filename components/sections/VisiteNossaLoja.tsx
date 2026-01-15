@@ -14,10 +14,6 @@ export default function VisiteNossaLoja() {
   const phoneNumber = storeInfo.phone?.replace(/\D/g, '') || '';
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
 
-  // Coordenadas da loja (extraídas do Google Maps)
-  const storeLatitude = -22.1589563;
-  const storeLongitude = -43.3044178;
-
   return (
     <section className="py-16 bg-[#0a0a0a]">
       <div className="container mx-auto px-4">
@@ -75,10 +71,9 @@ export default function VisiteNossaLoja() {
             {/* Street View da Fachada */}
             <div className="relative rounded-lg overflow-hidden border border-[#353535] bg-[#2d2d2d] aspect-[4/3]">
               <StreetView
-                latitude={storeLatitude}
-                longitude={storeLongitude}
-                heading={78.64}
-                pitch={6.84}
+                panoId="oEDrOqA1vb5IL6aVQV2Ogg"
+                heading={81.26}
+                pitch={7.76}
                 zoom={1}
                 className="w-full h-full"
               />
