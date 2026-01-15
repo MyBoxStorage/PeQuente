@@ -27,7 +27,6 @@ let globalTfPromise: Promise<any> | null = null;
  */
 function loadScript(src: string, maxRetries = 2): Promise<void> {
   return new Promise((resolve, reject) => {
-    // Verificar se já existe
     const existing = document.querySelector(`script[src="${src}"]`);
     if (existing) {
       resolve();
@@ -45,12 +44,12 @@ function loadScript(src: string, maxRetries = 2): Promise<void> {
       const timeout = setTimeout(() => {
         script.remove();
         if (attempts < maxRetries) {
-          console.warn(`[TF] Retry ${attempts}/${maxRetries}: ${src}`);
+          console.warn(`[TF] Retry ${attempts}/${maxRetries}`);
           tryLoad();
         } else {
           reject(new Error('Timeout ao carregar biblioteca'));
         }
-      }, 20000);
+      }, 25000);
       
       script.onload = () => {
         clearTimeout(timeout);
@@ -61,7 +60,6 @@ function loadScript(src: string, maxRetries = 2): Promise<void> {
         clearTimeout(timeout);
         script.remove();
         if (attempts < maxRetries) {
-          console.warn(`[TF] Retry ${attempts}/${maxRetries}: ${src}`);
           setTimeout(tryLoad, 500);
         } else {
           reject(new Error('Falha ao carregar biblioteca'));
@@ -76,7 +74,7 @@ function loadScript(src: string, maxRetries = 2): Promise<void> {
 }
 
 /**
- * Aguarda variável global estar disponível
+ * Aguarda condição ser verdadeira
  */
 function waitFor(check: () => boolean, timeout = 15000): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -99,16 +97,14 @@ function waitFor(check: () => boolean, timeout = 15000): Promise<void> {
 }
 
 /**
- * Inicializa TensorFlow.js com backend WebGL (singleton)
+ * Inicializa TensorFlow.js completo (singleton)
  */
 async function initTensorFlow(): Promise<any> {
-  // Retornar promise existente se já está inicializando
   if (globalTfPromise) {
     return globalTfPromise;
   }
   
-  // Retornar tf se já inicializado
-  if (globalTfInitialized && (window as any).tf) {
+  if (globalTfInitialized && (window as any).tf?.loadGraphModel) {
     return (window as any).tf;
   }
   
@@ -117,19 +113,25 @@ async function initTensorFlow(): Promise<any> {
     
     try {
       // 1. Carregar TensorFlow.js Core
-      console.log('[TF] 1/4 Carregando core...');
+      console.log('[TF] 1/5 Carregando core...');
       await loadScript('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core@4.17.0/dist/tf-core.min.js');
-      await waitFor(() => win.tf?.engine, 10000);
+      await waitFor(() => win.tf?.engine != null, 10000);
       
-      // 2. Carregar Backend WebGL
-      console.log('[TF] 2/4 Carregando WebGL backend...');
+      // 2. Carregar Converter (contém loadGraphModel)
+      console.log('[TF] 2/5 Carregando converter...');
+      await loadScript('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter@4.17.0/dist/tf-converter.min.js');
+      await waitFor(() => typeof win.tf?.loadGraphModel === 'function', 10000);
+      
+      // 3. Carregar Backend WebGL
+      console.log('[TF] 3/5 Carregando WebGL backend...');
       await loadScript('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl@4.17.0/dist/tf-backend-webgl.min.js');
       
       // Aguardar backend registrar
-      await new Promise(r => setTimeout(r, 500));
+      await new Promise(r => setTimeout(r, 300));
       await waitFor(() => {
         try {
-          return win.tf?.engine?.()?.registryFactory?.['webgl'] != null;
+          const registry = win.tf?.engine?.()?.registryFactory;
+          return registry?.['webgl'] != null;
         } catch {
           return false;
         }
@@ -137,36 +139,40 @@ async function initTensorFlow(): Promise<any> {
       
       const tf = win.tf;
       
-      // 3. Configurar backend
-      console.log('[TF] 3/4 Configurando backend...');
+      // 4. Configurar backend
+      console.log('[TF] 4/5 Configurando backend...');
       const registry = tf.engine().registryFactory;
-      const availableBackends = Object.keys(registry);
-      console.log('[TF] Backends disponíveis:', availableBackends);
+      const backends = Object.keys(registry);
+      console.log('[TF] Backends:', backends);
       
-      // Tentar WebGL primeiro, fallback para CPU
-      let backendSet = false;
+      let backendOk = false;
       
-      if (availableBackends.includes('webgl')) {
+      if (backends.includes('webgl')) {
         try {
           await tf.setBackend('webgl');
-          backendSet = true;
+          backendOk = true;
         } catch (e) {
-          console.warn('[TF] WebGL falhou:', e);
+          console.warn('[TF] WebGL falhou, tentando CPU');
         }
       }
       
-      if (!backendSet && availableBackends.includes('cpu')) {
+      if (!backendOk && backends.includes('cpu')) {
         await tf.setBackend('cpu');
-        backendSet = true;
+        backendOk = true;
       }
       
-      if (!backendSet) {
+      if (!backendOk) {
         throw new Error('Nenhum backend disponível');
       }
       
-      // 4. Aguardar ready
-      console.log('[TF] 4/4 Finalizando...');
+      // 5. Finalizar
+      console.log('[TF] 5/5 Finalizando...');
       await tf.ready();
+      
+      // Verificar funções essenciais
+      if (typeof tf.loadGraphModel !== 'function') {
+        throw new Error('loadGraphModel não disponível');
+      }
       
       globalTfInitialized = true;
       console.log('[TF] ✅ Pronto! Backend:', tf.getBackend());
@@ -195,7 +201,7 @@ async function loadPoseDetection(): Promise<any> {
   console.log('[Pose] Carregando API...');
   await loadScript('https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.1.0/dist/pose-detection.min.js');
   
-  await waitFor(() => win.poseDetection?.createDetector != null, 10000);
+  await waitFor(() => win.poseDetection?.createDetector != null, 15000);
   
   return win.poseDetection;
 }
@@ -227,7 +233,7 @@ export function useMediaPipePose(): UseMediaPipePoseReturn {
         const canvas = document.createElement('canvas');
         const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
         if (!gl) {
-          throw new Error('WebGL não suportado neste dispositivo');
+          throw new Error('WebGL não suportado');
         }
 
         // Inicializar TensorFlow.js
@@ -239,7 +245,7 @@ export function useMediaPipePose(): UseMediaPipePoseReturn {
         if (!mountedRef.current) return;
 
         // Criar detector
-        console.log('[Pose] Criando detector BlazePose...');
+        console.log('[Pose] Criando detector...');
         const model = poseDetection.SupportedModels.BlazePose;
         
         const det = await poseDetection.createDetector(model, {
