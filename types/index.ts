@@ -97,3 +97,19 @@ export interface BlogPost {
   publishedAt: string;
   category?: string;
 }
+
+export interface ArTryOnProps {
+  isOpen: boolean;
+  onClose: () => void;
+  modelUrl?: string; // Opcional - para compatibilidade com modelo único
+  modelUrlLeft?: string; // URL do modelo do pé esquerdo
+  modelUrlRight?: string; // URL do modelo do pé direito
+  productName: string;
+  productId: string;
+  productPrice: number;
+  productSlug: string;
+  productImage: string;
+  productBrand: string;
+  sizes?: string[];
+  colors?: string[];
+}

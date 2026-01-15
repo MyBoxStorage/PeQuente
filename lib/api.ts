@@ -78,3 +78,21 @@ export function getBrandBySlug(slug: string): Brand | undefined {
 export function getStoreInfo(): StoreInfo {
   return storeInfoData as StoreInfo;
 }
+
+/**
+ * Lista de produtos que têm modelos 3D disponíveis para o provador virtual
+ * Baseado nos arquivos .glb disponíveis em /public/models/
+ */
+const PRODUCTS_WITH_3D_MODELS: string[] = [
+  'tenis-adidas-adizero-drive-rc-masculino',
+  // Adicione mais slugs de produtos que têm modelos 3D aqui
+];
+
+/**
+ * Retorna produtos que têm modelos 3D disponíveis para o provador virtual
+ */
+export function getProductsWith3DModels(): Product[] {
+  return (productsData as Product[]).filter(
+    product => product.active && PRODUCTS_WITH_3D_MODELS.includes(product.slug)
+  );
+}

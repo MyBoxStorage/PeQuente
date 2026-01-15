@@ -1,14 +1,23 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Suspense, lazy } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, ShoppingBag } from 'lucide-react';
 import { Product } from '@/types';
-import { formatPrice, formatInstallment } from '@/lib/utils';
+import { formatPrice, formatInstallment, getModelUrls } from '@/lib/utils';
 import { useCartStore } from '@/store/cartStore';
 import { useToast } from '@/components/ui/use-toast';
+
+const LazyArTryOn = lazy(() => import('./ArTryOn'));
+
+// Declaração global para window.gtag
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
 
 interface ProductCardProps {
   product: Product;
@@ -20,6 +29,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [flipStage, setFlipStage] = useState('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [arOpen, setArOpen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLUListElement>(null);
   const addItem = useCartStore((state) => state.addItem);
@@ -112,6 +122,21 @@ export default function ProductCard({ product }: ProductCardProps) {
     }
   };
 
+  const handleTryOnOpen = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setArOpen(true);
+    
+    // Analytics event
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'try_on_button_click', {
+        event_category: 'AR',
+        event_label: product.name,
+        product_id: product.id,
+      });
+    }
+  };
+
   useEffect(() => {
     if (carouselRef.current && isFlipped) {
       carouselRef.current.style.left = `-${currentImageIndex * 100}%`;
@@ -191,16 +216,25 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <p>{product.brand}</p>
               </div>
             </Link>
-            {/* Botão Adicionar ao Carrinho */}
-            <button
-              onClick={handleAddToCart}
-              disabled={product.stock === 0}
-              className="mt-3 w-full bg-[#FF0000] hover:bg-[#FF0000]/90 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold py-2 px-4 rounded-lg transition flex items-center justify-center gap-2 text-sm"
-              aria-label={`Adicionar ${product.name} ao carrinho`}
-            >
-              <ShoppingBag size={16} />
-              {product.stock > 0 ? 'Adicionar ao Carrinho' : 'Indisponível'}
-            </button>
+            {/* Botões de Ação */}
+            <div className="mt-3 flex gap-2">
+              <button
+                onClick={handleAddToCart}
+                disabled={product.stock === 0}
+                className="flex-1 bg-[#FF0000] hover:bg-[#FF0000]/90 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold py-2 px-4 rounded-lg transition flex items-center justify-center gap-2 text-sm"
+                aria-label={`Adicionar ${product.name} ao carrinho`}
+              >
+                <ShoppingBag size={16} />
+                {product.stock > 0 ? 'Adicionar ao Carrinho' : 'Indisponível'}
+              </button>
+              <button
+                onClick={handleTryOnOpen}
+                className="bg-[#FF0000] hover:bg-[#FF0000]/90 text-white font-semibold py-2 px-4 rounded-lg transition text-sm whitespace-nowrap"
+                aria-label={`Provar virtualmente ${product.name}`}
+              >
+                Provar AR
+              </button>
+            </div>
           </div>
         </div>
 
@@ -269,6 +303,26 @@ export default function ProductCard({ product }: ProductCardProps) {
           </button>
         </div>
       </div>
+
+      {/* Modal ArTryOn */}
+      {arOpen && (
+        <Suspense fallback={<div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0a0a] text-white">Carregando AR...</div>}>
+          <LazyArTryOn
+            isOpen={arOpen}
+            onClose={() => setArOpen(false)}
+            modelUrlLeft={getModelUrls(product.slug).left}
+            modelUrlRight={getModelUrls(product.slug).right}
+            productName={product.name}
+            productId={product.id}
+            productPrice={product.price}
+            productSlug={product.slug}
+            productImage={product.images[0] || ''}
+            productBrand={product.brand}
+            sizes={product.sizes || []}
+            colors={product.specs?.color || []}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }

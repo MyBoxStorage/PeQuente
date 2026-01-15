@@ -1,13 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense, lazy } from 'react';
 import { Product } from '@/types';
-import { formatPrice, formatInstallment } from '@/lib/utils';
+import { formatPrice, formatInstallment, getModelUrls } from '@/lib/utils';
 import { useCartStore } from '@/store/cartStore';
 import { useToast } from '@/components/ui/use-toast';
 import { ShoppingBag, Heart, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import RetireHoje from './RetireHoje';
+
+const LazyArTryOn = lazy(() => import('@/components/Products/ArTryOn'));
+
+// Declaração global para window.gtag
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
 
 interface ProductDetailsProps {
   product: Product;
@@ -18,6 +27,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     product.sizes && product.sizes.length > 0 ? product.sizes[0] : undefined
   );
   const [quantity, setQuantity] = useState(1);
+  const [arOpen, setArOpen] = useState(false);
   const addItem = useCartStore((state) => state.addItem);
   const { toast } = useToast();
 
@@ -48,7 +58,21 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     });
   };
 
+  const handleTryOnOpen = () => {
+    setArOpen(true);
+    
+    // Analytics event
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'try_on_button_click', {
+        event_category: 'AR',
+        event_label: product.name,
+        product_id: product.id,
+      });
+    }
+  };
+
   return (
+    <>
     <div className="bg-[#1a1a1a] rounded-lg p-8 border border-[#252525]">
       {/* Badges */}
       <div className="flex gap-2 mb-4 flex-wrap">
@@ -151,6 +175,13 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       {/* Botões de Ação */}
       <div className="space-y-3 mb-6">
         <button
+          onClick={handleTryOnOpen}
+          className="w-full bg-[#FF0000] hover:bg-[#FF0000]/90 text-white font-bold py-4 px-6 rounded-lg transition flex items-center justify-center gap-2"
+          aria-label={`Provar virtualmente ${product.name}`}
+        >
+          Provar Virtualmente
+        </button>
+        <button
           onClick={handleAddToCart}
           disabled={product.stock === 0}
           className="w-full bg-[#FF0000] hover:bg-[#FF0000]/90 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold py-4 px-6 rounded-lg transition flex items-center justify-center gap-2"
@@ -187,5 +218,26 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       {/* Seção Retire Hoje */}
       {product.stock > 0 && <RetireHoje />}
     </div>
+
+    {/* Modal ArTryOn */}
+    {arOpen && (
+      <Suspense fallback={<div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0a0a] text-white">Carregando AR...</div>}>
+        <LazyArTryOn
+          isOpen={arOpen}
+          onClose={() => setArOpen(false)}
+          modelUrlLeft={getModelUrls(product.slug).left}
+          modelUrlRight={getModelUrls(product.slug).right}
+          productName={product.name}
+          productId={product.id}
+          productPrice={product.price}
+          productSlug={product.slug}
+          productImage={product.images[0] || ''}
+          productBrand={product.brand}
+          sizes={product.sizes || []}
+          colors={product.specs?.color || []}
+        />
+      </Suspense>
+    )}
+    </>
   );
 }

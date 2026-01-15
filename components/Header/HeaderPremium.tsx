@@ -206,6 +206,16 @@ export default function HeaderPremium() {
             </Link>
 
             <Link 
+              href="/provador-virtual"
+              className={`hover:text-[#FF0000] hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#FF0000] focus:ring-offset-2 rounded px-2 ${
+                pathname === '/provador-virtual' ? 'text-[#FF0000]' : ''
+              }`}
+              prefetch
+            >
+              Provador Virtual
+            </Link>
+
+            <Link 
               href="/contato"
               className={`hover:text-[#FF0000] hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#FF0000] focus:ring-offset-2 rounded px-2 ${
                 pathname === '/contato' ? 'text-[#FF0000]' : ''
@@ -316,6 +326,15 @@ export default function HeaderPremium() {
                 className="block py-2 px-4 rounded hover:bg-gray-50 hover:text-[#FF0000] transition-colors text-gray-800"
               >
                 Promoções
+              </Link>
+              <Link
+                href="/provador-virtual"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block py-2 px-4 rounded hover:bg-gray-50 hover:text-[#FF0000] transition-colors ${
+                  pathname === '/provador-virtual' ? 'text-[#FF0000] font-semibold' : 'text-gray-800'
+                }`}
+              >
+                Provador Virtual
               </Link>
               <Link
                 href="/contato"

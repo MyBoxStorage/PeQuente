@@ -27,3 +27,13 @@ export function formatInstallment(price: number, installments: number = 10): str
   const installmentPrice = price / installments;
   return `${installments}X ${formatPrice(installmentPrice)}`;
 }
+
+/**
+ * Gera URLs dos modelos 3D (pé esquerdo e direito) baseado no slug do produto
+ */
+export function getModelUrls(slug: string): { left: string; right: string } {
+  return {
+    left: `/models/${slug}-left.glb`,
+    right: `/models/${slug}-right.glb`,
+  };
+}
