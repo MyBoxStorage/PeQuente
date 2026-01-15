@@ -108,10 +108,10 @@ export default function ModelViewerAR({
     modelViewer.setAttribute('environment-image', 'neutral');
     // Remover skybox-height (pesado)
     
-    // LOADING OTIMIZADO
-    modelViewer.setAttribute('loading', 'lazy'); // Lazy para não bloquear
-    modelViewer.setAttribute('reveal', 'interaction'); // Revelar ao interagir
-    modelViewer.setAttribute('poster', productImage); // Mostra imagem enquanto carrega
+    // LOADING - Carregar imediatamente
+    modelViewer.setAttribute('loading', 'eager'); // Carrega logo ao abrir
+    modelViewer.setAttribute('reveal', 'auto'); // Mostra automaticamente
+    modelViewer.setAttribute('poster', productImage); // Imagem enquanto carrega
     
     // ESTILOS CSS - Fundo gradiente elegante igual Amazon
     modelViewer.style.width = '100%';
