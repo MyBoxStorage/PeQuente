@@ -29,11 +29,20 @@ export function formatInstallment(price: number, installments: number = 10): str
 }
 
 /**
- * Gera URLs dos modelos 3D (pé esquerdo e direito) baseado no slug do produto
+ * Gera URL do modelo 3D do par de tênis baseado no slug do produto
  */
-export function getModelUrls(slug: string): { left: string; right: string } {
-  return {
-    left: `/models/${slug}-left.glb`,
-    right: `/models/${slug}-right.glb`,
+export function getModel3DUrl(slug: string): string | null {
+  // Mapeamento de produtos com modelos 3D disponíveis
+  const PRODUCTS_WITH_3D: Record<string, string> = {
+    'tenis-adidas-adizero-drive-rc-masculino': '/models/par-3d-v1.glb',
   };
+  
+  return PRODUCTS_WITH_3D[slug] || null;
+}
+
+/**
+ * Verifica se um produto tem modelo 3D disponível
+ */
+export function hasModel3D(slug: string): boolean {
+  return getModel3DUrl(slug) !== null;
 }

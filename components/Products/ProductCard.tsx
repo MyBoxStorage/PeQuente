@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, ShoppingBag } from 'lucide-react';
 import { Product } from '@/types';
-import { formatPrice, formatInstallment, getModelUrls } from '@/lib/utils';
+import { formatPrice, formatInstallment, getModel3DUrl, hasModel3D } from '@/lib/utils';
 import { useCartStore } from '@/store/cartStore';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -221,13 +221,15 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <ShoppingBag size={16} />
                 {product.stock > 0 ? 'Adicionar ao Carrinho' : 'Indisponível'}
               </button>
-              <button
-                onClick={handleTryOnOpen}
-                className="bg-[#FF0000] hover:bg-[#FF0000]/90 text-white font-semibold py-2 px-4 rounded-lg transition text-sm whitespace-nowrap"
-                aria-label={`Provar virtualmente ${product.name}`}
-              >
-                Ver em 3D
-              </button>
+              {hasModel3D(product.slug) && (
+                <button
+                  onClick={handleTryOnOpen}
+                  className="bg-[#FF0000] hover:bg-[#FF0000]/90 text-white font-semibold py-2 px-4 rounded-lg transition text-sm whitespace-nowrap"
+                  aria-label={`Ver ${product.name} em 3D`}
+                >
+                  Ver em 3D
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -299,13 +301,12 @@ export default function ProductCard({ product }: ProductCardProps) {
       </div>
 
       {/* Modal ModelViewerAR */}
-      {arOpen && (
+      {arOpen && getModel3DUrl(product.slug) && (
         <Suspense fallback={<div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 text-white"><div className="text-center"><div className="animate-spin rounded-full h-12 w-12 border-4 border-red-500 border-t-transparent mx-auto mb-4" /><p>Carregando visualização 3D...</p></div></div>}>
           <LazyModelViewerAR
             isOpen={arOpen}
             onClose={() => setArOpen(false)}
-            modelUrlLeft={getModelUrls(product.slug).left}
-            modelUrlRight={getModelUrls(product.slug).right}
+            modelUrl={getModel3DUrl(product.slug)!}
             productName={product.name}
             productId={product.id}
             productPrice={product.price}
@@ -313,7 +314,6 @@ export default function ProductCard({ product }: ProductCardProps) {
             productImage={product.images[0] || ''}
             productBrand={product.brand}
             sizes={product.sizes || []}
-            colors={product.specs?.color || []}
           />
         </Suspense>
       )}

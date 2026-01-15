@@ -2,7 +2,7 @@
 
 import { useState, Suspense, lazy } from 'react';
 import { Product } from '@/types';
-import { formatPrice, formatInstallment, getModelUrls } from '@/lib/utils';
+import { formatPrice, formatInstallment, getModel3DUrl, hasModel3D } from '@/lib/utils';
 import { useCartStore } from '@/store/cartStore';
 import { useToast } from '@/components/ui/use-toast';
 import { ShoppingBag, Heart, MapPin } from 'lucide-react';
@@ -168,13 +168,15 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
       {/* Botões de Ação */}
       <div className="space-y-3 mb-6">
-        <button
-          onClick={handleTryOnOpen}
-          className="w-full bg-[#FF0000] hover:bg-[#FF0000]/90 text-white font-bold py-4 px-6 rounded-lg transition flex items-center justify-center gap-2"
-          aria-label={`Provar virtualmente ${product.name}`}
-        >
-          🔲 Ver em 3D / AR
-        </button>
+        {hasModel3D(product.slug) && (
+          <button
+            onClick={handleTryOnOpen}
+            className="w-full bg-[#FF0000] hover:bg-[#FF0000]/90 text-white font-bold py-4 px-6 rounded-lg transition flex items-center justify-center gap-2"
+            aria-label={`Ver ${product.name} em 3D`}
+          >
+            🔲 Ver em 3D / Estante
+          </button>
+        )}
         <button
           onClick={handleAddToCart}
           disabled={product.stock === 0}
@@ -214,13 +216,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     </div>
 
     {/* Modal ModelViewerAR */}
-    {arOpen && (
+    {arOpen && getModel3DUrl(product.slug) && (
       <Suspense fallback={<div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 text-white"><div className="text-center"><div className="animate-spin rounded-full h-12 w-12 border-4 border-red-500 border-t-transparent mx-auto mb-4" /><p>Carregando visualização 3D...</p></div></div>}>
         <LazyModelViewerAR
           isOpen={arOpen}
           onClose={() => setArOpen(false)}
-          modelUrlLeft={getModelUrls(product.slug).left}
-          modelUrlRight={getModelUrls(product.slug).right}
+          modelUrl={getModel3DUrl(product.slug)!}
           productName={product.name}
           productId={product.id}
           productPrice={product.price}
@@ -228,7 +229,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           productImage={product.images[0] || ''}
           productBrand={product.brand}
           sizes={product.sizes || []}
-          colors={product.specs?.color || []}
         />
       </Suspense>
     )}

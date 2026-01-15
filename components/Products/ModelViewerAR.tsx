@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { X, ShoppingCart, MessageCircle, RotateCcw, Smartphone, Box, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ShoppingCart, MessageCircle, RotateCcw, Smartphone, Box } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { getStoreInfo } from '@/lib/api';
 import { useToast } from '@/components/ui/use-toast';
@@ -9,8 +9,7 @@ import { useToast } from '@/components/ui/use-toast';
 interface ModelViewerARProps {
   isOpen: boolean;
   onClose: () => void;
-  modelUrlLeft?: string;
-  modelUrlRight?: string;
+  modelUrl: string;
   productName: string;
   productId: string;
   productPrice: number;
@@ -18,14 +17,12 @@ interface ModelViewerARProps {
   productImage: string;
   productBrand: string;
   sizes?: string[];
-  colors?: string[];
 }
 
 export default function ModelViewerAR({
   isOpen,
   onClose,
-  modelUrlLeft,
-  modelUrlRight,
+  modelUrl,
   productName,
   productId,
   productPrice,
@@ -37,7 +34,6 @@ export default function ModelViewerAR({
   const [selectedSize, setSelectedSize] = useState<string>(sizes[0] || '40');
   const [loading, setLoading] = useState(true);
   const [arSupported, setArSupported] = useState(false);
-  const [currentModel, setCurrentModel] = useState<'left' | 'right' | 'both'>('both');
   const [arStatus, setArStatus] = useState<string>('');
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
@@ -61,18 +57,11 @@ export default function ModelViewerAR({
     script.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js';
     script.onload = () => setScriptLoaded(true);
     document.head.appendChild(script);
-
-    return () => {
-      // Não remover o script para evitar recarregamentos
-    };
   }, [isOpen]);
 
   // Criar model-viewer element dinamicamente
   useEffect(() => {
-    if (!isOpen || !scriptLoaded || !containerRef.current) return;
-
-    const modelUrl = currentModel === 'right' ? modelUrlRight : modelUrlLeft;
-    if (!modelUrl) return;
+    if (!isOpen || !scriptLoaded || !containerRef.current || !modelUrl) return;
 
     // Limpar container
     containerRef.current.innerHTML = '';
@@ -81,22 +70,41 @@ export default function ModelViewerAR({
     const modelViewer = document.createElement('model-viewer');
     modelViewer.setAttribute('src', modelUrl);
     modelViewer.setAttribute('alt', `Modelo 3D do ${productName}`);
+    
+    // AR
     modelViewer.setAttribute('ar', '');
     modelViewer.setAttribute('ar-modes', 'webxr scene-viewer quick-look');
-    modelViewer.setAttribute('ar-scale', 'fixed');
+    modelViewer.setAttribute('ar-scale', 'auto');
     modelViewer.setAttribute('ar-placement', 'floor');
+    
+    // Controles de câmera
     modelViewer.setAttribute('camera-controls', '');
     modelViewer.setAttribute('touch-action', 'pan-y');
+    
+    // Câmera inicial - vista frontal (olhando de frente para os tênis)
+    modelViewer.setAttribute('camera-orbit', '0deg 75deg 2.5m');
+    modelViewer.setAttribute('camera-target', '0m 0m 0m');
+    modelViewer.setAttribute('min-camera-orbit', 'auto auto 1m');
+    modelViewer.setAttribute('max-camera-orbit', 'auto auto 5m');
+    modelViewer.setAttribute('field-of-view', '30deg');
+    
+    // Auto-rotate suave
     modelViewer.setAttribute('auto-rotate', '');
-    modelViewer.setAttribute('auto-rotate-delay', '3000');
-    modelViewer.setAttribute('rotation-per-second', '30deg');
+    modelViewer.setAttribute('auto-rotate-delay', '5000');
+    modelViewer.setAttribute('rotation-per-second', '20deg');
+    modelViewer.setAttribute('interaction-prompt', 'none');
+    
+    // Iluminação e sombras
     modelViewer.setAttribute('shadow-intensity', '1');
-    modelViewer.setAttribute('shadow-softness', '0.5');
+    modelViewer.setAttribute('shadow-softness', '0.8');
     modelViewer.setAttribute('exposure', '1');
     modelViewer.setAttribute('environment-image', 'neutral');
+    
+    // Loading
     modelViewer.setAttribute('loading', 'eager');
     modelViewer.setAttribute('reveal', 'auto');
     
+    // Estilos
     modelViewer.style.width = '100%';
     modelViewer.style.height = '100%';
     modelViewer.style.backgroundColor = 'transparent';
@@ -118,7 +126,7 @@ export default function ModelViewerAR({
       setArStatus(customEvent.detail?.status || '');
     });
 
-    // Criar botão AR customizado
+    // Botão AR customizado
     const arButton = document.createElement('button');
     arButton.setAttribute('slot', 'ar-button');
     arButton.className = 'absolute bottom-4 left-1/2 -translate-x-1/2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full font-bold flex items-center gap-2 shadow-lg transition transform hover:scale-105';
@@ -127,7 +135,7 @@ export default function ModelViewerAR({
         <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
         <path d="M12 18h.01"/>
       </svg>
-      Ver em AR
+      Ver na sua Estante
     `;
     modelViewer.appendChild(arButton);
 
@@ -135,14 +143,14 @@ export default function ModelViewerAR({
 
     // Analytics
     if (typeof window !== 'undefined' && (window as Window & { gtag?: (...args: unknown[]) => void }).gtag) {
-      (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'model_viewer_open', {
-        event_category: 'AR',
+      (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'view_3d_model', {
+        event_category: '3D',
         event_label: productName,
         product_id: productId,
       });
     }
 
-  }, [isOpen, scriptLoaded, currentModel, modelUrlLeft, modelUrlRight, productName, productId]);
+  }, [isOpen, scriptLoaded, modelUrl, productName, productId]);
 
   // Detectar suporte a AR
   useEffect(() => {
@@ -188,7 +196,7 @@ export default function ModelViewerAR({
 
   const handleWhatsApp = useCallback(() => {
     const phone = storeInfo.phone?.replace(/\D/g, '') || '';
-    const msg = `Olá! Gostei do ${productName} tamanho ${selectedSize} que vi no provador virtual!`;
+    const msg = `Olá! Gostei do ${productName} tamanho ${selectedSize} que vi em 3D!`;
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
   }, [storeInfo.phone, productName, selectedSize]);
 
@@ -201,8 +209,6 @@ export default function ModelViewerAR({
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
-
-  const hasModel = modelUrlLeft || modelUrlRight;
 
   return (
     <div className="fixed inset-0 z-50 bg-gradient-to-b from-gray-900 to-black" role="dialog" aria-label="Visualizador 3D">
@@ -230,7 +236,7 @@ export default function ModelViewerAR({
 
       {/* Model Viewer Container */}
       <div className="absolute inset-0 pt-20 pb-48">
-        {hasModel ? (
+        {modelUrl ? (
           <>
             {/* Loading overlay */}
             {loading && (
@@ -256,51 +262,11 @@ export default function ModelViewerAR({
         )}
       </div>
 
-      {/* Seletor de modelo (se tiver ambos) */}
-      {modelUrlLeft && modelUrlRight && (
-        <div className="absolute top-24 left-1/2 -translate-x-1/2 z-10">
-          <div className="bg-black/60 backdrop-blur-lg rounded-full p-1 flex items-center gap-1">
-            <button
-              onClick={() => { setCurrentModel('left'); setLoading(true); }}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                currentModel === 'left'
-                  ? 'bg-red-600 text-white'
-                  : 'text-gray-300 hover:bg-white/10'
-              }`}
-            >
-              <ChevronLeft className="w-4 h-4 inline mr-1" />
-              Esquerdo
-            </button>
-            <button
-              onClick={() => { setCurrentModel('both'); setLoading(true); }}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                currentModel === 'both'
-                  ? 'bg-red-600 text-white'
-                  : 'text-gray-300 hover:bg-white/10'
-              }`}
-            >
-              Par
-            </button>
-            <button
-              onClick={() => { setCurrentModel('right'); setLoading(true); }}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                currentModel === 'right'
-                  ? 'bg-red-600 text-white'
-                  : 'text-gray-300 hover:bg-white/10'
-              }`}
-            >
-              Direito
-              <ChevronRight className="w-4 h-4 inline ml-1" />
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Status do AR */}
       {arStatus && (
-        <div className="absolute top-36 left-1/2 -translate-x-1/2 bg-blue-600/80 backdrop-blur text-white px-4 py-2 rounded-full text-sm z-10">
-          {arStatus === 'session-started' && '🎯 AR ativo - Mova o celular para encontrar o chão'}
-          {arStatus === 'object-placed' && '✅ Tênis posicionado! Mova-se para ver de diferentes ângulos'}
+        <div className="absolute top-24 left-1/2 -translate-x-1/2 bg-blue-600/80 backdrop-blur text-white px-4 py-2 rounded-full text-sm z-10">
+          {arStatus === 'session-started' && '🎯 AR ativo - Aponte para uma superfície'}
+          {arStatus === 'object-placed' && '✅ Posicionado! Mova e redimensione como quiser'}
           {arStatus === 'failed' && '❌ AR não disponível neste dispositivo'}
         </div>
       )}
@@ -314,12 +280,13 @@ export default function ModelViewerAR({
           </p>
           {arSupported && (
             <p className="text-green-400 text-xs">
-              ✨ AR disponível! Clique em &quot;Ver em AR&quot; para visualizar em seu ambiente
+              <Smartphone className="w-3 h-3 inline mr-1" />
+              Clique em &quot;Ver na sua Estante&quot; para visualizar no seu ambiente
             </p>
           )}
           {!arSupported && (
             <p className="text-yellow-400 text-xs">
-              ⚠️ AR não suportado neste dispositivo. Use a visualização 3D acima.
+              ⚠️ AR não suportado. Use a visualização 3D acima.
             </p>
           )}
         </div>
