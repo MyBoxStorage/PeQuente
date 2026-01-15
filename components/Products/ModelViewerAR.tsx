@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { X, ShoppingCart, MessageCircle, RotateCcw, Smartphone, Box } from 'lucide-react';
+import { X, ShoppingCart, MessageCircle, RotateCcw, Smartphone, Box, Camera } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { getStoreInfo } from '@/lib/api';
 import { useToast } from '@/components/ui/use-toast';
@@ -33,14 +33,76 @@ export default function ModelViewerAR({
 }: ModelViewerARProps) {
   const [selectedSize, setSelectedSize] = useState<string>(sizes[0] || '40');
   const [loading, setLoading] = useState(true);
-  const [arSupported, setArSupported] = useState(false);
+  const [arSupported, setArSupported] = useState<boolean | null>(null);
   const [arStatus, setArStatus] = useState<string>('');
   const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [cameraPermission, setCameraPermission] = useState<'prompt' | 'granted' | 'denied'>('prompt');
+  const [isAndroid, setIsAndroid] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const modelViewerRef = useRef<HTMLElement | null>(null);
   const addItem = useCartStore((state) => state.addItem);
   const { toast: showToast } = useToast();
   const storeInfo = getStoreInfo();
+
+  // Detectar plataforma
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const ua = navigator.userAgent;
+      setIsAndroid(/android/i.test(ua));
+      setIsIOS(/iPad|iPhone|iPod/.test(ua));
+    }
+  }, []);
+
+  // Verificar permissão da câmera
+  useEffect(() => {
+    const checkCameraPermission = async () => {
+      if (!isOpen) return;
+      
+      try {
+        // Verificar se a API de permissões está disponível
+        if ('permissions' in navigator) {
+          const result = await navigator.permissions.query({ name: 'camera' as PermissionName });
+          setCameraPermission(result.state as 'prompt' | 'granted' | 'denied');
+          
+          result.addEventListener('change', () => {
+            setCameraPermission(result.state as 'prompt' | 'granted' | 'denied');
+          });
+        }
+      } catch {
+        // Se não conseguir verificar, assume que precisa solicitar
+        setCameraPermission('prompt');
+      }
+    };
+
+    checkCameraPermission();
+  }, [isOpen]);
+
+  // Solicitar permissão da câmera
+  const requestCameraPermission = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      // Permissão concedida - parar o stream imediatamente
+      stream.getTracks().forEach(track => track.stop());
+      setCameraPermission('granted');
+      showToast({
+        title: '✅ Câmera liberada!',
+        description: 'Agora você pode usar o AR',
+        variant: 'success',
+      });
+      return true;
+    } catch (error) {
+      console.error('Erro ao solicitar câmera:', error);
+      setCameraPermission('denied');
+      showToast({
+        title: '❌ Câmera bloqueada',
+        description: 'Permita o acesso à câmera nas configurações do navegador',
+        variant: 'destructive',
+      });
+      return false;
+    }
+  };
 
   // Carregar script do model-viewer dinamicamente
   useEffect(() => {
@@ -66,14 +128,21 @@ export default function ModelViewerAR({
     // Limpar container
     containerRef.current.innerHTML = '';
 
+    // URL absoluta do modelo (necessária para AR)
+    const absoluteModelUrl = modelUrl.startsWith('http') 
+      ? modelUrl 
+      : `${window.location.origin}${modelUrl}`;
+
     // Criar model-viewer element
     const modelViewer = document.createElement('model-viewer');
-    modelViewer.setAttribute('src', modelUrl);
+    modelViewerRef.current = modelViewer;
+    
+    modelViewer.setAttribute('src', absoluteModelUrl);
     modelViewer.setAttribute('alt', `Modelo 3D do ${productName}`);
     
-    // AR
+    // AR - Priorizar scene-viewer (igual Amazon)
     modelViewer.setAttribute('ar', '');
-    modelViewer.setAttribute('ar-modes', 'webxr scene-viewer quick-look');
+    modelViewer.setAttribute('ar-modes', 'scene-viewer webxr quick-look');
     modelViewer.setAttribute('ar-scale', 'auto');
     modelViewer.setAttribute('ar-placement', 'floor');
     
@@ -81,7 +150,7 @@ export default function ModelViewerAR({
     modelViewer.setAttribute('camera-controls', '');
     modelViewer.setAttribute('touch-action', 'pan-y');
     
-    // Câmera inicial - vista frontal (olhando de frente para os tênis)
+    // Câmera inicial - vista frontal
     modelViewer.setAttribute('camera-orbit', '0deg 75deg 2.5m');
     modelViewer.setAttribute('camera-target', '0m 0m 0m');
     modelViewer.setAttribute('min-camera-orbit', 'auto auto 1m');
@@ -123,23 +192,47 @@ export default function ModelViewerAR({
 
     modelViewer.addEventListener('ar-status', (e: Event) => {
       const customEvent = e as CustomEvent;
-      setArStatus(customEvent.detail?.status || '');
+      const status = customEvent.detail?.status || '';
+      setArStatus(status);
+      
+      if (status === 'failed') {
+        showToast({
+          title: '⚠️ AR não disponível',
+          description: 'Use o botão alternativo abaixo',
+          variant: 'destructive',
+        });
+      }
     });
 
-    // Botão AR customizado
+    // Verificar se AR está disponível
+    modelViewer.addEventListener('ar-tracking', () => {
+      setArSupported(true);
+    });
+
+    // Botão AR do model-viewer (slot)
     const arButton = document.createElement('button');
     arButton.setAttribute('slot', 'ar-button');
-    arButton.className = 'absolute bottom-4 left-1/2 -translate-x-1/2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full font-bold flex items-center gap-2 shadow-lg transition transform hover:scale-105';
-    arButton.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
-        <path d="M12 18h.01"/>
-      </svg>
-      Ver na sua Estante
-    `;
+    arButton.className = 'hidden'; // Escondemos o botão nativo e usamos o nosso próprio
     modelViewer.appendChild(arButton);
 
     containerRef.current.appendChild(modelViewer);
+
+    // Verificar suporte AR após carregar
+    setTimeout(() => {
+      // @ts-expect-error model-viewer custom element
+      if (modelViewer.canActivateAR) {
+        setArSupported(true);
+      } else {
+        // Assume que Android com Chrome suporta Scene Viewer
+        if (isAndroid) {
+          setArSupported(true);
+        } else if (isIOS) {
+          setArSupported(true);
+        } else {
+          setArSupported(false);
+        }
+      }
+    }, 1000);
 
     // Analytics
     if (typeof window !== 'undefined' && (window as Window & { gtag?: (...args: unknown[]) => void }).gtag) {
@@ -150,32 +243,59 @@ export default function ModelViewerAR({
       });
     }
 
-  }, [isOpen, scriptLoaded, modelUrl, productName, productId]);
+  }, [isOpen, scriptLoaded, modelUrl, productName, productId, isAndroid, isIOS, showToast]);
 
-  // Detectar suporte a AR
-  useEffect(() => {
-    const checkARSupport = async () => {
-      const isAndroid = /android/i.test(navigator.userAgent);
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-      
-      if (isIOS) {
-        setArSupported(true);
-      } else if (isAndroid) {
-        if ('xr' in navigator) {
-          try {
-            const supported = await (navigator as Navigator & { xr?: { isSessionSupported: (mode: string) => Promise<boolean> } }).xr?.isSessionSupported('immersive-ar');
-            setArSupported(!!supported);
-          } catch {
-            setArSupported(false);
-          }
-        }
-      }
-    };
-
-    if (isOpen) {
-      checkARSupport();
+  // Função para abrir AR via model-viewer
+  const handleOpenAR = async () => {
+    // Solicitar permissão de câmera primeiro se necessário
+    if (cameraPermission === 'prompt') {
+      const granted = await requestCameraPermission();
+      if (!granted) return;
     }
-  }, [isOpen]);
+
+    if (cameraPermission === 'denied') {
+      showToast({
+        title: '📷 Câmera bloqueada',
+        description: 'Permita o acesso à câmera nas configurações',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    // Tentar ativar AR via model-viewer
+    if (modelViewerRef.current) {
+      try {
+        // @ts-expect-error model-viewer custom element method
+        await modelViewerRef.current.activateAR();
+      } catch (error) {
+        console.error('Erro ao ativar AR:', error);
+        // Fallback para Scene Viewer direto
+        openSceneViewerDirect();
+      }
+    }
+  };
+
+  // Fallback: Abrir Scene Viewer diretamente (Android)
+  const openSceneViewerDirect = () => {
+    const absoluteModelUrl = modelUrl.startsWith('http') 
+      ? modelUrl 
+      : `${window.location.origin}${modelUrl}`;
+
+    if (isAndroid) {
+      // Intent URL para Scene Viewer do Google
+      const sceneViewerUrl = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(absoluteModelUrl)}&mode=ar_preferred&title=${encodeURIComponent(productName)}#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(window.location.href)};end;`;
+      
+      window.location.href = sceneViewerUrl;
+    } else if (isIOS) {
+      // Quick Look para iOS (precisa de arquivo .usdz ou .reality)
+      // Como temos .glb, o model-viewer já deve ter tentado converter
+      showToast({
+        title: '📱 iOS detectado',
+        description: 'O AR será aberto automaticamente pelo sistema',
+        variant: 'default',
+      });
+    }
+  };
 
   const handleAddToCart = useCallback(() => {
     addItem({
@@ -234,8 +354,29 @@ export default function ModelViewerAR({
         </div>
       </div>
 
+      {/* Solicitar permissão de câmera */}
+      {cameraPermission === 'prompt' && (isAndroid || isIOS) && (
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 z-30 w-[90%] max-w-sm">
+          <div className="bg-blue-600 rounded-lg p-4 shadow-lg">
+            <div className="flex items-start gap-3">
+              <Camera className="w-6 h-6 text-white flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-white font-medium text-sm">Libere a câmera para AR</p>
+                <p className="text-blue-100 text-xs mt-1">Permita o acesso para ver o tênis no seu ambiente</p>
+                <button
+                  onClick={requestCameraPermission}
+                  className="mt-3 bg-white text-blue-600 px-4 py-2 rounded-lg text-sm font-bold hover:bg-blue-50 transition"
+                >
+                  Liberar Câmera
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Model Viewer Container */}
-      <div className="absolute inset-0 pt-20 pb-48">
+      <div className="absolute inset-0 pt-20 pb-56">
         {modelUrl ? (
           <>
             {/* Loading overlay */}
@@ -267,26 +408,46 @@ export default function ModelViewerAR({
         <div className="absolute top-24 left-1/2 -translate-x-1/2 bg-blue-600/80 backdrop-blur text-white px-4 py-2 rounded-full text-sm z-10">
           {arStatus === 'session-started' && '🎯 AR ativo - Aponte para uma superfície'}
           {arStatus === 'object-placed' && '✅ Posicionado! Mova e redimensione como quiser'}
-          {arStatus === 'failed' && '❌ AR não disponível neste dispositivo'}
+          {arStatus === 'failed' && '❌ Tentando método alternativo...'}
+        </div>
+      )}
+
+      {/* Botão AR grande e visível */}
+      {(isAndroid || isIOS) && !loading && (
+        <div className="absolute bottom-56 left-1/2 -translate-x-1/2 z-10">
+          <button
+            onClick={handleOpenAR}
+            className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-full font-bold flex items-center gap-3 shadow-2xl transition transform hover:scale-105 active:scale-95"
+          >
+            <Smartphone className="w-6 h-6" />
+            <span className="text-lg">Ver na sua Estante</span>
+          </button>
+          <p className="text-center text-gray-400 text-xs mt-2">
+            Posicione o tênis em qualquer lugar
+          </p>
         </div>
       )}
 
       {/* Instruções */}
-      <div className="absolute bottom-52 left-1/2 -translate-x-1/2 z-10">
-        <div className="bg-black/60 backdrop-blur-lg rounded-lg px-4 py-3 text-center max-w-sm">
+      <div className="absolute bottom-48 left-1/2 -translate-x-1/2 z-10 w-[90%] max-w-sm">
+        <div className="bg-black/60 backdrop-blur-lg rounded-lg px-4 py-3 text-center">
           <p className="text-white text-sm mb-1">
             <RotateCcw className="w-4 h-4 inline mr-2" />
             Arraste para girar • Pinça para zoom
           </p>
-          {arSupported && (
+          {arSupported === true && (
             <p className="text-green-400 text-xs">
-              <Smartphone className="w-3 h-3 inline mr-1" />
-              Clique em &quot;Ver na sua Estante&quot; para visualizar no seu ambiente
+              ✅ AR disponível no seu dispositivo
             </p>
           )}
-          {!arSupported && (
+          {arSupported === false && (
             <p className="text-yellow-400 text-xs">
-              ⚠️ AR não suportado. Use a visualização 3D acima.
+              ⚠️ AR não suportado - use a visualização 3D acima
+            </p>
+          )}
+          {arSupported === null && (isAndroid || isIOS) && (
+            <p className="text-blue-400 text-xs">
+              🔍 Verificando suporte a AR...
             </p>
           )}
         </div>
@@ -294,7 +455,7 @@ export default function ModelViewerAR({
 
       {/* Barra inferior */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/95 to-transparent z-20">
-        <div className="max-w-4xl mx-auto p-4 space-y-4">
+        <div className="max-w-4xl mx-auto p-4 space-y-3">
           {/* Seletor de tamanho */}
           {sizes.length > 0 && (
             <div className="flex items-center justify-center gap-2 flex-wrap">
