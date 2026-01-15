@@ -41,6 +41,17 @@ const nextConfig: NextConfig = {
   compress: true,
   async headers() {
     return [
+      // Cache agressivo para modelos 3D
+      {
+        source: '/models/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable', // 1 ano
+          },
+        ],
+      },
+      // Headers gerais
       {
         source: '/:path*',
         headers: [

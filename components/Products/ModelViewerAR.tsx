@@ -87,12 +87,12 @@ export default function ModelViewerAR({
     modelViewer.setAttribute('ar-scale', 'auto');
     modelViewer.setAttribute('ar-placement', 'floor');
     
-    // CONTROLES FLUIDOS - Estilo Amazon
+    // CONTROLES FLUIDOS - Otimizados para performance
     modelViewer.setAttribute('camera-controls', '');
     modelViewer.setAttribute('touch-action', 'pan-y');
     modelViewer.setAttribute('interaction-prompt', 'auto');
     modelViewer.setAttribute('interaction-prompt-style', 'wiggle');
-    modelViewer.setAttribute('interpolation-decay', '200');
+    modelViewer.setAttribute('interpolation-decay', '100'); // Mais responsivo
     
     // CÂMERA - Vista frontal elegante
     modelViewer.setAttribute('camera-orbit', '0deg 75deg 105%');
@@ -101,17 +101,17 @@ export default function ModelViewerAR({
     modelViewer.setAttribute('max-field-of-view', '45deg');
     modelViewer.setAttribute('min-field-of-view', '20deg');
     
-    // ILUMINAÇÃO PREMIUM
-    modelViewer.setAttribute('shadow-intensity', '1');
-    modelViewer.setAttribute('shadow-softness', '1');
+    // ILUMINAÇÃO LEVE (performance otimizada)
+    modelViewer.setAttribute('shadow-intensity', '0.5'); // Sombra mais leve
+    // Remover shadow-softness (pesado)
     modelViewer.setAttribute('exposure', '1');
     modelViewer.setAttribute('environment-image', 'neutral');
-    modelViewer.setAttribute('skybox-height', '1.5m');
+    // Remover skybox-height (pesado)
     
-    // LOADING
-    modelViewer.setAttribute('loading', 'eager');
-    modelViewer.setAttribute('reveal', 'auto');
-    modelViewer.setAttribute('poster', productImage);
+    // LOADING OTIMIZADO
+    modelViewer.setAttribute('loading', 'lazy'); // Lazy para não bloquear
+    modelViewer.setAttribute('reveal', 'interaction'); // Revelar ao interagir
+    modelViewer.setAttribute('poster', productImage); // Mostra imagem enquanto carrega
     
     // ESTILOS CSS - Fundo gradiente elegante igual Amazon
     modelViewer.style.width = '100%';
