@@ -76,6 +76,12 @@ export default function ModelViewerAR({
     modelViewer.setAttribute('src', modelUrl);
     modelViewer.setAttribute('alt', `Modelo 3D do ${productName}`);
     
+    // DESABILITAR AR NATIVO COMPLETAMENTE (evita pedido de download do Google App)
+    modelViewer.removeAttribute('ar');
+    modelViewer.removeAttribute('ar-modes');
+    modelViewer.removeAttribute('ar-scale');
+    modelViewer.removeAttribute('ar-placement');
+    
     // Controles de câmera - ROTAÇÃO LIVRE 360°
     modelViewer.setAttribute('camera-controls', '');
     modelViewer.setAttribute('touch-action', 'none');
