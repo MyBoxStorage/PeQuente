@@ -34,8 +34,10 @@ export default function ModelViewerAR({
   const [selectedSize, setSelectedSize] = useState<string>(sizes[0] || '40');
   const [loading, setLoading] = useState(true);
   const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [canActivateAR, setCanActivateAR] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const modelViewerRef = useRef<HTMLElement | null>(null);
   const addItem = useCartStore((state) => state.addItem);
   const { toast: showToast } = useToast();
   const storeInfo = getStoreInfo();
@@ -74,6 +76,8 @@ export default function ModelViewerAR({
       : `${window.location.origin}${modelUrl}`;
 
     const modelViewer = document.createElement('model-viewer');
+    modelViewerRef.current = modelViewer;
+    
     modelViewer.setAttribute('src', absoluteModelUrl);
     modelViewer.setAttribute('alt', `Modelo 3D do ${productName}`);
     
@@ -118,20 +122,24 @@ export default function ModelViewerAR({
     modelViewer.style.setProperty('--progress-bar-height', '3px');
 
     // Eventos
-    modelViewer.addEventListener('load', () => setLoading(false));
+    modelViewer.addEventListener('load', () => {
+      setLoading(false);
+      // Verificar se pode ativar AR
+      // @ts-expect-error model-viewer custom element
+      if (modelViewer.canActivateAR) {
+        setCanActivateAR(true);
+      } else if (isMobile) {
+        // Em mobile, assume que pode (Scene Viewer funciona mesmo sem detectar)
+        setCanActivateAR(true);
+      }
+    });
     modelViewer.addEventListener('error', () => setLoading(false));
 
-    // BOTÃO AR NATIVO - Estilo Amazon
+    // BOTÃO AR NATIVO ESCONDIDO (será ativado pelo nosso CTA)
     const arButton = document.createElement('button');
     arButton.setAttribute('slot', 'ar-button');
-    arButton.className = 'absolute bottom-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-full font-bold flex items-center gap-3 shadow-xl transition-all transform hover:scale-105 active:scale-95';
-    arButton.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-        <path d="m9 12 2 2 4-4"/>
-      </svg>
-      <span class="text-lg">Ver em AR</span>
-    `;
+    arButton.id = 'ar-button-hidden';
+    arButton.style.display = 'none'; // Escondido - usamos nosso próprio botão
     modelViewer.appendChild(arButton);
 
     containerRef.current.appendChild(modelViewer);
@@ -144,7 +152,33 @@ export default function ModelViewerAR({
         product_id: productId,
       });
     }
-  }, [isOpen, scriptLoaded, modelUrl, productName, productId, productImage]);
+  }, [isOpen, scriptLoaded, modelUrl, productName, productId, productImage, isMobile]);
+
+  // Função para ativar AR
+  const handleActivateAR = useCallback(async () => {
+    if (!modelViewerRef.current) return;
+    
+    try {
+      // @ts-expect-error model-viewer custom element method
+      await modelViewerRef.current.activateAR();
+      
+      // Analytics
+      if (typeof window !== 'undefined' && (window as Window & { gtag?: (...args: unknown[]) => void }).gtag) {
+        (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'activate_ar', {
+          event_category: 'AR',
+          event_label: productName,
+          product_id: productId,
+        });
+      }
+    } catch (error) {
+      console.error('Erro ao ativar AR:', error);
+      showToast({
+        title: '📱 AR não disponível',
+        description: 'Seu dispositivo pode não suportar AR',
+        variant: 'destructive',
+      });
+    }
+  }, [productName, productId, showToast]);
 
   const handleAddToCart = useCallback(() => {
     addItem({
@@ -230,15 +264,32 @@ export default function ModelViewerAR({
         )}
       </div>
 
-      {/* Instruções - Estilo Amazon */}
-      <div className="absolute bottom-48 left-1/2 -translate-x-1/2 z-20">
-        <div className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full px-6 py-2 shadow-lg">
-          <p className="text-gray-600 text-sm text-center">
-            👆 Arraste para girar • 🤏 Pinça para zoom
-            {isMobile && <span className="text-orange-500 font-medium"> • 📱 Toque em &quot;Ver em AR&quot;</span>}
-          </p>
+      {/* BOTÃO CTA - VER NA SUA ESTANTE */}
+      {isMobile && !loading && (
+        <div className="absolute bottom-48 left-1/2 -translate-x-1/2 z-20 w-[90%] max-w-sm">
+          <button
+            onClick={handleActivateAR}
+            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-4 px-6 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-xl transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <Smartphone className="w-6 h-6" />
+            <div className="text-left">
+              <span className="text-lg block">Ver na sua Estante</span>
+              <span className="text-xs opacity-80 font-normal">Toque para visualizar em AR</span>
+            </div>
+          </button>
         </div>
-      </div>
+      )}
+
+      {/* Desktop: mostrar instruções */}
+      {!isMobile && !loading && (
+        <div className="absolute bottom-48 left-1/2 -translate-x-1/2 z-20">
+          <div className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full px-6 py-2 shadow-lg">
+            <p className="text-gray-600 text-sm text-center">
+              👆 Arraste para girar • 🤏 Pinça para zoom
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Barra inferior - Estilo Amazon */}
       <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-20">
