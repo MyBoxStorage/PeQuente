@@ -12,9 +12,9 @@ interface StreetViewProps {
 
 export default function StreetView({
   panoId = 'oEDrOqA1vb5IL6aVQV2Ogg',
-  heading = 81.26,
-  pitch = 7.76,
-  zoom = 0.7820865974627469,
+  heading = 76.93,
+  pitch = 4.85,
+  zoom = 0.35,
   className = '',
 }: StreetViewProps) {
   const [isLoading, setIsLoading] = useState(true);
