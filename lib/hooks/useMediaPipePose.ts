@@ -4,7 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 
 // Tipos para o detector
 interface PoseDetector {
-  estimatePoses: (image: HTMLVideoElement | HTMLImageElement | HTMLCanvasElement, config?: any) => Promise<any[]>;
+  estimatePoses: (
+    image: HTMLVideoElement | HTMLImageElement | HTMLCanvasElement,
+    config?: { flipHorizontal?: boolean }
+  ) => Promise<any[]>;
   dispose: () => void;
   reset: () => void;
 }
@@ -15,207 +18,265 @@ interface UseMediaPipePoseReturn {
   error: string | null;
 }
 
-// URLs do CDN - Carregando módulos separados para evitar WebGPU
-const CDN_URLS = {
-  // TensorFlow.js Core (sem backends)
-  tfjsCore: 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core@4.17.0/dist/tf-core.min.js',
-  // Backend WebGL apenas (sem WebGPU)
-  tfjsWebgl: 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl@4.17.0/dist/tf-backend-webgl.min.js',
-  // Pose Detection API
-  poseDetection: 'https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.1.0/dist/pose-detection.min.js',
-};
-
-// Cache para evitar recarregar scripts
-const scriptsLoaded = new Set<string>();
-let tfInitialized = false;
+// Estado global para evitar múltiplas inicializações
+let globalTfInitialized = false;
+let globalTfPromise: Promise<any> | null = null;
 
 /**
- * Carrega um script dinamicamente
+ * Carrega um script dinamicamente com retry
  */
-function loadScript(src: string): Promise<void> {
+function loadScript(src: string, maxRetries = 2): Promise<void> {
   return new Promise((resolve, reject) => {
-    if (scriptsLoaded.has(src)) {
+    // Verificar se já existe
+    const existing = document.querySelector(`script[src="${src}"]`);
+    if (existing) {
       resolve();
       return;
     }
 
-    const existingScript = document.querySelector(`script[src="${src}"]`);
-    if (existingScript) {
-      scriptsLoaded.add(src);
-      resolve();
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.src = src;
-    script.async = true;
+    let attempts = 0;
     
-    const timeoutId = setTimeout(() => {
-      reject(new Error(`Timeout carregando script`));
-    }, 30000);
-    
-    script.onload = () => {
-      clearTimeout(timeoutId);
-      scriptsLoaded.add(src);
-      resolve();
+    const tryLoad = () => {
+      attempts++;
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      
+      const timeout = setTimeout(() => {
+        script.remove();
+        if (attempts < maxRetries) {
+          console.warn(`[TF] Retry ${attempts}/${maxRetries}: ${src}`);
+          tryLoad();
+        } else {
+          reject(new Error('Timeout ao carregar biblioteca'));
+        }
+      }, 20000);
+      
+      script.onload = () => {
+        clearTimeout(timeout);
+        resolve();
+      };
+      
+      script.onerror = () => {
+        clearTimeout(timeout);
+        script.remove();
+        if (attempts < maxRetries) {
+          console.warn(`[TF] Retry ${attempts}/${maxRetries}: ${src}`);
+          setTimeout(tryLoad, 500);
+        } else {
+          reject(new Error('Falha ao carregar biblioteca'));
+        }
+      };
+      
+      document.head.appendChild(script);
     };
     
-    script.onerror = () => {
-      clearTimeout(timeoutId);
-      reject(new Error(`Falha ao carregar script`));
-    };
-    
-    document.head.appendChild(script);
+    tryLoad();
   });
 }
 
 /**
- * Aguarda objeto global
+ * Aguarda variável global estar disponível
  */
-function waitForGlobal(name: string, timeout = 15000): Promise<any> {
+function waitFor(check: () => boolean, timeout = 15000): Promise<void> {
   return new Promise((resolve, reject) => {
-    const win = window as any;
-    
-    if (win[name]) {
-      resolve(win[name]);
+    if (check()) {
+      resolve();
       return;
     }
-
-    const startTime = Date.now();
-    const checkInterval = setInterval(() => {
-      if (win[name]) {
-        clearInterval(checkInterval);
-        resolve(win[name]);
-      } else if (Date.now() - startTime > timeout) {
-        clearInterval(checkInterval);
-        reject(new Error(`Timeout aguardando ${name}`));
+    
+    const start = Date.now();
+    const interval = setInterval(() => {
+      if (check()) {
+        clearInterval(interval);
+        resolve();
+      } else if (Date.now() - start > timeout) {
+        clearInterval(interval);
+        reject(new Error('Timeout'));
       }
-    }, 50);
+    }, 100);
   });
 }
 
 /**
- * Inicializa TensorFlow.js com backend WebGL
+ * Inicializa TensorFlow.js com backend WebGL (singleton)
  */
-async function initializeTensorFlow(): Promise<any> {
-  if (tfInitialized) {
+async function initTensorFlow(): Promise<any> {
+  // Retornar promise existente se já está inicializando
+  if (globalTfPromise) {
+    return globalTfPromise;
+  }
+  
+  // Retornar tf se já inicializado
+  if (globalTfInitialized && (window as any).tf) {
     return (window as any).tf;
   }
+  
+  globalTfPromise = (async () => {
+    const win = window as any;
+    
+    try {
+      // 1. Carregar TensorFlow.js Core
+      console.log('[TF] 1/4 Carregando core...');
+      await loadScript('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core@4.17.0/dist/tf-core.min.js');
+      await waitFor(() => win.tf?.engine, 10000);
+      
+      // 2. Carregar Backend WebGL
+      console.log('[TF] 2/4 Carregando WebGL backend...');
+      await loadScript('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl@4.17.0/dist/tf-backend-webgl.min.js');
+      
+      // Aguardar backend registrar
+      await new Promise(r => setTimeout(r, 500));
+      await waitFor(() => {
+        try {
+          return win.tf?.engine?.()?.registryFactory?.['webgl'] != null;
+        } catch {
+          return false;
+        }
+      }, 10000);
+      
+      const tf = win.tf;
+      
+      // 3. Configurar backend
+      console.log('[TF] 3/4 Configurando backend...');
+      const registry = tf.engine().registryFactory;
+      const availableBackends = Object.keys(registry);
+      console.log('[TF] Backends disponíveis:', availableBackends);
+      
+      // Tentar WebGL primeiro, fallback para CPU
+      let backendSet = false;
+      
+      if (availableBackends.includes('webgl')) {
+        try {
+          await tf.setBackend('webgl');
+          backendSet = true;
+        } catch (e) {
+          console.warn('[TF] WebGL falhou:', e);
+        }
+      }
+      
+      if (!backendSet && availableBackends.includes('cpu')) {
+        await tf.setBackend('cpu');
+        backendSet = true;
+      }
+      
+      if (!backendSet) {
+        throw new Error('Nenhum backend disponível');
+      }
+      
+      // 4. Aguardar ready
+      console.log('[TF] 4/4 Finalizando...');
+      await tf.ready();
+      
+      globalTfInitialized = true;
+      console.log('[TF] ✅ Pronto! Backend:', tf.getBackend());
+      
+      return tf;
+      
+    } catch (err) {
+      globalTfPromise = null;
+      throw err;
+    }
+  })();
+  
+  return globalTfPromise;
+}
 
-  console.log('[TF] Carregando TensorFlow.js Core...');
-  await loadScript(CDN_URLS.tfjsCore);
-  const tf = await waitForGlobal('tf', 15000);
+/**
+ * Carrega Pose Detection API
+ */
+async function loadPoseDetection(): Promise<any> {
+  const win = window as any;
   
-  console.log('[TF] Carregando backend WebGL...');
-  await loadScript(CDN_URLS.tfjsWebgl);
-  
-  // Aguardar backend registrar
-  await new Promise(resolve => setTimeout(resolve, 200));
-  
-  // Verificar backends disponíveis
-  const backends = tf.engine().registryFactory;
-  console.log('[TF] Backends disponíveis:', Object.keys(backends));
-  
-  // Definir WebGL como backend
-  if (backends['webgl']) {
-    await tf.setBackend('webgl');
-    console.log('[TF] Backend definido: webgl');
-  } else if (backends['cpu']) {
-    await tf.setBackend('cpu');
-    console.log('[TF] Backend definido: cpu (fallback)');
-  } else {
-    throw new Error('Nenhum backend compatível disponível');
+  if (win.poseDetection?.createDetector) {
+    return win.poseDetection;
   }
   
-  // Aguardar TensorFlow.js estar pronto
-  await tf.ready();
-  console.log('[TF] ✅ Pronto! Backend:', tf.getBackend());
+  console.log('[Pose] Carregando API...');
+  await loadScript('https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.1.0/dist/pose-detection.min.js');
   
-  tfInitialized = true;
-  return tf;
+  await waitFor(() => win.poseDetection?.createDetector != null, 10000);
+  
+  return win.poseDetection;
 }
 
 /**
  * Hook para MediaPipe Pose Detection
- * Usa TensorFlow.js com backend WebGL (compatível com mobile)
  */
 export function useMediaPipePose(): UseMediaPipePoseReturn {
   const [detector, setDetector] = useState<PoseDetector | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const detectorRef = useRef<PoseDetector | null>(null);
-  const isMountedRef = useRef(true);
-  const initStartedRef = useRef(false);
+  const mountedRef = useRef(true);
+  const initRef = useRef(false);
 
   useEffect(() => {
-    if (initStartedRef.current) return;
-    initStartedRef.current = true;
-    isMountedRef.current = true;
+    if (initRef.current) return;
+    initRef.current = true;
+    mountedRef.current = true;
 
-    async function initializeDetector() {
-      const startTime = Date.now();
+    const init = async () => {
+      const start = Date.now();
       
       try {
         setIsLoading(true);
         setError(null);
 
-        // 1. Inicializar TensorFlow.js
-        await initializeTensorFlow();
-        
-        if (!isMountedRef.current) return;
-
-        // 2. Carregar Pose Detection
-        console.log('[Pose] Carregando Pose Detection...');
-        await loadScript(CDN_URLS.poseDetection);
-        const poseDetection = await waitForGlobal('poseDetection', 15000);
-
-        if (!isMountedRef.current) return;
-
-        if (!poseDetection?.createDetector) {
-          throw new Error('API de detecção não disponível');
+        // Verificar WebGL
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        if (!gl) {
+          throw new Error('WebGL não suportado neste dispositivo');
         }
 
-        // 3. Criar detector BlazePose
+        // Inicializar TensorFlow.js
+        await initTensorFlow();
+        if (!mountedRef.current) return;
+
+        // Carregar Pose Detection
+        const poseDetection = await loadPoseDetection();
+        if (!mountedRef.current) return;
+
+        // Criar detector
         console.log('[Pose] Criando detector BlazePose...');
         const model = poseDetection.SupportedModels.BlazePose;
         
-        const createdDetector = await poseDetection.createDetector(model, {
+        const det = await poseDetection.createDetector(model, {
           runtime: 'tfjs',
           modelType: 'lite',
           enableSmoothing: true,
         });
 
-        if (!isMountedRef.current) {
-          createdDetector?.dispose?.();
+        if (!mountedRef.current) {
+          det?.dispose?.();
           return;
         }
 
-        const loadTime = Date.now() - startTime;
-        console.log(`[Pose] ✅ Detector pronto em ${loadTime}ms`);
-
-        detectorRef.current = createdDetector;
-        setDetector(createdDetector);
+        console.log(`[Pose] ✅ Pronto em ${Date.now() - start}ms`);
+        
+        detectorRef.current = det;
+        setDetector(det);
         setIsLoading(false);
         
       } catch (err) {
-        console.error('[Pose] ❌ Erro:', err);
-        if (isMountedRef.current) {
-          const message = err instanceof Error ? err.message : 'Erro ao carregar';
-          setError(message);
+        console.error('[Pose] ❌', err);
+        if (mountedRef.current) {
+          setError(err instanceof Error ? err.message : 'Erro desconhecido');
           setIsLoading(false);
         }
       }
-    }
+    };
 
-    initializeDetector();
+    init();
 
     return () => {
-      isMountedRef.current = false;
+      mountedRef.current = false;
       if (detectorRef.current?.dispose) {
         try {
           detectorRef.current.dispose();
-        } catch (e) {
-          // Ignorar erros de cleanup
+        } catch {
+          // ignore
         }
         detectorRef.current = null;
       }
