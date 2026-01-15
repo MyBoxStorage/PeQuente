@@ -8,11 +8,6 @@ import { getStoreInfo } from '@/lib/api';
 import { useToast } from '@/components/ui/use-toast';
 import { ArTryOnProps } from '@/types';
 
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void;
-  }
-}
 
 export default function ArTryOn({
   isOpen,

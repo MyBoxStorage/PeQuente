@@ -44,9 +44,23 @@ export default function ProvadorVirtualPage() {
             <h1 className="text-4xl font-bold text-white">Provador Virtual</h1>
           </div>
           <p className="text-gray-400 text-lg max-w-3xl">
-            Experimente nossos produtos em realidade aumentada! Visualize como ficam antes de comprar. 
-            Use a câmera do seu dispositivo para ver os produtos em 3D.
+            Visualize nossos produtos em 3D e realidade aumentada! Gire, amplie e veja todos os detalhes.
+            No celular, use o botão "Ver em AR" para posicionar o tênis no seu ambiente real.
           </p>
+          <div className="flex flex-wrap gap-3 mt-4">
+            <span className="bg-green-600/20 text-green-400 px-3 py-1 rounded-full text-sm flex items-center gap-2">
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+              Visualização 3D
+            </span>
+            <span className="bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full text-sm flex items-center gap-2">
+              <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+              AR no Android (ARCore)
+            </span>
+            <span className="bg-purple-600/20 text-purple-400 px-3 py-1 rounded-full text-sm flex items-center gap-2">
+              <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
+              AR no iPhone (Quick Look)
+            </span>
+          </div>
         </div>
 
         {/* Lista de produtos com modelos 3D */}
@@ -98,14 +112,14 @@ export default function ProvadorVirtualPage() {
               <div className="text-3xl font-bold text-white mb-2">2</div>
               <h3 className="text-lg font-semibold text-white mb-2">Acesse o provador</h3>
               <p className="text-gray-300 text-sm">
-                Clique no botão "Provar AR" na página do produto
+                Clique no botão "Ver em 3D" no produto
               </p>
             </div>
             <div className="bg-white/10 rounded-lg p-4">
               <div className="text-3xl font-bold text-white mb-2">3</div>
-              <h3 className="text-lg font-semibold text-white mb-2">Visualize em 3D</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">Interaja e veja em AR</h3>
               <p className="text-gray-300 text-sm">
-                Permita acesso à câmera e visualize o produto em realidade aumentada
+                Gire e amplie o modelo 3D. No celular, clique em "Ver em AR" para ver no seu ambiente!
               </p>
             </div>
           </div>

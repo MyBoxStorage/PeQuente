@@ -10,14 +10,8 @@ import { formatPrice, formatInstallment, getModelUrls } from '@/lib/utils';
 import { useCartStore } from '@/store/cartStore';
 import { useToast } from '@/components/ui/use-toast';
 
-const LazyArTryOn = lazy(() => import('./ArTryOn'));
+const LazyModelViewerAR = lazy(() => import('./ModelViewerAR'));
 
-// Declaração global para window.gtag
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void;
-  }
-}
 
 interface ProductCardProps {
   product: Product;
@@ -232,7 +226,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 className="bg-[#FF0000] hover:bg-[#FF0000]/90 text-white font-semibold py-2 px-4 rounded-lg transition text-sm whitespace-nowrap"
                 aria-label={`Provar virtualmente ${product.name}`}
               >
-                Provar AR
+                Ver em 3D
               </button>
             </div>
           </div>
@@ -304,10 +298,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       </div>
 
-      {/* Modal ArTryOn */}
+      {/* Modal ModelViewerAR */}
       {arOpen && (
-        <Suspense fallback={<div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0a0a] text-white">Carregando AR...</div>}>
-          <LazyArTryOn
+        <Suspense fallback={<div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 text-white"><div className="text-center"><div className="animate-spin rounded-full h-12 w-12 border-4 border-red-500 border-t-transparent mx-auto mb-4" /><p>Carregando visualização 3D...</p></div></div>}>
+          <LazyModelViewerAR
             isOpen={arOpen}
             onClose={() => setArOpen(false)}
             modelUrlLeft={getModelUrls(product.slug).left}
