@@ -42,45 +42,15 @@ export default function ModelViewerAR({
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   
-  // Estados para pinça suave (estilo Instagram)
+  // Estados para pinça
   const [initialPinchDistance, setInitialPinchDistance] = useState<number | null>(null);
   const [initialScale, setInitialScale] = useState(1);
-  const targetScaleRef = useRef(1);
-  const animationFrameRef = useRef<number | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const modelContainerRef = useRef<HTMLDivElement>(null);
   const addItem = useCartStore((state) => state.addItem);
   const { toast: showToast } = useToast();
   const storeInfo = getStoreInfo();
-
-  // Interpolação suave (lerp) para animações naturais
-  const lerp = (start: number, end: number, factor: number) => {
-    return start + (end - start) * factor;
-  };
-
-  // Animação suave do scale
-  useEffect(() => {
-    if (!cameraMode) return;
-
-    const animate = () => {
-      setModelScale(prev => {
-        const diff = Math.abs(targetScaleRef.current - prev);
-        if (diff < 0.001) return targetScaleRef.current;
-        return lerp(prev, targetScaleRef.current, 0.12); // Fator de suavização
-      });
-      animationFrameRef.current = requestAnimationFrame(animate);
-    };
-
-    animationFrameRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, [cameraMode]);
 
   // Carregar script do model-viewer
   useEffect(() => {
@@ -115,39 +85,31 @@ export default function ModelViewerAR({
     modelViewer.removeAttribute('ar-scale');
     modelViewer.removeAttribute('ar-placement');
     
-    // ROTAÇÃO FLUIDA E NATURAL (estilo Instagram)
+    // ROTAÇÃO FLUIDA - Sem auto-rotate para não andar sozinho
     modelViewer.setAttribute('camera-controls', '');
     modelViewer.setAttribute('touch-action', 'none');
-    modelViewer.setAttribute('orbit-sensitivity', '0.8'); // Sensibilidade reduzida
-    modelViewer.setAttribute('interpolation-decay', '100'); // Suavização natural
-    modelViewer.setAttribute('interaction-prompt', 'auto');
+    modelViewer.setAttribute('orbit-sensitivity', '1');
+    modelViewer.setAttribute('interpolation-decay', '200'); // Mais suave
+    modelViewer.setAttribute('interaction-prompt', 'none');
     
     // Câmera inicial - vista frontal
-    modelViewer.setAttribute('camera-orbit', '0deg 75deg 2.5m');
-    modelViewer.setAttribute('camera-target', '0m 0m 0m');
-    modelViewer.setAttribute('field-of-view', '30deg');
-    
-    // SEM LIMITES de órbita para rotação 360° livre
-    // (removido min-camera-orbit e max-camera-orbit restritivos)
-    
-    // Auto-rotate suave
-    modelViewer.setAttribute('auto-rotate', '');
-    modelViewer.setAttribute('auto-rotate-delay', '4000');
-    modelViewer.setAttribute('rotation-per-second', '20deg'); // Mais lento e suave
+    modelViewer.setAttribute('camera-orbit', '0deg 75deg 105%');
+    modelViewer.setAttribute('camera-target', 'auto auto auto');
+    modelViewer.setAttribute('field-of-view', '45deg');
     
     // Iluminação
     modelViewer.setAttribute('shadow-intensity', '1');
     modelViewer.setAttribute('shadow-softness', '0.8');
-    modelViewer.setAttribute('exposure', '1.2');
+    modelViewer.setAttribute('exposure', '1');
     modelViewer.setAttribute('environment-image', 'neutral');
     
     modelViewer.setAttribute('loading', 'eager');
     modelViewer.setAttribute('reveal', 'auto');
     
-    // Estilos
+    // Estilos - fundo transparente quando câmera ativa
     modelViewer.style.width = '100%';
     modelViewer.style.height = '100%';
-    modelViewer.style.backgroundColor = cameraMode ? 'transparent' : '#1a1a1a';
+    modelViewer.style.backgroundColor = cameraMode ? 'transparent' : '#0a0a0a';
     modelViewer.style.setProperty('--poster-color', 'transparent');
     modelViewer.style.setProperty('--progress-bar-color', '#ef4444');
 
@@ -175,6 +137,9 @@ export default function ModelViewerAR({
       }
       setCameraMode(false);
       setCameraError(null);
+      // Reset posição ao desativar câmera
+      setModelPosition({ x: 0, y: 0 });
+      setModelScale(1);
     } else {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -233,19 +198,17 @@ export default function ModelViewerAR({
     );
   };
 
-  // Touch Start - Iniciar arrastar ou pinça
+  // Touch Start
   const handleTouchStart = (e: React.TouchEvent) => {
     if (!cameraMode) return;
     
     if (e.touches.length === 1) {
-      // Iniciar arrastar
       setIsDragging(true);
       setDragStart({
         x: e.touches[0].clientX - modelPosition.x,
         y: e.touches[0].clientY - modelPosition.y
       });
     } else if (e.touches.length === 2) {
-      // Iniciar pinça - salvar distância e escala inicial
       const distance = getDistance(e.touches[0], e.touches[1]);
       setInitialPinchDistance(distance);
       setInitialScale(modelScale);
@@ -253,38 +216,31 @@ export default function ModelViewerAR({
     }
   };
 
-  // Touch Move - Arrastar ou zoom com pinça suave
+  // Touch Move
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!cameraMode) return;
     
     if (e.touches.length === 1 && isDragging) {
-      // Arrastar suave
+      // Arrastar
       const newX = e.touches[0].clientX - dragStart.x;
       const newY = e.touches[0].clientY - dragStart.y;
       setModelPosition({ x: newX, y: newY });
       
     } else if (e.touches.length === 2 && initialPinchDistance !== null) {
-      // Pinça gradual e natural (estilo Instagram)
+      // Pinça - escala relativa
       const currentDistance = getDistance(e.touches[0], e.touches[1]);
-      
-      // Calcular fator de escala relativo à distância inicial
       const scaleFactor = currentDistance / initialPinchDistance;
-      
-      // Aplicar escala com limites e suavização
-      const newScale = Math.max(0.3, Math.min(4, initialScale * scaleFactor));
-      
-      // Atualizar o target para animação suave
-      targetScaleRef.current = newScale;
+      const newScale = Math.max(0.2, Math.min(5, initialScale * scaleFactor));
+      setModelScale(newScale);
     }
   };
 
-  // Touch End - Finalizar gesto
+  // Touch End
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (e.touches.length === 0) {
       setIsDragging(false);
       setInitialPinchDistance(null);
     } else if (e.touches.length === 1) {
-      // Voltou para 1 dedo, reiniciar arrastar
       setInitialPinchDistance(null);
       setIsDragging(true);
       setDragStart({
@@ -298,7 +254,6 @@ export default function ModelViewerAR({
   const resetPosition = () => {
     setModelPosition({ x: 0, y: 0 });
     setModelScale(1);
-    targetScaleRef.current = 1;
   };
 
   const handleAddToCart = useCallback(() => {
@@ -335,7 +290,7 @@ export default function ModelViewerAR({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black" role="dialog" aria-label="Visualizador 3D">
+    <div className="fixed inset-0 z-50 bg-black overflow-hidden" role="dialog" aria-label="Visualizador 3D">
       {/* Vídeo da câmera (fundo) */}
       {cameraMode && (
         <video
@@ -382,9 +337,9 @@ export default function ModelViewerAR({
         </div>
       </div>
 
-      {/* Model Viewer Container */}
+      {/* Model Viewer Container - overflow visible para não cortar */}
       <div 
-        className="absolute inset-0 pt-20 pb-52"
+        className="absolute inset-0 pt-16 pb-44 overflow-visible"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -400,19 +355,19 @@ export default function ModelViewerAR({
               </div>
             )}
             
-            {/* Container com transform suave */}
+            {/* Container com transform - SEM conflito de animações */}
             <div 
-              ref={modelContainerRef}
-              className="w-full h-full"
+              className="w-full h-full overflow-visible"
               style={cameraMode ? {
                 transform: `translate(${modelPosition.x}px, ${modelPosition.y}px) scale(${modelScale})`,
-                transition: 'transform 0.08s ease-out', // Transição sempre suave
-                transformOrigin: 'center center'
+                transition: isDragging ? 'none' : 'transform 0.15s ease-out',
+                transformOrigin: 'center center',
+                willChange: 'transform'
               } : undefined}
             >
               <div 
                 ref={containerRef} 
-                className="w-full h-full"
+                className="w-full h-full overflow-visible"
                 style={{ backgroundColor: cameraMode ? 'transparent' : '#0a0a0a' }}
               />
             </div>
@@ -435,7 +390,7 @@ export default function ModelViewerAR({
       )}
 
       {/* Instruções */}
-      <div className="absolute bottom-52 left-1/2 -translate-x-1/2 z-20 w-[90%] max-w-sm">
+      <div className="absolute bottom-44 left-1/2 -translate-x-1/2 z-20 w-[90%] max-w-sm">
         <div className="bg-black/70 backdrop-blur-lg rounded-lg px-4 py-3 text-center">
           {cameraMode ? (
             <>
