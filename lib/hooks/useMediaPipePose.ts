@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 
-// Tipos para o detector (declaração mínima)
+// Tipos para o detector
 interface PoseDetector {
   estimatePoses: (image: HTMLVideoElement | HTMLImageElement | HTMLCanvasElement, config?: any) => Promise<any[]>;
   dispose: () => void;
@@ -15,62 +15,57 @@ interface UseMediaPipePoseReturn {
   error: string | null;
 }
 
-// URLs do CDN para as bibliotecas necessárias
-// TensorFlow.js é necessário como base para pose-detection
+// URLs do CDN otimizadas (apenas o essencial)
 const CDN_URLS = {
-  // TensorFlow.js core (necessário)
+  // TensorFlow.js core (versão lite para mobile)
   tfjs: 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js',
-  // MediaPipe Pose
-  mediapipePose: 'https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.5.1675469404/pose.js',
   // Pose Detection API
   poseDetection: 'https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.1.0/dist/pose-detection.min.js',
 };
 
-// MediaPipe solution path do CDN
-const MEDIAPIPE_SOLUTION_PATH = 'https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.5.1675469404';
+// Cache para evitar recarregar scripts
+const loadedScripts = new Set<string>();
 
 /**
- * Carrega um script dinamicamente com retry
+ * Carrega um script dinamicamente (com cache)
  */
-function loadScript(src: string, retries = 3): Promise<void> {
+function loadScript(src: string): Promise<void> {
   return new Promise((resolve, reject) => {
-    // Verificar se o script já foi carregado
-    const existingScript = document.querySelector(`script[src="${src}"]`);
-    if (existingScript) {
+    // Se já carregamos este script, resolver imediatamente
+    if (loadedScripts.has(src)) {
       resolve();
       return;
     }
 
-    const attemptLoad = (attemptsLeft: number) => {
-      const script = document.createElement('script');
-      script.src = src;
-      script.async = true;
-      
-      script.onload = () => {
-        console.log(`[MediaPipe] Script carregado: ${src}`);
-        resolve();
-      };
-      
-      script.onerror = () => {
-        if (attemptsLeft > 0) {
-          console.warn(`[MediaPipe] Erro ao carregar script, tentando novamente (${attemptsLeft} tentativas restantes): ${src}`);
-          setTimeout(() => attemptLoad(attemptsLeft - 1), 500);
-        } else {
-          reject(new Error(`Erro ao carregar script após ${retries} tentativas: ${src}`));
-        }
-      };
-      
-      document.head.appendChild(script);
-    };
+    // Verificar se o script já existe no DOM
+    const existingScript = document.querySelector(`script[src="${src}"]`);
+    if (existingScript) {
+      loadedScripts.add(src);
+      resolve();
+      return;
+    }
 
-    attemptLoad(retries);
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = true;
+    
+    script.onload = () => {
+      loadedScripts.add(src);
+      resolve();
+    };
+    
+    script.onerror = () => {
+      reject(new Error(`Falha ao carregar: ${src.split('/').pop()}`));
+    };
+    
+    document.head.appendChild(script);
   });
 }
 
 /**
- * Aguarda até que uma variável global esteja disponível
+ * Aguarda objeto global com timeout curto
  */
-function waitForGlobal(name: string, timeout = 20000): Promise<void> {
+function waitForGlobal(name: string, timeout = 10000): Promise<void> {
   return new Promise((resolve, reject) => {
     const win = window as any;
     
@@ -86,53 +81,15 @@ function waitForGlobal(name: string, timeout = 20000): Promise<void> {
         resolve();
       } else if (Date.now() - startTime > timeout) {
         clearInterval(checkInterval);
-        reject(new Error(`Timeout aguardando ${name} (${timeout}ms)`));
+        reject(new Error(`Timeout: ${name}`));
       }
-    }, 100);
+    }, 50); // Check mais frequente
   });
 }
 
 /**
- * Tenta obter a API poseDetection de diferentes formas
- */
-function getPoseDetectionAPI(): any {
-  const win = window as any;
-  
-  // Log para debug
-  console.log('[MediaPipe] Procurando poseDetection API...');
-  console.log('[MediaPipe] window.poseDetection:', typeof win.poseDetection);
-  
-  // Tentar diferentes formas de acesso
-  if (win.poseDetection && typeof win.poseDetection.createDetector === 'function') {
-    console.log('[MediaPipe] Encontrado em window.poseDetection');
-    return win.poseDetection;
-  }
-  
-  // Tentar poseDetection.poseDetection (alguns builds UMD fazem isso)
-  if (win.poseDetection?.poseDetection && typeof win.poseDetection.poseDetection.createDetector === 'function') {
-    console.log('[MediaPipe] Encontrado em window.poseDetection.poseDetection');
-    return win.poseDetection.poseDetection;
-  }
-  
-  // Tentar window.tf?.poseDetection
-  if (win.tf?.poseDetection && typeof win.tf.poseDetection.createDetector === 'function') {
-    console.log('[MediaPipe] Encontrado em window.tf.poseDetection');
-    return win.tf.poseDetection;
-  }
-  
-  // Log disponível para debug
-  if (win.poseDetection) {
-    console.log('[MediaPipe] poseDetection existe mas createDetector não é função');
-    console.log('[MediaPipe] Tipo de poseDetection:', typeof win.poseDetection);
-    console.log('[MediaPipe] Keys:', Object.keys(win.poseDetection));
-  }
-  
-  return null;
-}
-
-/**
- * Hook customizado para usar MediaPipe Pose Detection
- * Carrega scripts do CDN e inicializa o detector BlazePose com runtime MediaPipe
+ * Hook otimizado para MediaPipe Pose Detection
+ * Usa runtime TFJS (mais leve e rápido que mediapipe)
  */
 export function useMediaPipePose(): UseMediaPipePoseReturn {
   const [detector, setDetector] = useState<PoseDetector | null>(null);
@@ -140,105 +97,65 @@ export function useMediaPipePose(): UseMediaPipePoseReturn {
   const [error, setError] = useState<string | null>(null);
   const detectorRef = useRef<PoseDetector | null>(null);
   const isMountedRef = useRef(true);
+  const initStartedRef = useRef(false);
 
   useEffect(() => {
+    // Evitar inicialização dupla
+    if (initStartedRef.current) return;
+    initStartedRef.current = true;
     isMountedRef.current = true;
 
     async function initializeDetector() {
+      const startTime = Date.now();
+      
       try {
         setIsLoading(true);
         setError(null);
-        
-        console.log('[MediaPipe] Iniciando carregamento das bibliotecas...');
 
-        // 1. Carregar TensorFlow.js primeiro (dependência necessária)
-        console.log('[MediaPipe] Carregando TensorFlow.js...');
+        // 1. Carregar TensorFlow.js
         await loadScript(CDN_URLS.tfjs);
-        await waitForGlobal('tf', 15000);
-        console.log('[MediaPipe] TensorFlow.js carregado!');
+        await waitForGlobal('tf', 8000);
         
-        // Aguardar inicialização do TF
-        await new Promise(resolve => setTimeout(resolve, 300));
+        if (!isMountedRef.current) return;
 
-        // 2. Carregar MediaPipe Pose
-        console.log('[MediaPipe] Carregando MediaPipe Pose...');
-        await loadScript(CDN_URLS.mediapipePose);
-        await new Promise(resolve => setTimeout(resolve, 300));
-        console.log('[MediaPipe] MediaPipe Pose carregado!');
-
-        // 3. Carregar Pose Detection API
-        console.log('[MediaPipe] Carregando Pose Detection API...');
+        // 2. Carregar Pose Detection
         await loadScript(CDN_URLS.poseDetection);
-        
-        // Aguardar inicialização com múltiplas tentativas
-        await new Promise(resolve => setTimeout(resolve, 500));
-
-        if (!isMountedRef.current) return;
-        
-        // Tentar obter a API várias vezes
-        let poseDetection = null;
-        for (let attempt = 0; attempt < 15; attempt++) {
-          poseDetection = getPoseDetectionAPI();
-          if (poseDetection && typeof poseDetection.createDetector === 'function') {
-            console.log(`[MediaPipe] API encontrada na tentativa ${attempt + 1}`);
-            break;
-          }
-          await new Promise(resolve => setTimeout(resolve, 200));
-        }
+        await waitForGlobal('poseDetection', 8000);
 
         if (!isMountedRef.current) return;
 
-        if (!poseDetection) {
-          // Mostrar o que está disponível para debug
-          const win = window as any;
-          console.error('[MediaPipe] Estado do window:', {
-            tf: typeof win.tf,
-            poseDetection: typeof win.poseDetection,
-            Pose: typeof win.Pose,
-          });
-          throw new Error('Biblioteca pose-detection não carregou corretamente. Verifique a conexão.');
+        const win = window as any;
+        const poseDetection = win.poseDetection;
+
+        if (!poseDetection?.createDetector) {
+          throw new Error('API não disponível');
         }
 
-        if (typeof poseDetection.createDetector !== 'function') {
-          console.error('[MediaPipe] createDetector não é função:', typeof poseDetection.createDetector);
-          console.error('[MediaPipe] Propriedades disponíveis:', Object.keys(poseDetection));
-          throw new Error('createDetector não disponível na biblioteca carregada');
-        }
-
-        // Verificar modelo BlazePose
-        const model = poseDetection.SupportedModels?.BlazePose;
-        if (!model) {
-          console.error('[MediaPipe] SupportedModels:', poseDetection.SupportedModels);
-          throw new Error('BlazePose não está disponível');
-        }
-
-        console.log('[MediaPipe] Criando detector BlazePose...');
+        // 3. Criar detector com runtime TFJS (mais rápido que mediapipe)
+        const model = poseDetection.SupportedModels.BlazePose;
         
-        const detectorConfig = {
-          runtime: 'mediapipe' as const,
-          modelType: 'lite' as const,
-          solutionPath: MEDIAPIPE_SOLUTION_PATH,
+        const createdDetector = await poseDetection.createDetector(model, {
+          runtime: 'tfjs',
+          modelType: 'lite', // Modelo mais leve para mobile
           enableSmoothing: true,
-        };
-
-        const createdDetector = await poseDetection.createDetector(model, detectorConfig);
+        });
 
         if (!isMountedRef.current) {
-          if (createdDetector && createdDetector.dispose) {
-            createdDetector.dispose();
-          }
+          createdDetector?.dispose?.();
           return;
         }
 
-        console.log('[MediaPipe] Detector criado com sucesso!');
+        const loadTime = Date.now() - startTime;
+        console.log(`[Pose] Detector pronto em ${loadTime}ms`);
+
         detectorRef.current = createdDetector;
         setDetector(createdDetector);
         setIsLoading(false);
+        
       } catch (err) {
-        console.error('[MediaPipe] Erro ao inicializar:', err);
+        console.error('[Pose] Erro:', err);
         if (isMountedRef.current) {
-          const errorMessage = err instanceof Error ? err.message : 'Erro desconhecido';
-          setError(errorMessage);
+          setError(err instanceof Error ? err.message : 'Erro ao carregar');
           setIsLoading(false);
         }
       }
@@ -246,20 +163,16 @@ export function useMediaPipePose(): UseMediaPipePoseReturn {
 
     initializeDetector();
 
-    // Cleanup ao desmontar
     return () => {
       isMountedRef.current = false;
-      if (detectorRef.current) {
+      if (detectorRef.current?.dispose) {
         try {
-          if (detectorRef.current.dispose) {
-            detectorRef.current.dispose();
-          }
-        } catch (err) {
-          console.error('[MediaPipe] Erro ao fazer cleanup do detector:', err);
+          detectorRef.current.dispose();
+        } catch (e) {
+          // Ignorar erros de cleanup
         }
         detectorRef.current = null;
       }
-      setDetector(null);
     };
   }, []);
 
