@@ -1,0 +1,586 @@
+### Page state
+- Page URL: http://localhost:3000/
+- Page Title: Pé Quente Calçados | Tênis, Roupas e Acessórios em Paraíba do Sul
+- Page Snapshot:
+```yaml
+- generic [active] [ref=e1]:
+  - link "Pular para o conteúdo principal" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - paragraph [ref=e5]: 5% OFF NO PIX | PARCELAMENTO EM 12X | RETIRE NA LOJA EM PARAÍBA DO SUL
+    - generic [ref=e6]:
+      - link "Logo Pé Quente Calçados" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img "Pé Quente Calçados" [ref=e8]
+      - navigation "Menu principal" [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /
+        - button "Produtos" [ref=e12]:
+          - generic [ref=e13]: Produtos
+          - img [ref=e14]
+        - link "Marcas" [ref=e16] [cursor=pointer]:
+          - /url: /produtos
+        - link "Promoções" [ref=e17] [cursor=pointer]:
+          - /url: /produtos?promocoes=true
+        - link "Contato" [ref=e18] [cursor=pointer]:
+          - /url: /contato
+      - generic [ref=e19]:
+        - button "Buscar" [ref=e20]:
+          - img [ref=e21]
+        - link "Falar no WhatsApp" [ref=e24] [cursor=pointer]:
+          - /url: https://wa.me/2422632334
+          - img [ref=e25]
+        - button "Carrinho" [ref=e27]:
+          - img [ref=e28]
+  - main [ref=e32]:
+    - generic [ref=e33]:
+      - generic [ref=e34]:
+        - generic [ref=e100]:
+          - img "Pé Quente Banner" [ref=e102]
+          - generic:
+            - generic:
+              - generic:
+                - generic [ref=e104] [cursor=pointer]:
+                  - generic [ref=e105]: A
+                  - generic [ref=e106]: "N"
+                  - generic [ref=e107]: O
+                  - generic [ref=e109]: "N"
+                  - generic [ref=e110]: O
+                  - generic [ref=e111]: V
+                  - generic [ref=e112]: O
+                - generic [ref=e113] [cursor=pointer]:
+                  - generic [ref=e114]:
+                    - generic [ref=e115]: M
+                    - generic [ref=e116]: E
+                    - generic [ref=e117]: S
+                    - generic [ref=e118]: M
+                    - generic [ref=e119]: A
+                  - generic [ref=e120]:
+                    - generic [ref=e121]: A
+                    - generic [ref=e122]: T
+                    - generic [ref=e123]: I
+                    - generic [ref=e124]: T
+                    - generic [ref=e125]: U
+                    - generic [ref=e126]: D
+                    - generic [ref=e127]: E
+              - paragraph: Novidades para começar o ano no estilo
+              - link "VEJA MAIS" [ref=e128] [cursor=pointer]:
+                - /url: /produtos
+        - generic [ref=e801]:
+          - img "Pé Quente Banner" [ref=e803]
+          - generic:
+            - generic:
+              - generic:
+                - img "Pé Quente Calçados"
+              - generic:
+                - paragraph: Sempre um passo à frente
+              - link "VEJA MAIS!" [ref=e804] [cursor=pointer]:
+                - /url: /produtos
+        - button "Slide anterior" [ref=e129]:
+          - img [ref=e130]
+        - button "Próximo slide" [ref=e132]:
+          - img [ref=e133]
+        - generic [ref=e135]:
+          - button "Ir para slide 1" [ref=e136]
+          - button "Ir para slide 2" [ref=e138]
+          - button "Ir para slide 3" [ref=e140]
+      - generic [ref=e143]:
+        - generic [ref=e144]:
+          - heading "Lançamentos" [level=2] [ref=e145]
+          - link "Ver todos os lançamentos" [ref=e146] [cursor=pointer]:
+            - /url: /produtos
+            - generic [ref=e147]: Ver todos
+            - generic [ref=e148]: →
+        - generic [ref=e149]:
+          - button "Produtos anteriores" [ref=e150]:
+            - img [ref=e151]
+          - generic [ref=e153]:
+            - link "Tênis Adidas Ultraboost Masculino 33% OFF Novo Ver detalhes R$ 599,99 Tênis Adidas Ultraboost Masculino Adidas" [ref=e158] [cursor=pointer]:
+              - /url: /produtos/adidas-ultraboost-masculino
+              - generic [ref=e159]:
+                - img "Tênis Adidas Ultraboost Masculino" [ref=e160]
+                - generic [ref=e161]: 33% OFF
+                - generic [ref=e162]: Novo
+                - button "Ver detalhes" [ref=e163]
+              - generic [ref=e165]:
+                - generic [ref=e166]: R$ 599,99
+                - generic [ref=e167]: Tênis Adidas Ultraboost Masculino
+                - paragraph [ref=e168]: Adidas
+            - link "Tênis Puma Velocity NITRO Feminino 30% OFF Novo Ver detalhes R$ 629,99 Tênis Puma Velocity NITRO Feminino Puma" [ref=e173] [cursor=pointer]:
+              - /url: /produtos/puma-velocity-nitro-feminino
+              - generic [ref=e174]:
+                - img "Tênis Puma Velocity NITRO Feminino" [ref=e175]
+                - generic [ref=e176]: 30% OFF
+                - generic [ref=e177]: Novo
+                - button "Ver detalhes" [ref=e178]
+              - generic [ref=e180]:
+                - generic [ref=e181]: R$ 629,99
+                - generic [ref=e182]: Tênis Puma Velocity NITRO Feminino
+                - paragraph [ref=e183]: Puma
+            - link "Tênis Nike Dunk Low Feminino 30% OFF Novo Ver detalhes R$ 489,99 Tênis Nike Dunk Low Feminino Nike" [ref=e188] [cursor=pointer]:
+              - /url: /produtos/nike-dunk-low-feminino
+              - generic [ref=e189]:
+                - img "Tênis Nike Dunk Low Feminino" [ref=e190]
+                - generic [ref=e191]: 30% OFF
+                - generic [ref=e192]: Novo
+                - button "Ver detalhes" [ref=e193]
+              - generic [ref=e195]:
+                - generic [ref=e196]: R$ 489,99
+                - generic [ref=e197]: Tênis Nike Dunk Low Feminino
+                - paragraph [ref=e198]: Nike
+            - link "Tênis New Balance 990 Feminino 25% OFF Novo Ver detalhes R$ 899,99 Tênis New Balance 990 Feminino New Balance" [ref=e203] [cursor=pointer]:
+              - /url: /produtos/new-balance-990-feminino
+              - generic [ref=e204]:
+                - img "Tênis New Balance 990 Feminino" [ref=e205]
+                - generic [ref=e206]: 25% OFF
+                - generic [ref=e207]: Novo
+                - button "Ver detalhes" [ref=e208]
+              - generic [ref=e210]:
+                - generic [ref=e211]: R$ 899,99
+                - generic [ref=e212]: Tênis New Balance 990 Feminino
+                - paragraph [ref=e213]: New Balance
+            - link "Tênis Mizuno Wave Sky Feminino 24% OFF Novo Ver detalhes R$ 679,99 Tênis Mizuno Wave Sky Feminino Mizuno" [ref=e218] [cursor=pointer]:
+              - /url: /produtos/mizuno-wave-sky-feminino
+              - generic [ref=e219]:
+                - img "Tênis Mizuno Wave Sky Feminino" [ref=e220]
+                - generic [ref=e221]: 24% OFF
+                - generic [ref=e222]: Novo
+                - button "Ver detalhes" [ref=e223]
+              - generic [ref=e225]:
+                - generic [ref=e226]: R$ 679,99
+                - generic [ref=e227]: Tênis Mizuno Wave Sky Feminino
+                - paragraph [ref=e228]: Mizuno
+            - link "Tênis Nike Air Max 90 Masculino 26% OFF Novo Ver detalhes R$ 699,99 Tênis Nike Air Max 90 Masculino Nike" [ref=e233] [cursor=pointer]:
+              - /url: /produtos/nike-air-max-90-masculino
+              - generic [ref=e234]:
+                - img "Tênis Nike Air Max 90 Masculino" [ref=e235]
+                - generic [ref=e236]: 26% OFF
+                - generic [ref=e237]: Novo
+                - button "Ver detalhes" [ref=e238]
+              - generic [ref=e240]:
+                - generic [ref=e241]: R$ 699,99
+                - generic [ref=e242]: Tênis Nike Air Max 90 Masculino
+                - paragraph [ref=e243]: Nike
+            - link "Tênis Vans Sherpa Feminino 29% OFF Novo Ver detalhes R$ 389,99 Tênis Vans Sherpa Feminino Vans" [ref=e248] [cursor=pointer]:
+              - /url: /produtos/vans-sherpa-feminino
+              - generic [ref=e249]:
+                - img "Tênis Vans Sherpa Feminino" [ref=e250]
+                - generic [ref=e251]: 29% OFF
+                - generic [ref=e252]: Novo
+                - button "Ver detalhes" [ref=e253]
+              - generic [ref=e255]:
+                - generic [ref=e256]: R$ 389,99
+                - generic [ref=e257]: Tênis Vans Sherpa Feminino
+                - paragraph [ref=e258]: Vans
+            - link "Tênis Nike Air Force 1 Masculino 31% OFF Ver detalhes R$ 549,99 Tênis Nike Air Force 1 Masculino Nike" [ref=e263] [cursor=pointer]:
+              - /url: /produtos/nike-air-force-1-masculino
+              - generic [ref=e264]:
+                - img "Tênis Nike Air Force 1 Masculino" [ref=e265]
+                - generic [ref=e266]: 31% OFF
+                - button "Ver detalhes" [ref=e267]
+              - generic [ref=e269]:
+                - generic [ref=e270]: R$ 549,99
+                - generic [ref=e271]: Tênis Nike Air Force 1 Masculino
+                - paragraph [ref=e272]: Nike
+          - button "Próximos produtos" [ref=e273]:
+            - img [ref=e274]
+      - generic [ref=e277]:
+        - generic [ref=e278]:
+          - heading "Marcas Premium" [level=2] [ref=e279]
+          - paragraph [ref=e280]: As melhores marcas do mercado em um só lugar
+        - generic [ref=e281]:
+          - generic [ref=e282]:
+            - link "Ver produtos da marca Adidas" [ref=e284] [cursor=pointer]:
+              - /url: /produtos?marca=adidas
+              - img "Logo da marca Adidas" [ref=e287]
+            - link "Ver produtos da marca All Star" [ref=e289] [cursor=pointer]:
+              - /url: /produtos?marca=all star
+              - img "Logo da marca All Star" [ref=e292]
+            - link "Ver produtos da marca Asics" [ref=e294] [cursor=pointer]:
+              - /url: /produtos?marca=asics
+              - img "Logo da marca Asics" [ref=e297]
+            - link "Ver produtos da marca Ferracini" [ref=e299] [cursor=pointer]:
+              - /url: /produtos?marca=ferracini
+              - img "Logo da marca Ferracini" [ref=e302]
+            - link "Ver produtos da marca Fila" [ref=e304] [cursor=pointer]:
+              - /url: /produtos?marca=fila
+              - img "Logo da marca Fila" [ref=e307]
+            - link "Ver produtos da marca Kenner" [ref=e309] [cursor=pointer]:
+              - /url: /produtos?marca=kenner
+              - img "Logo da marca Kenner" [ref=e312]
+            - link "Ver produtos da marca Mizuno" [ref=e314] [cursor=pointer]:
+              - /url: /produtos?marca=mizuno
+              - img "Logo da marca Mizuno" [ref=e317]
+            - link "Ver produtos da marca New Balance" [ref=e319] [cursor=pointer]:
+              - /url: /produtos?marca=new balance
+              - img "Logo da marca New Balance" [ref=e322]
+            - link "Ver produtos da marca Nike" [ref=e324] [cursor=pointer]:
+              - /url: /produtos?marca=nike
+              - img "Logo da marca Nike" [ref=e327]
+            - link "Ver produtos da marca Olympikus" [ref=e329] [cursor=pointer]:
+              - /url: /produtos?marca=olympikus
+              - img "Logo da marca Olympikus" [ref=e332]
+            - link "Ver produtos da marca Penalty" [ref=e334] [cursor=pointer]:
+              - /url: /produtos?marca=penalty
+              - img "Logo da marca Penalty" [ref=e337]
+            - link "Ver produtos da marca Puma" [ref=e339] [cursor=pointer]:
+              - /url: /produtos?marca=puma
+              - img "Logo da marca Puma" [ref=e342]
+            - link "Ver produtos da marca Umbro" [ref=e344] [cursor=pointer]:
+              - /url: /produtos?marca=umbro
+              - img "Logo da marca Umbro" [ref=e347]
+            - link "Ver produtos da marca Under Armour" [ref=e349] [cursor=pointer]:
+              - /url: /produtos?marca=under armour
+              - img "Logo da marca Under Armour" [ref=e352]
+            - link "Ver produtos da marca Vans" [ref=e354] [cursor=pointer]:
+              - /url: /produtos?marca=vans
+              - img "Logo da marca Vans" [ref=e357]
+          - button "Próximas marcas" [ref=e358]:
+            - img [ref=e359]
+        - generic [ref=e361]:
+          - button "Ir para página 1" [ref=e362]
+          - button "Ir para página 2" [ref=e364]
+          - button "Ir para página 3" [ref=e366]
+        - link "Ver todas as marcas" [ref=e369] [cursor=pointer]:
+          - /url: /produtos
+          - text: Ver todas as marcas
+          - generic [ref=e370]: →
+      - generic [ref=e372]:
+        - generic [ref=e373]:
+          - generic [ref=e374]:
+            - heading "Promoções Especiais" [level=2] [ref=e375]
+            - paragraph [ref=e376]: Aproveite nossos melhores descontos
+          - link "Ver todas as promoções" [ref=e377] [cursor=pointer]:
+            - /url: /produtos
+            - text: Ver todas as promoções
+            - generic [ref=e378]: →
+        - generic [ref=e379]:
+          - link "Tênis Adidas Response Masculino 42% OFF Novo Ver detalhes R$ 349,99 Tênis Adidas Response Masculino Adidas" [ref=e383] [cursor=pointer]:
+            - /url: /produtos/tenis-adidas-response-masculino
+            - generic [ref=e384]:
+              - img "Tênis Adidas Response Masculino" [ref=e385]
+              - generic [ref=e386]: 42% OFF
+              - generic [ref=e387]: Novo
+              - button "Ver detalhes" [ref=e388]
+            - generic [ref=e390]:
+              - generic [ref=e391]: R$ 349,99
+              - generic [ref=e392]: Tênis Adidas Response Masculino
+              - paragraph [ref=e393]: Adidas
+          - link "Tênis Adidas Adizero Drive RC Masculino 38% OFF Novo Ver detalhes R$ 499,99 Tênis Adidas Adizero Drive RC Masculino Adidas" [ref=e397] [cursor=pointer]:
+            - /url: /produtos/tenis-adidas-adizero-drive-rc-masculino
+            - generic [ref=e398]:
+              - img "Tênis Adidas Adizero Drive RC Masculino" [ref=e399]
+              - generic [ref=e400]: 38% OFF
+              - generic [ref=e401]: Novo
+              - button "Ver detalhes" [ref=e402]
+            - generic [ref=e404]:
+              - generic [ref=e405]: R$ 499,99
+              - generic [ref=e406]: Tênis Adidas Adizero Drive RC Masculino
+              - paragraph [ref=e407]: Adidas
+          - link "Tênis Adidas Duramo RC 2 Masculino 40% OFF Ver detalhes R$ 299,99 Tênis Adidas Duramo RC 2 Masculino Adidas" [ref=e411] [cursor=pointer]:
+            - /url: /produtos/tenis-adidas-duramo-rc-2-masculino
+            - generic [ref=e412]:
+              - img "Tênis Adidas Duramo RC 2 Masculino" [ref=e413]
+              - generic [ref=e414]: 40% OFF
+              - button "Ver detalhes" [ref=e415]
+            - generic [ref=e417]:
+              - generic [ref=e418]: R$ 299,99
+              - generic [ref=e419]: Tênis Adidas Duramo RC 2 Masculino
+              - paragraph [ref=e420]: Adidas
+          - link "Tênis Adidas Duramo RC 2 Feminino 40% OFF Ver detalhes R$ 299,99 Tênis Adidas Duramo RC 2 Feminino Adidas" [ref=e424] [cursor=pointer]:
+            - /url: /produtos/tenis-adidas-duramo-rc-2-feminino
+            - generic [ref=e425]:
+              - img "Tênis Adidas Duramo RC 2 Feminino" [ref=e426]
+              - generic [ref=e427]: 40% OFF
+              - button "Ver detalhes" [ref=e428]
+            - generic [ref=e430]:
+              - generic [ref=e431]: R$ 299,99
+              - generic [ref=e432]: Tênis Adidas Duramo RC 2 Feminino
+              - paragraph [ref=e433]: Adidas
+          - link "Tênis Adidas Boost Run Feminino 30% OFF Novo Ver detalhes R$ 699,99 Tênis Adidas Boost Run Feminino Adidas" [ref=e437] [cursor=pointer]:
+            - /url: /produtos/tenis-adidas-boost-run-feminino
+            - generic [ref=e438]:
+              - img "Tênis Adidas Boost Run Feminino" [ref=e439]
+              - generic [ref=e440]: 30% OFF
+              - generic [ref=e441]: Novo
+              - button "Ver detalhes" [ref=e442]
+            - generic [ref=e444]:
+              - generic [ref=e445]: R$ 699,99
+              - generic [ref=e446]: Tênis Adidas Boost Run Feminino
+              - paragraph [ref=e447]: Adidas
+          - link "Tênis Mizuno Victory 36% OFF Ver detalhes R$ 449,99 Tênis Mizuno Victory Mizuno" [ref=e451] [cursor=pointer]:
+            - /url: /produtos/tenis-mizuno-victory
+            - generic [ref=e452]:
+              - img "Tênis Mizuno Victory" [ref=e453]
+              - generic [ref=e454]: 36% OFF
+              - button "Ver detalhes" [ref=e455]
+            - generic [ref=e457]:
+              - generic [ref=e458]: R$ 449,99
+              - generic [ref=e459]: Tênis Mizuno Victory
+              - paragraph [ref=e460]: Mizuno
+      - generic [ref=e462]:
+        - generic [ref=e463]:
+          - heading "Por Que Comprar na Pé Quente Calçados?" [level=2] [ref=e464]
+          - paragraph [ref=e466]: Oferecemos a melhor experiência de compra com produtos de qualidade e atendimento diferenciado
+        - generic [ref=e467]:
+          - generic [ref=e469]:
+            - img [ref=e471]
+            - generic [ref=e474]:
+              - heading "Retirada na Loja" [level=3] [ref=e475]
+              - paragraph [ref=e476]: Compre online e retire na loja em Paraíba do Sul
+          - generic [ref=e478]:
+            - img [ref=e480]
+            - generic [ref=e482]:
+              - heading "Parcelamento" [level=3] [ref=e483]
+              - paragraph [ref=e484]: Parcelamento em até 12x sem juros no cartão
+          - generic [ref=e486]:
+            - img [ref=e488]
+            - generic [ref=e492]:
+              - heading "5% OFF no PIX" [level=3] [ref=e493]
+              - paragraph [ref=e494]: Ganhe 5% de desconto pagando no PIX
+          - generic [ref=e496]:
+            - img [ref=e498]
+            - generic [ref=e501]:
+              - heading "Qualidade Garantida" [level=3] [ref=e502]
+              - paragraph [ref=e503]: Produtos das melhores marcas do mercado
+          - generic [ref=e505]:
+            - img [ref=e507]
+            - generic [ref=e512]:
+              - heading "Atendimento Pessoal" [level=3] [ref=e513]
+              - paragraph [ref=e514]: Nossa equipe está pronta para te atender
+          - generic [ref=e516]:
+            - img [ref=e518]
+            - generic [ref=e521]:
+              - heading "Horários Flexíveis" [level=3] [ref=e522]
+              - paragraph [ref=e523]: Funcionamento de segunda a sábado
+      - generic [ref=e525]:
+        - generic [ref=e526]:
+          - heading "Visite Nossa Loja" [level=2] [ref=e527]
+          - paragraph [ref=e529]: Venha nos conhecer pessoalmente em Paraíba do Sul
+        - generic [ref=e530]:
+          - generic [ref=e533]:
+            - generic [ref=e534]:
+              - img [ref=e535]
+              - generic [ref=e538]:
+                - heading "Endereço" [level=3] [ref=e539]
+                - paragraph [ref=e540]: Praça Garcia 136/140 - Centro, Paraíba do Sul, RJ 25850-000
+            - generic [ref=e541]:
+              - img [ref=e542]
+              - generic [ref=e545]:
+                - heading "Horários de Funcionamento" [level=3] [ref=e546]
+                - generic [ref=e547]:
+                  - paragraph [ref=e548]: "Segunda à Sexta: 9h - 19h"
+                  - paragraph [ref=e549]: "Sábado: 9h - 14h"
+                  - paragraph [ref=e550]: "Domingo: Fechado"
+            - generic [ref=e552]: (24) 2263-2334
+          - generic [ref=e553]:
+            - generic [ref=e556]:
+              - img [ref=e557]
+              - paragraph [ref=e560]: Foto da fachada
+            - generic [ref=e561]:
+              - img [ref=e562]
+              - heading "Fale Conosco no WhatsApp" [level=3] [ref=e564]
+              - paragraph [ref=e565]: Tire suas dúvidas, confirme disponibilidade de produtos ou agende sua visita
+              - link "Falar no WhatsApp" [ref=e566] [cursor=pointer]:
+                - /url: https://wa.me/2422632334
+                - img [ref=e567]
+                - text: Falar no WhatsApp
+      - generic [ref=e570]:
+        - generic [ref=e571]:
+          - heading "O Que Nossos Clientes Dizem" [level=2] [ref=e572]
+          - paragraph [ref=e573]: Depoimentos reais de clientes satisfeitos
+        - generic [ref=e574]:
+          - generic [ref=e575]:
+            - generic [ref=e577]:
+              - generic [ref=e578]:
+                - img [ref=e579]
+                - img [ref=e581]
+                - img [ref=e583]
+                - img [ref=e585]
+                - img [ref=e587]
+              - img [ref=e589]
+              - paragraph [ref=e592]: "\"Excelente atendimento e produtos de qualidade! Comprei meus tênis favoritos e o processo foi muito simples. Recomendo!\""
+              - generic [ref=e593]:
+                - generic [ref=e594]: M
+                - generic [ref=e595]:
+                  - paragraph [ref=e596]: Maria Silva
+                  - paragraph [ref=e597]: "Comprou: Tênis Nike Air Max"
+            - generic [ref=e599]:
+              - generic [ref=e600]:
+                - img [ref=e601]
+                - img [ref=e603]
+                - img [ref=e605]
+                - img [ref=e607]
+                - img [ref=e609]
+              - img [ref=e611]
+              - paragraph [ref=e614]: "\"A loja tem uma ótima variedade de marcas. O desconto no PIX é um diferencial! Muito satisfeito com a compra.\""
+              - generic [ref=e615]:
+                - generic [ref=e616]: J
+                - generic [ref=e617]:
+                  - paragraph [ref=e618]: João Santos
+                  - paragraph [ref=e619]: "Comprou: Tênis Adidas Ultraboost"
+            - generic [ref=e621]:
+              - generic [ref=e622]:
+                - img [ref=e623]
+                - img [ref=e625]
+                - img [ref=e627]
+                - img [ref=e629]
+                - img [ref=e631]
+              - img [ref=e633]
+              - paragraph [ref=e636]: "\"Produtos originais e preços justos. A retirada na loja foi super rápida e o atendimento foi muito atencioso.\""
+              - generic [ref=e637]:
+                - generic [ref=e638]: A
+                - generic [ref=e639]:
+                  - paragraph [ref=e640]: Ana Costa
+                  - paragraph [ref=e641]: "Comprou: Tênis Mizuno Wave"
+            - generic [ref=e643]:
+              - generic [ref=e644]:
+                - img [ref=e645]
+                - img [ref=e647]
+                - img [ref=e649]
+                - img [ref=e651]
+                - img [ref=e653]
+              - img [ref=e655]
+              - paragraph [ref=e658]: "\"Melhor loja de calçados da região! Sempre encontro o que preciso e com ótimos preços. Parabéns pelo trabalho!\""
+              - generic [ref=e659]:
+                - generic [ref=e660]: P
+                - generic [ref=e661]:
+                  - paragraph [ref=e662]: Pedro Oliveira
+                  - paragraph [ref=e663]: "Comprou: Tênis Puma RS-X"
+            - generic [ref=e665]:
+              - generic [ref=e666]:
+                - img [ref=e667]
+                - img [ref=e669]
+                - img [ref=e671]
+                - img [ref=e673]
+                - img [ref=e675]
+              - img [ref=e677]
+              - paragraph [ref=e680]: "\"Adorei a experiência de compra! O site é fácil de usar e o produto chegou exatamente como descrito. Super recomendo!\""
+              - generic [ref=e681]:
+                - generic [ref=e682]: C
+                - generic [ref=e683]:
+                  - paragraph [ref=e684]: Carla Ferreira
+                  - paragraph [ref=e685]: "Comprou: Tênis New Balance 574"
+          - button "Depoimento anterior" [ref=e686]:
+            - img [ref=e687]
+          - button "Próximo depoimento" [ref=e689]:
+            - img [ref=e690]
+          - generic [ref=e692]:
+            - button "Ir para depoimento 1" [ref=e693]
+            - button "Ir para depoimento 2" [ref=e695]
+            - button "Ir para depoimento 3" [ref=e697]
+            - button "Ir para depoimento 4" [ref=e699]
+            - button "Ir para depoimento 5" [ref=e701]
+      - generic [ref=e705]:
+        - heading "Retirada na Loja - Paraíba do Sul" [level=3] [ref=e706]
+        - paragraph [ref=e707]: Compre no site e retire na loja • Ganhe 5% de desconto no PIX
+        - link "Ver todos os produtos" [ref=e708] [cursor=pointer]:
+          - /url: /produtos
+          - text: Ver Produtos
+  - contentinfo [ref=e709]:
+    - generic [ref=e710]:
+      - generic [ref=e711]:
+        - generic [ref=e712]:
+          - heading "Pé Quente Calçados" [level=3] [ref=e713]
+          - paragraph [ref=e714]: Sua loja de tênis, roupas e acessórios em Paraíba do Sul. Os melhores produtos das principais marcas do mercado.
+          - generic [ref=e715]:
+            - link "Instagram" [ref=e716] [cursor=pointer]:
+              - /url: https://www.instagram.com/pequentecalcadosps/
+              - img [ref=e717]
+            - link "Facebook" [ref=e720] [cursor=pointer]:
+              - /url: https://www.facebook.com/pequentecalcadosps
+              - img [ref=e721]
+        - generic [ref=e723]:
+          - heading "Produtos" [level=3] [ref=e724]
+          - list [ref=e725]:
+            - listitem [ref=e726]:
+              - link "Ver produtos da categoria Masculino" [ref=e727] [cursor=pointer]:
+                - /url: /produtos?categoria=tenis-masculino
+                - text: Masculino
+            - listitem [ref=e728]:
+              - link "Ver produtos da categoria Feminino" [ref=e729] [cursor=pointer]:
+                - /url: /produtos?categoria=tenis-feminino
+                - text: Feminino
+            - listitem [ref=e730]:
+              - link "Ver produtos da categoria Chinelos" [ref=e731] [cursor=pointer]:
+                - /url: /produtos?categoria=chinelos-e-sandalias
+                - text: Chinelos
+            - listitem [ref=e732]:
+              - link "Ver produtos da categoria Acessórios" [ref=e733] [cursor=pointer]:
+                - /url: /produtos?categoria=acessorios
+                - text: Acessórios
+            - listitem [ref=e734]:
+              - link "Ver produtos da categoria Outlet" [ref=e735] [cursor=pointer]:
+                - /url: /produtos?categoria=outlet
+                - text: Outlet
+            - listitem [ref=e736]:
+              - link "Ver todos os produtos" [ref=e737] [cursor=pointer]:
+                - /url: /produtos
+                - text: Todos os Produtos
+        - generic [ref=e738]:
+          - heading "Ajuda" [level=3] [ref=e739]
+          - list [ref=e740]:
+            - listitem [ref=e741]:
+              - link "Sobre a loja" [ref=e742] [cursor=pointer]:
+                - /url: /sobre
+                - text: Sobre Nós
+            - listitem [ref=e743]:
+              - link "Página de contato" [ref=e744] [cursor=pointer]:
+                - /url: /contato
+                - text: Fale Conosco
+            - listitem [ref=e745]:
+              - link "Perguntas frequentes" [ref=e746] [cursor=pointer]:
+                - /url: /faq
+                - text: FAQ
+            - listitem [ref=e747]:
+              - link "Blog da loja" [ref=e748] [cursor=pointer]:
+                - /url: /blog
+                - text: Blog
+        - generic [ref=e749]:
+          - heading "Contato" [level=3] [ref=e750]
+          - list [ref=e751]:
+            - listitem [ref=e752]:
+              - img [ref=e753]
+              - generic [ref=e756]: Praça Garcia 136/140 - Centro, Paraíba do Sul, RJ 25850-000
+            - listitem [ref=e757]:
+              - img [ref=e758]
+              - link "Ligar para (24) 2263-2334" [ref=e760] [cursor=pointer]:
+                - /url: tel:(24) 2263-2334
+                - text: (24) 2263-2334
+            - listitem [ref=e761]:
+              - img [ref=e762]
+              - link "Enviar e-mail para contato@pequentecalcados.com.br" [ref=e765] [cursor=pointer]:
+                - /url: mailto:contato@pequentecalcados.com.br
+                - text: contato@pequentecalcados.com.br
+            - listitem [ref=e766]:
+              - img [ref=e767]
+              - generic [ref=e770]:
+                - generic [ref=e771]: "Segunda à Sexta: 9h - 19h"
+                - generic [ref=e772]: "Sábado: 9h - 14h"
+                - generic [ref=e773]: "Domingo: Fechado"
+          - generic [ref=e774]:
+            - heading "Newsletter" [level=4] [ref=e775]
+            - generic [ref=e776]:
+              - textbox "E-mail para newsletter" [ref=e777]:
+                - /placeholder: Seu e-mail
+              - button "Inscrever-se na newsletter" [ref=e778]: Inscrever
+      - generic [ref=e780]:
+        - paragraph [ref=e781]: © 2026 Pé Quente Calçados. Todos os direitos reservados.
+        - generic [ref=e782]:
+          - generic [ref=e783]: "Formas de Pagamento:"
+          - generic [ref=e784]: PIX
+          - generic [ref=e785]: Cartão
+          - generic [ref=e786]: Boleto
+    - paragraph [ref=e789]:
+      - text: Site desenvolvido por
+      - link "VibeCoding" [ref=e790] [cursor=pointer]:
+        - /url: https://github.com/MyBoxStorage/PeQuente
+  - button "Open Next.js Dev Tools" [ref=e796] [cursor=pointer]:
+    - img [ref=e797]
+  - alert [ref=e805]
+  - region "Notifications (F8)":
+    - list
+  - link "Falar no WhatsApp" [ref=e806] [cursor=pointer]:
+    - /url: https://wa.me/2422632334?text=Ol%C3%A1%2C%20vi%20o%20site%20P%C3%A9%20Quente%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es!
+    - img [ref=e807]
+```

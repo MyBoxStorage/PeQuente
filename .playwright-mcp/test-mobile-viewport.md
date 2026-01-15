@@ -1,0 +1,200 @@
+### Page state
+- Page URL: http://localhost:3000/contato
+- Page Title: Contato | Pé Quente Calçados
+- Page Snapshot:
+```yaml
+- generic [active] [ref=e1]:
+  - link "Pular para o conteúdo principal" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - paragraph [ref=e5]: 5% OFF NO PIX | PARCELAMENTO EM 12X | RETIRE NA LOJA EM PARAÍBA DO SUL
+    - generic [ref=e6]:
+      - button "Menu" [ref=e204]:
+        - img [ref=e205]
+      - link "Logo Pé Quente Calçados" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img "Pé Quente Calçados" [ref=e8]
+      - generic [ref=e19]:
+        - button "Buscar" [ref=e20]:
+          - img [ref=e21]
+        - link "Falar no WhatsApp" [ref=e24] [cursor=pointer]:
+          - /url: https://wa.me/2422632334
+          - img [ref=e25]
+        - button "Carrinho" [ref=e27]:
+          - img [ref=e28]
+  - main [ref=e32]:
+    - generic [ref=e35]:
+      - heading "Entre em Contato" [level=1] [ref=e36]
+      - paragraph [ref=e37]: Tem alguma dúvida? Envie sua mensagem e responderemos o mais breve possível.
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - heading "Envie sua Mensagem" [level=2] [ref=e40]
+          - generic [ref=e41]:
+            - generic [ref=e42]:
+              - generic [ref=e43]: Nome *
+              - textbox "Nome *" [ref=e44]
+            - generic [ref=e45]:
+              - generic [ref=e46]: E-mail *
+              - textbox "E-mail *" [ref=e47]
+            - generic [ref=e48]:
+              - generic [ref=e49]: Telefone
+              - textbox "Telefone" [ref=e50]
+            - generic [ref=e51]:
+              - generic [ref=e52]: Assunto *
+              - textbox "Assunto *" [ref=e53]
+            - generic [ref=e54]:
+              - generic [ref=e55]: Mensagem *
+              - textbox "Mensagem *" [ref=e56]
+            - button "Enviar Mensagem" [ref=e57]:
+              - img [ref=e58]
+              - text: Enviar Mensagem
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - heading "Informações de Contato" [level=2] [ref=e63]
+            - generic [ref=e64]:
+              - generic [ref=e65]:
+                - img [ref=e66]
+                - generic [ref=e69]:
+                  - paragraph [ref=e70]: Endereço
+                  - paragraph [ref=e71]: Praça Garcia 136/140 - Centro, Paraíba do Sul, RJ 25850-000
+              - generic [ref=e72]:
+                - img [ref=e73]
+                - generic [ref=e75]:
+                  - paragraph [ref=e76]: Telefone
+                  - link "(24) 2263-2334" [ref=e77] [cursor=pointer]:
+                    - /url: tel:(24) 2263-2334
+              - generic [ref=e78]:
+                - img [ref=e79]
+                - generic [ref=e82]:
+                  - paragraph [ref=e83]: E-mail
+                  - link "contato@pequentecalcados.com.br" [ref=e84] [cursor=pointer]:
+                    - /url: mailto:contato@pequentecalcados.com.br
+          - generic [ref=e85]:
+            - heading "Horário de Funcionamento" [level=3] [ref=e86]
+            - generic [ref=e87]:
+              - paragraph [ref=e88]: "Segunda à Sexta: 9h - 19h"
+              - paragraph [ref=e89]: "Sábado: 9h - 14h"
+              - paragraph [ref=e90]: "Domingo: Fechado"
+          - generic [ref=e91]:
+            - heading "Redes Sociais" [level=3] [ref=e92]
+            - generic [ref=e93]:
+              - link "Instagram" [ref=e94] [cursor=pointer]:
+                - /url: https://www.instagram.com/pequentecalcadosps/
+                - img [ref=e95]
+                - generic [ref=e98]: Instagram
+              - link "Facebook" [ref=e99] [cursor=pointer]:
+                - /url: https://www.facebook.com/pequentecalcadosps
+                - img [ref=e100]
+                - generic [ref=e102]: Facebook
+      - generic [ref=e103]:
+        - heading "Localização" [level=2] [ref=e104]
+        - iframe [ref=e106]:
+          
+        - paragraph [ref=e107]: Praça Garcia 136/140 - Centro, Paraíba do Sul, RJ 25850-000
+  - contentinfo [ref=e108]:
+    - generic [ref=e109]:
+      - generic [ref=e110]:
+        - generic [ref=e111]:
+          - heading "Pé Quente Calçados" [level=3] [ref=e112]
+          - paragraph [ref=e113]: Sua loja de tênis, roupas e acessórios em Paraíba do Sul. Os melhores produtos das principais marcas do mercado.
+          - generic [ref=e114]:
+            - link "Instagram" [ref=e115] [cursor=pointer]:
+              - /url: https://www.instagram.com/pequentecalcadosps/
+              - img [ref=e116]
+            - link "Facebook" [ref=e119] [cursor=pointer]:
+              - /url: https://www.facebook.com/pequentecalcadosps
+              - img [ref=e120]
+        - generic [ref=e122]:
+          - heading "Produtos" [level=3] [ref=e123]
+          - list [ref=e124]:
+            - listitem [ref=e125]:
+              - link "Ver produtos da categoria Masculino" [ref=e126] [cursor=pointer]:
+                - /url: /produtos?categoria=tenis-masculino
+                - text: Masculino
+            - listitem [ref=e127]:
+              - link "Ver produtos da categoria Feminino" [ref=e128] [cursor=pointer]:
+                - /url: /produtos?categoria=tenis-feminino
+                - text: Feminino
+            - listitem [ref=e129]:
+              - link "Ver produtos da categoria Chinelos" [ref=e130] [cursor=pointer]:
+                - /url: /produtos?categoria=chinelos-e-sandalias
+                - text: Chinelos
+            - listitem [ref=e131]:
+              - link "Ver produtos da categoria Acessórios" [ref=e132] [cursor=pointer]:
+                - /url: /produtos?categoria=acessorios
+                - text: Acessórios
+            - listitem [ref=e133]:
+              - link "Ver produtos da categoria Outlet" [ref=e134] [cursor=pointer]:
+                - /url: /produtos?categoria=outlet
+                - text: Outlet
+            - listitem [ref=e135]:
+              - link "Ver todos os produtos" [ref=e136] [cursor=pointer]:
+                - /url: /produtos
+                - text: Todos os Produtos
+        - generic [ref=e137]:
+          - heading "Ajuda" [level=3] [ref=e138]
+          - list [ref=e139]:
+            - listitem [ref=e140]:
+              - link "Sobre a loja" [ref=e141] [cursor=pointer]:
+                - /url: /sobre
+                - text: Sobre Nós
+            - listitem [ref=e142]:
+              - link "Página de contato" [ref=e143] [cursor=pointer]:
+                - /url: /contato
+                - text: Fale Conosco
+            - listitem [ref=e144]:
+              - link "Perguntas frequentes" [ref=e145] [cursor=pointer]:
+                - /url: /faq
+                - text: FAQ
+            - listitem [ref=e146]:
+              - link "Blog da loja" [ref=e147] [cursor=pointer]:
+                - /url: /blog
+                - text: Blog
+        - generic [ref=e148]:
+          - heading "Contato" [level=3] [ref=e149]
+          - list [ref=e150]:
+            - listitem [ref=e151]:
+              - img [ref=e152]
+              - generic [ref=e155]: Praça Garcia 136/140 - Centro, Paraíba do Sul, RJ 25850-000
+            - listitem [ref=e156]:
+              - img [ref=e157]
+              - link "Ligar para (24) 2263-2334" [ref=e159] [cursor=pointer]:
+                - /url: tel:(24) 2263-2334
+                - text: (24) 2263-2334
+            - listitem [ref=e160]:
+              - img [ref=e161]
+              - link "Enviar e-mail para contato@pequentecalcados.com.br" [ref=e164] [cursor=pointer]:
+                - /url: mailto:contato@pequentecalcados.com.br
+                - text: contato@pequentecalcados.com.br
+            - listitem [ref=e165]:
+              - img [ref=e166]
+              - generic [ref=e169]:
+                - generic [ref=e170]: "Segunda à Sexta: 9h - 19h"
+                - generic [ref=e171]: "Sábado: 9h - 14h"
+                - generic [ref=e172]: "Domingo: Fechado"
+          - generic [ref=e173]:
+            - heading "Newsletter" [level=4] [ref=e174]
+            - generic [ref=e175]:
+              - textbox "E-mail para newsletter" [ref=e176]:
+                - /placeholder: Seu e-mail
+              - button "Inscrever-se na newsletter" [ref=e177]: Inscrever
+      - generic [ref=e179]:
+        - paragraph [ref=e180]: © 2026 Pé Quente Calçados. Todos os direitos reservados.
+        - generic [ref=e181]:
+          - generic [ref=e182]: "Formas de Pagamento:"
+          - generic [ref=e183]: PIX
+          - generic [ref=e184]: Cartão
+          - generic [ref=e185]: Boleto
+    - paragraph [ref=e188]:
+      - text: Site desenvolvido por
+      - link "VibeCoding" [ref=e189] [cursor=pointer]:
+        - /url: https://github.com/MyBoxStorage/PeQuente
+  - button "Open Next.js Dev Tools" [ref=e195] [cursor=pointer]:
+    - img [ref=e196]
+  - alert [ref=e199]
+  - region "Notifications (F8)":
+    - list
+  - link "Falar no WhatsApp" [ref=e200] [cursor=pointer]:
+    - /url: https://wa.me/2422632334?text=Ol%C3%A1%2C%20vi%20o%20site%20P%C3%A9%20Quente%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es!
+    - img [ref=e201]
+```
