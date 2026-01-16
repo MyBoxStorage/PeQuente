@@ -20,7 +20,7 @@ export function StoriesHighlights() {
   const [canScrollRight, setCanScrollRight] = useState(false)
 
   useEffect(() => {
-    fetch('/data/stories.json')
+    fetch('/stories.json')
       .then((res) => res.json())
       .then((data) => setStories(data.stories))
       .catch((err) => console.error('Erro ao carregar stories:', err))
