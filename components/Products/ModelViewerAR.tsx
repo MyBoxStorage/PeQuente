@@ -95,7 +95,7 @@ export default function ModelViewerAR({
     modelViewer.setAttribute('interpolation-decay', '100'); // Mais responsivo
     
     // CÂMERA - Vista frontal elegante
-    modelViewer.setAttribute('camera-orbit', '0deg 75deg 105%');
+    modelViewer.setAttribute('camera-orbit', '0deg 75deg 210%');
     modelViewer.setAttribute('camera-target', 'auto auto auto');
     modelViewer.setAttribute('field-of-view', '30deg');
     modelViewer.setAttribute('max-field-of-view', '45deg');

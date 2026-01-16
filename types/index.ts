@@ -97,3 +97,12 @@ export interface BlogPost {
   publishedAt: string;
   category?: string;
 }
+
+export interface Story {
+  id: string;
+  title: string;
+  emoji: string;
+  category: string;
+  bgImage: string;
+  link: string;
+}

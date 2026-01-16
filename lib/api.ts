@@ -2,7 +2,8 @@ import productsData from '@/data/products.json';
 import categoriesData from '@/data/categories.json';
 import brandsData from '@/data/brands.json';
 import storeInfoData from '@/data/store-info.json';
-import { Product, Category, Brand, StoreInfo } from '@/types';
+import storiesData from '@/data/stories.json';
+import { Product, Category, Brand, StoreInfo, Story } from '@/types';
 
 export function getAllProducts(): Product[] {
   return productsData as Product[];
@@ -95,4 +96,18 @@ export function getProductsWith3DModels(): Product[] {
   return (productsData as Product[]).filter(
     product => product.active && PRODUCTS_WITH_3D_MODELS.includes(product.slug)
   );
+}
+
+/**
+ * Retorna todos os stories destacados
+ */
+export function getAllStories(): Story[] {
+  return storiesData.stories as Story[];
+}
+
+/**
+ * Retorna um story pelo ID
+ */
+export function getStoryById(id: string): Story | undefined {
+  return (storiesData.stories as Story[]).find(story => story.id === id);
 }

@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next';
 import HeroBanner from '@/components/Hero/HeroBanner';
+import { StoriesHighlights } from '@/components/sections/StoriesHighlights';
 import MarcasPremium from '@/components/sections/MarcasPremium';
 import Promocoes from '@/components/sections/Promocoes';
 import PorQueComprar from '@/components/sections/PorQueComprar';
@@ -38,6 +39,9 @@ export default function HomePage() {
     <div>
       {/* Hero Banner */}
       <HeroBanner />
+
+      {/* Stories Destacados */}
+      <StoriesHighlights />
 
       {/* Produtos em Destaque - Lançamentos */}
       <section className="py-12 bg-[#0a0a0a]">

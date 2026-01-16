@@ -1,0 +1,44 @@
+{
+  "stories": [
+    {
+      "id": "chegou-hoje",
+      "title": "Chegou Hoje",
+      "emoji": "📦",
+      "category": "novidades",
+      "bgImage": "/images/produtos/adidas-ultraboost-masculino.jpeg",
+      "link": "/produtos?novidades=true"
+    },
+    {
+      "id": "mais-vendidos",
+      "title": "Mais Vendidos",
+      "emoji": "🔥",
+      "category": "populares",
+      "bgImage": "/images/produtos/nike-air-force-1-masculino.jpeg",
+      "link": "/produtos?destaque=true"
+    },
+    {
+      "id": "outlet",
+      "title": "Outlet",
+      "emoji": "💰",
+      "category": "promocoes",
+      "bgImage": "/images/produtos/tenis-adidas-response-masculino-1.jpg.jpeg",
+      "link": "/produtos?promocoes=true"
+    },
+    {
+      "id": "lancamentos",
+      "title": "Lançamentos",
+      "emoji": "👟",
+      "category": "lancamentos",
+      "bgImage": "/images/produtos/nike-dunk-low-feminino.jpeg",
+      "link": "/produtos?lancamentos=true"
+    },
+    {
+      "id": "promocoes",
+      "title": "Promoções",
+      "emoji": "🎁",
+      "category": "ofertas",
+      "bgImage": "/images/produtos/vans-sherpa-feminino.jpeg",
+      "link": "/produtos?promocoes=true"
+    }
+  ]
+}
