@@ -48,7 +48,7 @@ export function StoriesHighlights() {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
-      const scrollAmount = direction === 'left' ? -200 : 200
+      const scrollAmount = direction === 'left' ? -300 : 300
       scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
     }
   }
@@ -56,18 +56,18 @@ export function StoriesHighlights() {
   if (stories.length === 0) return null
 
   return (
-    <section className="relative w-full py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
+    <section className="relative w-full py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-6 text-center">
-          <h2 className="text-2xl font-bold text-gray-900">Descubra por Categoria</h2>
-          <p className="text-sm text-gray-600 mt-1">Navegue rápido pelo que você procura</p>
+        <div className="mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Descubra por Categoria</h2>
+          <p className="text-base text-gray-600 mt-2">Navegue rápido pelo que você procura</p>
         </div>
 
-        <div className="relative">
+        <div className="relative px-8 md:px-12">
           {canScrollLeft && (
             <button
               onClick={() => scroll('left')}
-              className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110"
+              className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 items-center justify-center bg-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110"
               aria-label="Rolar para esquerda"
             >
               <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -78,7 +78,7 @@ export function StoriesHighlights() {
 
           <div
             ref={scrollRef}
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory"
+            className="flex gap-6 md:gap-8 lg:gap-10 overflow-x-auto snap-x snap-mandatory justify-center md:justify-start pb-4"
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
@@ -89,24 +89,24 @@ export function StoriesHighlights() {
               <Link
                 key={story.id}
                 href={story.link}
-                className="group relative flex-shrink-0 snap-start"
+                className="group relative flex-shrink-0 snap-center"
               >
-                <div className="relative w-24 h-36 md:w-32 md:h-44 rounded-2xl overflow-hidden ring-2 ring-orange-500 shadow-lg group-hover:ring-4 group-hover:ring-orange-600 group-hover:shadow-2xl group-active:scale-95 transition-all duration-300 ease-out group-hover:scale-105">
+                <div className="relative w-32 h-48 md:w-40 md:h-56 lg:w-44 lg:h-60 rounded-2xl overflow-hidden ring-2 ring-orange-500 shadow-lg group-hover:ring-4 group-hover:ring-orange-600 group-hover:shadow-2xl group-active:scale-95 transition-all duration-300 ease-out group-hover:scale-105">
                   <Image
                     src={story.bgImage}
                     alt={story.title}
                     fill
                     className="object-cover opacity-40"
-                    sizes="(max-width: 768px) 96px, 128px"
+                    sizes="(max-width: 768px) 128px, (max-width: 1024px) 160px, 176px"
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
 
-                  <div className="relative h-full flex flex-col items-center justify-center p-3">
-                    <div className="text-4xl md:text-5xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="relative h-full flex flex-col items-center justify-center p-4">
+                    <div className="text-5xl md:text-6xl lg:text-7xl mb-3 group-hover:scale-110 transition-transform duration-300">
                       {story.emoji}
                     </div>
-                    <p className="text-white text-xs md:text-sm font-semibold text-center leading-tight">
+                    <p className="text-white text-sm md:text-base lg:text-lg font-semibold text-center leading-tight">
                       {story.title}
                     </p>
                   </div>
@@ -123,7 +123,7 @@ export function StoriesHighlights() {
           {canScrollRight && (
             <button
               onClick={() => scroll('right')}
-              className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110"
+              className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 items-center justify-center bg-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110"
               aria-label="Rolar para direita"
             >
               <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
